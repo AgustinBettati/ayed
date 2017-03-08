@@ -1,3 +1,5 @@
+package struct.istruct.list;
+
 public interface GeneralList<L> {
     void remove();
     void goNext();

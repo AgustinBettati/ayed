@@ -1,3 +1,5 @@
+package struct.istruct;
+
 public interface Stack<T> {
     void push(T t);
     void pop();

@@ -1,3 +1,4 @@
+package struct.istruct;
 
 public interface Queue<Q> {
     void enqueue(Q q);
