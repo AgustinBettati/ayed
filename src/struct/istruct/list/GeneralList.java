@@ -4,7 +4,7 @@ public interface GeneralList<L> {
     void goPrev();
     void goTo(int n);
     L getActual();
-    int getPosActual();
+    int getActualPosition();
     int size();
     boolean isVoid();
     boolean endList();
