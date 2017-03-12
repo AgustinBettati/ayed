@@ -1,6 +1,6 @@
 package struct.istruct;
 
-public interface Comparable
+public interface Comparable<T>
 {
-	int compareTo (Comparable x);
+	int compareTo (Comparable<T> x);
 }
