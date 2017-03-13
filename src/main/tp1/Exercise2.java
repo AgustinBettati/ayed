@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Exercise2 {
     public static void main(String[] args) {
+
         for(int n = 100; n <= 100000; n= n*10) {
 
             int[] array1 = createRandomArrayOfInts(n);
@@ -53,6 +54,8 @@ public class Exercise2 {
         return array;
     }
 
+
+
     public static int[] insertionSort(int[] array){
 
         for(int i = 1; i < array.length; i++){
@@ -78,11 +81,35 @@ public class Exercise2 {
                     array[j] = array[j+1];
                     array[j+1] = temp;
                 }
-
             }
         }
 
         return array;
+    }
+
+    // g)
+    private static int[] recursiveSelectionSort(int[] array, int startIndex){
+        if(startIndex >= array.length - 1){
+            return array;
+        }
+
+        int min = startIndex;
+        for(int j = startIndex + 1; j < array.length; j++){
+            if(array[j] < array[min]){
+                min = j;
+            }
+        }
+        if(min != startIndex){
+            int temp = array[startIndex];
+            array[startIndex] = array[min];
+            array[min] = temp;
+        }
+
+        return recursiveSelectionSort(array, startIndex + 1);
+    }
+
+    public static int[] recursiveSelectionSort(int[] array){
+        return recursiveSelectionSort(array, 0);
     }
 
     public static int[] createRandomArrayOfInts(int n){

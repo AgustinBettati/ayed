@@ -2,9 +2,7 @@ package main.tp1;
 
 import java.util.NoSuchElementException;
 
-/**
- * Created by agustin on 9/3/17.
- */
+
 public class Exercise1 {
 
     public static void main(String[] args) {
