@@ -1,6 +1,5 @@
 package main.tp1;
 
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
@@ -33,6 +32,7 @@ public class Exercise2 {
         }
     }
 
+    // b)
 
     public static int[] selectionSort(int[] array){
 
@@ -78,6 +78,59 @@ public class Exercise2 {
             for (int j = 0; j < n - i; j++) {
                 if(array[j] > array[j+1]){
                     int temp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1] = temp;
+                }
+            }
+        }
+
+        return array;
+    }
+
+    // d)
+
+    public static String[] selectionSort(String[] array){
+
+        for(int i = 0; i < (array.length -1); i++){
+            int min = i;
+
+            for(int j = i+1; j < array.length; j++){
+                if(array[min].compareTo(array[j]) > 0){
+                    min = j;
+                }
+            }
+            //A swap needs to be made
+            if(min != i){
+                String temp = array[i];
+                array[i] = array[min];
+                array[min] = temp;
+            }
+        }
+        return array;
+    }
+
+    public static String[] insertionSort(String[] array){
+
+        for(int i = 1; i < array.length; i++){
+            String key = array[i];
+            int j = i-1;
+            while ( (j > -1) && ( array[j].compareTo(key) > 0 ) ) {
+                array [j+1] = array [j];
+                j--;
+            }
+            array[j+1] = key;
+        }
+
+        return array;
+    }
+
+    public static String[] bubbleSort(String[] array){
+        int n = array.length;
+
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < n - i; j++) {
+                if(array[j].compareTo(array[j+1]) > 0){
+                    String temp = array[j];
                     array[j] = array[j+1];
                     array[j+1] = temp;
                 }
