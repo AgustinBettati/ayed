@@ -12,7 +12,7 @@ public class Exercise3 {
         int indiceA = 0;
         int indiceB = 0;
         int indiceC = 0;
-    
+
         while (indiceA < arrayA.length && indiceB < arrayB.length) {
             if (arrayA[indiceA] < arrayB[indiceB]) {
                 arrayC[indiceC] = arrayA[indiceA];
@@ -26,28 +26,28 @@ public class Exercise3 {
         }
 
         if (indiceA == arrayA.length) {
-            for (; indiceB < arrayB.length; ) {
-                for (; indiceC < arrayC.length; indiceC++) {
 
-                    arrayC[indiceC] = arrayB[indiceB];
-                    indiceB++;
-                }
+            for (; indiceC < arrayC.length; indiceC++, indiceB++) {
+
+                arrayC[indiceC] = arrayB[indiceB];
 
             }
 
         } else {
-            for (; indiceA < arrayA.length; ) {
-                for (; indiceC < arrayC.length; indiceC++) {
 
-                    arrayC[indiceC] = arrayA[indiceA];
-                    indiceA++;
-                }
+            for (; indiceC < arrayC.length; indiceC++, indiceA++) {
 
+                arrayC[indiceC] = arrayA[indiceA];
+               
             }
-            return arrayC;
+
         }
         return arrayC;
     }
+
+
+
+
 
     public static void main(String[] args) {
 
