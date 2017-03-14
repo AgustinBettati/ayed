@@ -1,20 +1,18 @@
 package main.tp1;
 
-/**
- * Created by marcos on 13/3/17.
- */
-public class Exercise3 {
+
+public class Exercise3 <T extends Comparable<T>> {
 
 
-    public static int[] merge(int[] arrayA, int[] arrayB) {
-        int[] arrayC = new int[arrayA.length + arrayB.length];
+    public Comparable<T>[] merge(T[] arrayA, T[] arrayB) {
+        Comparable<T>[] arrayC = new Comparable[arrayA.length + arrayB.length];
 
         int indiceA = 0;
         int indiceB = 0;
         int indiceC = 0;
 
         while (indiceA < arrayA.length && indiceB < arrayB.length) {
-            if (arrayA[indiceA] < arrayB[indiceB]) {
+            if (arrayB[indiceB].compareTo(arrayA[indiceA]) > 0) {
                 arrayC[indiceC] = arrayA[indiceA];
                 indiceA++;
             } else {
@@ -43,20 +41,6 @@ public class Exercise3 {
 
         }
         return arrayC;
-    }
-
-
-
-
-
-    public static void main(String[] args) {
-
-
-        int[] a = {1,4,7};
-        int[] b = {5,6,8,10};
-
-      Exercise2.printArray( merge(a,b));
-
     }
 
 }
