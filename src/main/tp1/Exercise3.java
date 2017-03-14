@@ -38,7 +38,7 @@ public class Exercise3 {
             for (; indiceC < arrayC.length; indiceC++, indiceA++) {
 
                 arrayC[indiceC] = arrayA[indiceA];
-               
+
             }
 
         }
