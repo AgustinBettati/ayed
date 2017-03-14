@@ -1,7 +1,7 @@
 package main.tp1;
 
 
-public class Exercise3 <T extends Comparable<T>> {
+public class GenericMerge<T extends Comparable<T>> {
 
 
     public Comparable<T>[] merge(T[] arrayA, T[] arrayB) {
