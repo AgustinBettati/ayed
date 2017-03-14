@@ -14,58 +14,58 @@ import java.util.List;
  *
  * @param <T> the type of object this sorting class will be capable of managing.
  */
-public class GenericsSorting<T> {
+public class GenericsSorting<T extends Comparable<T>>{
 
-    public List<T> selectionSort(List<T> list, Comparator<T> criteria){
+    public T[] selectionSort(T[] array){
 
-        for(int i = 0; i < (list.size() -1); i++){
+        for(int i = 0; i < (array.length -1); i++){
             int min = i;
 
-            for(int j = i+1; j < list.size(); j++){
-                if(criteria.compare(list.get(j), list.get(min)) < 0){
+            for(int j = i+1; j < array.length; j++){
+                if(array[min].compareTo(array[j]) > 0){
                     min = j;
                 }
             }
             //A swap needs to be made
             if(min != i){
-                T temp = list.get(i);
-                list.set(i, list.get(min));
-                list.set(min, temp);
+                T temp = array[i];
+                array[i] = array[min];
+                array[min] = temp;
             }
         }
-        return list;
+        return array;
     }
 
-    public List<T> insertionSort(List<T> list, Comparator<T> criteria){
+    public T[] insertionSort(T[] array){
 
-        for(int i = 1; i < list.size(); i++){
-            T key = list.get(i);
+        for(int i = 1; i < array.length; i++){
+            T key = array[i];
             int j = i-1;
-            while ( (j > -1) && (criteria.compare(list.get(j),key)>0)) {
-                list.set(j+1, list.get(j));
+            while ( (j > -1) && ( array [j].compareTo(key) > 0 ) ) {
+                array [j+1] = array [j];
                 j--;
             }
-            list.set(j+1, key);
+            array[j+1] = key;
         }
 
-        return list;
+        return array;
     }
 
-    public List<T> bubbleSort(List<T> list, Comparator<T> criteria){
-        int n = list.size();
+    public T[] bubbleSort(T[] array){
+        int n = array.length;
 
         for (int i = 1; i < n; i++) {
             for (int j = 0; j < n - i; j++) {
-                if(criteria.compare(list.get(j), list.get(j+1))>0)
-                {
-                    T temp = list.get(j);
-                    list.set(j, list.get(j + 1));
-                    list.set(j + 1, temp);
+                if(array[j].compareTo(array[j+1]) > 0){
+                    T temp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1] = temp;
                 }
             }
         }
-        return list;
+        return array;
     }
+
 
 
 }
