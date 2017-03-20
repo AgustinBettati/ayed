@@ -1,6 +1,13 @@
 package main.distanciaDePalabras;
 
-
+/**
+ * @author Agustin Bettati
+ * @author Marcos Khabie
+ * @version 1.0
+ *
+ * This clases contains two different static methods that are used to obtain the difference
+ * between two words.
+ */
 public class WordsDistance {
 
     /**
@@ -37,34 +44,42 @@ public class WordsDistance {
      * This algorithm consists in finding the amount of operations need to transform one
      * word to another. These operations are either insertion, substitution, or elimination.
      * Both strings dont need to be of the same size.
-     * @param s1
-     * @param s2
+     * @param word1
+     * @param word2
      * @return
      */
-    public static int levenshteinDistance( String s1, String s2 ) {
+    public static int levenshteinDistance( String word1, String word2 ) {
 
-        int[][] matrix = new int[ s1.length() + 1 ][ s2.length() + 1 ];
+        int[][] matrix = new int[ word1.length() + 1 ][ word2.length() + 1 ];
 
-        for( int i = 0; i < s1.length() + 1; i++ ) {
+        for( int i = 0; i < word1.length() + 1; i++ ) {
             matrix[ i ][ 0 ] = i;
         }
 
-        for(int j = 0; j < s2.length() + 1; j++) {
+        for(int j = 0; j < word2.length() + 1; j++) {
             matrix[ 0 ][ j ] = j;
         }
 
-        for( int i = 1; i < s1.length() + 1; i++ ) {
-            for( int j = 1; j < s2.length() + 1; j++ ) {
+        /*
+        Goes through the whole matriz from the top left to the bottom right and fills up all
+        empty spaces using the following criteria:
+        The value of the index is filled up depending on the values to the left, top, and
+        diagonal top-left of the index. Out of these three values, it takes the smallest number
+        of either the left value + 1, the top value + 1, or the diagonal value. If the characters
+        of both words in index - 1 is different, then +1 is also applied to the diagonal value.
+         */
+        for( int i = 1; i < word1.length() + 1; i++ ) {
+            for( int j = 1; j < word2.length() + 1; j++ ) {
                 int up = matrix[ i - 1 ][ j ] + 1;
                 int left = matrix[ i ][ j - 1 ] + 1;
                 int diagonal = matrix[ i - 1 ][ j - 1 ];
-                if ( s1.charAt(i - 1) != s2.charAt(j - 1) ) {
+                if ( word1.charAt(i - 1) != word2.charAt(j - 1) ) {
                     diagonal += 1;
                 }
-                matrix[ i ][ j ] = Math.min( Math.min( up, left ), diagonal );
+                matrix[ i ][ j ] = Math.min(Math.min(up,left),diagonal);
             }
         }
-        return matrix[ s1.length() ][ s2.length() ];
+        return matrix[ word1.length() ][ word2.length() ];
     }
 
 
