@@ -5,6 +5,7 @@ public class GenericMerge<T extends Comparable<T>> {
 
 
     public Comparable<T>[] merge(T[] arrayA, T[] arrayB) {
+        
         Comparable<T>[] arrayC = new Comparable[arrayA.length + arrayB.length];
 
         int indiceA = 0;
