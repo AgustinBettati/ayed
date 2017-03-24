@@ -2,29 +2,26 @@ package struct.impl;
 
 import struct.istruct.Stack;
 
-/**
- * Created by marcos on 24/3/17.
- */
-public class StaticStack implements Stack{
+
+public class StaticStack<T> implements Stack<T>{
     private int top;
     private int capacity;
-    private int count;
-    private Object[] data;
+    private T[] data;
 
     public StaticStack(int x) {
         this.top = -1;
         this.capacity = x;
 
-        this.data = new Object[capacity];
+        this.data = (T[])new Object[capacity];
     }
 
     @Override
-    public void push(Object o) {
+    public void push(T element) {
         if(top+1==data.length){
             grow();
         }
         top++;
-        data[top]= o;
+        data[top]= element;
 
     }
 
@@ -35,7 +32,7 @@ public class StaticStack implements Stack{
     }
 
     @Override
-    public Object peek() {
+    public T peek() {
         if (!isEmpty()){
             return data[top];
         }
@@ -63,7 +60,7 @@ public class StaticStack implements Stack{
 
     }
     private void grow(){
-        Object [] data2 = new Object[2*capacity];
+        T[] data2 = (T[]) new Object[2*capacity];
         for (int i =0; i<capacity;i++){
             data2[i]=data[i];
         }
