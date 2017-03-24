@@ -9,10 +9,9 @@ public class StaticStack<T> implements Stack<T>{
     private T[] data;
 
     public StaticStack(int x) {
-        this.top = -1;
-        this.capacity = x;
-
-        this.data = (T[])new Object[capacity];
+        top = -1;
+        capacity = x;
+        data = (T[])new Object[capacity];
     }
 
     @Override
@@ -50,8 +49,7 @@ public class StaticStack<T> implements Stack<T>{
 
     @Override
     public int size() {
-
-        return top;
+        return top + 1;
     }
 
     @Override
@@ -60,10 +58,11 @@ public class StaticStack<T> implements Stack<T>{
 
     }
     private void grow(){
-        T[] data2 = (T[]) new Object[2*capacity];
+        T[] temp = (T[]) new Object[2*capacity];
         for (int i =0; i<capacity;i++){
-            data2[i]=data[i];
+            temp[i]=data[i];
         }
-        data = data2;
+        data = temp;
+        capacity = 2*capacity;
     }
 }
