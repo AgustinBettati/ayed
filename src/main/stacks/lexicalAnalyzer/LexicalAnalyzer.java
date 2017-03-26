@@ -1,8 +1,4 @@
-package main.stacks;
-
-import java.io.*;
-import java.net.URL;
-import java.util.Scanner;
+package main.stacks.lexicalAnalyzer;
 
 
 public class LexicalAnalyzer {

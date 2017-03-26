@@ -1,4 +1,4 @@
-package main.stacks;
+package main.stacks.lexicalAnalyzer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
