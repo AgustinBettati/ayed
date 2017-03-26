@@ -7,18 +7,17 @@ import struct.impl.LinkedStack;
 public class Calculator {
 
     public static void main(String[] args) {
-        System.out.println(stringCalculator("-4+2*4/2+1"));
+        System.out.println(stringCalculator("4^2+2*4/2-1"));
     }
 
 
     /**
-     * This method can solve arithmetic expresions that contain addition, substracion, division
-     * and product.
-     * @param mathExpression A String that contains the expresion with no spaces present.
+     * This method can solve arithmetic expressions that contain addition, substracion, division
+     * ,product and exponential operations.
+     * @param mathExpression A String that contains the expression with no spaces present.
      * @return
      */
     public static double stringCalculator(String mathExpression) {
-
         LinkedStack<Character> expression = new LinkedStack<>();
         for (int i = mathExpression.length() - 1; i >= 0; i--) {
             expression.push(mathExpression.charAt(i));
@@ -34,7 +33,7 @@ public class Calculator {
             }
 
             else {
-                if (isAddition(expression.peek())) {
+                if (expression.peek() == '+') {
                     isSum = true;
                 } else {
                     isSum = false;
@@ -51,7 +50,7 @@ public class Calculator {
             double innerTerm = Integer.parseInt(numberA);
 
             while( expression.size() > 0 && !isAdditionOrSubstraction( expression.peek() ) ){
-                boolean isProduct = isProduct( expression.peek() );
+                char operationThatIsNotAddition = expression.peek();
                 expression.pop();
 
                 String auxNumber = "";
@@ -61,12 +60,7 @@ public class Calculator {
                 }
                 double auxiliaryNumber = Integer.parseInt(auxNumber);
 
-                if(isProduct){
-                    innerTerm = innerTerm * auxiliaryNumber;
-                }
-                else{
-                    innerTerm = innerTerm / auxiliaryNumber;
-                }
+                innerTerm = calculateOperation(innerTerm, auxiliaryNumber, operationThatIsNotAddition);
             }
 
             if(isSum){
@@ -80,26 +74,32 @@ public class Calculator {
         return partialResult;
     }
 
-    private static boolean isAddition(Character operation) {
-        if(operation == '+'){
-            return true;
+    /**
+     * This method takes 2 numbers and an operation that is either product, division, or exponencial.
+     * @param number1
+     * @param number2
+     * @param operation
+     * @return
+     */
+    private static double calculateOperation(double number1, double number2, Character operation){
+        if(operation == '*'){
+            return number1 * number2;
+        }
+        else if(operation == '/'){
+            return number1 / number2;
         }
         else{
-            return false;
+            return Math.pow(number1, number2);
         }
     }
 
+    /**
+     * This method states if an operation is an addition or substraction.
+     * @param operation
+     * @return
+     */
     private static boolean isAdditionOrSubstraction(Character operation) {
         if(operation == '+' || operation == '-'){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
-    private static boolean isProduct(Character operation) {
-        if(operation == '*'){
             return true;
         }
         else{
