@@ -8,7 +8,7 @@ import java.awt.*;
  */
 public class SudokuFrame extends JFrame {
 
-    private JLabel board[][]= new JLabel[9][9];
+    private JTextField board[][]= new JTextField[9][9];
 
     public SudokuFrame() {
 
@@ -22,6 +22,10 @@ public class SudokuFrame extends JFrame {
         JPanel mainPanel= new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
 
+        JButton resolveButton = new JButton("Resolve");
+        resolveButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        resolveButton.setSize(30,25);
+
 
         JPanel sudokuBoard = new JPanel(new GridLayout(9, 9));
 
@@ -29,7 +33,7 @@ public class SudokuFrame extends JFrame {
 
             for(int j = 0; j < 9; j++) {
 
-                board[i][j] = new JLabel();
+                board[i][j] = new JTextField();
 
                 board[i][j].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
 
@@ -54,7 +58,7 @@ public class SudokuFrame extends JFrame {
 
 
         mainPanel.add(sudokuBoard);
-
+        mainPanel.add(resolveButton);
         add(mainPanel);
         setVisible(true);
     }
