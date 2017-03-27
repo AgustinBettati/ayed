@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 
 public class SudokuFrame extends JFrame {
 
-    private JTextField board[][]= new JTextField[9][9];
+    private JTextField[][] board= new JTextField[9][9];
 
     public SudokuFrame(ActionListener ResolveButtonListener) {
 
@@ -72,5 +72,39 @@ public class SudokuFrame extends JFrame {
         setVisible(true);
     }
 
+    public int[][] valuesGetter (){
+
+        int [][] result= new int[9][9];
+
+   for(int i= 0; i < 9; i++) {
+
+        for(int j = 0; j < 9; j++) {
+
+        if (board[i][j].getText().isEmpty()){
+            result[i][j]=0;
+        }
+        else {
+            result[i][j] = Integer.parseInt(board[i][j].getText());
+        }
+
+                }
+
+            }
+       return result;
+   }
+
+    public JTextField[][] valuesSetter (int [][] solvedBoard){
+        for(int i= 0; i < 9; i++) {
+
+            for(int j = 0; j < 9; j++) {
+
+                board[i][j].setText(Integer.toString(solvedBoard[i][j]));
+
+
+            }
+        }
+        return board;
+    }
 }
+
 
