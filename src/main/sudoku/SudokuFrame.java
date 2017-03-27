@@ -14,7 +14,7 @@ public class SudokuFrame extends JFrame {
 
        super("Sudoku");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(300,300);
+        setSize(300,330);
         setLocationRelativeTo(null);
         setResizable(false);
 
