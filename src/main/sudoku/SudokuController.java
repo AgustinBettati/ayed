@@ -7,7 +7,7 @@ public class SudokuController {
 
     public SudokuController(){
 
-        sudokuWindow = new SudokuFrame();
+        sudokuWindow = new SudokuFrame(null);
 
     }
 
