@@ -2,6 +2,8 @@ package main.sudoku;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  * Created by agustin on 26/3/17.
@@ -29,12 +31,21 @@ public class SudokuFrame extends JFrame {
 
         JPanel sudokuBoard = new JPanel(new GridLayout(9, 9));
 
+
         for(int i= 0; i < 9; i++) {
 
             for(int j = 0; j < 9; j++) {
 
                 board[i][j] = new JTextField();
 
+               int number1=i;
+               int number2=j;
+                board[i][j].addKeyListener(new KeyAdapter() {
+                    public void keyTyped(KeyEvent e) {
+                        if ( board[number1][number2].getText().length() >= 1 ) // limit textfield to 3 characters
+                            e.consume();
+                    }
+                });
                 board[i][j].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
 
 
@@ -42,7 +53,7 @@ public class SudokuFrame extends JFrame {
 
                 board[i][j].setFont(font);
 
-                board[i][j].setForeground(Color.WHITE);
+                board[i][j].setForeground(Color.BLACK);
 
                 board[i][j].setBackground(Color.WHITE);
 
@@ -62,4 +73,20 @@ public class SudokuFrame extends JFrame {
         add(mainPanel);
         setVisible(true);
     }
+  /*  private class LimitedTextField {
+        public LimitedTextField() {
+             JTextField txt = new JTextField();
+            txt.addKeyListener(new KeyAdapter() {
+                public void keyTyped(KeyEvent e) {
+                    if (txt.getText().length() >= 1 ) // limit textfield to 3 characters
+                        e.consume();
+        }
+
+
+    });
+
+
 }
+    }*/
+}
+
