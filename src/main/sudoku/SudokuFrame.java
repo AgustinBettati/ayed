@@ -73,20 +73,6 @@ public class SudokuFrame extends JFrame {
         add(mainPanel);
         setVisible(true);
     }
-  /*  private class LimitedTextField {
-        public LimitedTextField() {
-             JTextField txt = new JTextField();
-            txt.addKeyListener(new KeyAdapter() {
-                public void keyTyped(KeyEvent e) {
-                    if (txt.getText().length() >= 1 ) // limit textfield to 3 characters
-                        e.consume();
-        }
 
-
-    });
-
-
-}
-    }*/
 }
 
