@@ -76,31 +76,25 @@ public class SudokuFrame extends JFrame {
 
         int [][] result= new int[9][9];
 
-   for(int i= 0; i < 9; i++) {
+        for(int i= 0; i < 9; i++) {
 
-        for(int j = 0; j < 9; j++) {
+            for(int j = 0; j < 9; j++) {
 
-        if (board[i][j].getText().isEmpty()){
-            result[i][j]=0;
-        }
-        else {
-            result[i][j] = Integer.parseInt(board[i][j].getText());
-        }
-
+                if (board[i][j].getText().isEmpty()){
+                    result[i][j]=0;
                 }
-
+                else {
+                    result[i][j] = Integer.parseInt(board[i][j].getText());
+                }
             }
+        }
        return result;
    }
 
     public JTextField[][] valuesSetter (int [][] solvedBoard){
         for(int i= 0; i < 9; i++) {
-
             for(int j = 0; j < 9; j++) {
-
                 board[i][j].setText(Integer.toString(solvedBoard[i][j]));
-
-
             }
         }
         return board;
