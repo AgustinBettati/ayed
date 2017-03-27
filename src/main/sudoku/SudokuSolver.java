@@ -20,7 +20,12 @@ public class SudokuSolver {
 
                 if(board[i][j] == 0){
                     stacks[i][j] = createStackForPosition(i,j);
-                    board[i][j] = stacks[i][j].peek();
+                    if ((usedInRowOrCol(i,j,stacks[i][j].peek()))&&usedInSquare(i%2,j,stacks[i][j].peek())){
+                        board[i][j]=stacks[i][j].peek();
+                    }
+                    else {
+                        stacks[i][j].pop();
+                    }
                 }
                 else if(stacks[i][j] == null){
                     // no hacer nada
