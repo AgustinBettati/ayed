@@ -2,6 +2,9 @@ package main.stacks.parkingLot;
 import struct.impl.StaticStack;
 
 /**
+ * @author Agustin Bettati
+ * @author Marcos Khabie
+ * @version 1.0
  * This class represents a parking lot that that can only store cars by piling them in a
  * narrow street.
  */

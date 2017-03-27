@@ -2,6 +2,10 @@ package main.stacks.calculator;
 import struct.impl.LinkedStack;
 
 /**
+ * @author Agustin Bettati
+ * @author Marcos Khabie
+ * @version 1.0
+ *
  * This class is capable of solving simple arithmetic expresions.
  */
 public class Calculator {

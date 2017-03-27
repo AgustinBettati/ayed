@@ -1,6 +1,12 @@
 package main.stacks.parkingLot;
 
-
+/**
+ * @author Agustin Bettati
+ * @author Marcos Khabie
+ * @version 1.0
+ *
+ * Represents a Car with its respective license plate, color, model, and factory.
+ */
 public class Car {
 
     private String licensePlate;
