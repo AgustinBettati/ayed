@@ -7,63 +7,55 @@ import java.awt.*;
  * Created by agustin on 26/3/17.
  */
 public class SudokuFrame extends JFrame {
-    private JTextField f[][]= new JTextField[9][9] ;
-    private JPanel board[][]= new JPanel [3][3];
+
+    private JLabel board[][]= new JLabel[9][9];
 
     public SudokuFrame() {
 
-     /*   super("Sudoku");
+       super("Sudoku");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(285,230);
+        setSize(300,300);
         setLocationRelativeTo(null);
         setResizable(false);
 
 
+        JPanel mainPanel= new JPanel();
+        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
 
 
-        JPanel board=new JPanel();
-        board.setLayout(new GridLayout(9,9));
-        */
-        JPanel panel= new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+        JPanel sudokuBoard = new JPanel(new GridLayout(9, 9));
 
-        JPanel sudokuPanel= new JPanel();
+        for(int i= 0; i < 9; i++) {
+
+            for(int j = 0; j < 9; j++) {
+
+                board[i][j] = new JLabel();
+
+                board[i][j].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
 
 
+                Font font = new Font("Arial", Font.PLAIN, 20);
+
+                board[i][j].setFont(font);
+
+                board[i][j].setForeground(Color.WHITE);
+
+                board[i][j].setBackground(Color.WHITE);
 
 
-            for(int x=0; x<=8; x++){
-                for(int y=0; y<=8; y++){
-                    f[x][y]=new JTextField(1);
-                    f[x][y].setText("1");
-                }
+                board[i][j].setOpaque(true);
+
+                board[i][j].setHorizontalAlignment(JTextField.CENTER);
+
+                sudokuBoard.add(board[i][j]);
+
             }
-
-            for(int x=0; x<=2; x++){
-                for(int y=0; y<=2; y++){
-                    board[x][y]=new JPanel(new GridLayout(3,3));
-                }
-            }
-            sudokuPanel.setLayout(new GridLayout(3,3,5,5));
-
-            for(int u=0; u<=2; u++){
-                for(int i=0; i<=2; i++){
-                    for(int x=0; x<=2; x++ ){
-                        for(int y=0; y<=2; y++){
-                            board[u][i].add(f[y][x]);
-                        }
-                    }
-                    sudokuPanel.add(board[u][i]);
-                }
-            }
+        }
 
 
-            panel.add(sudokuPanel);
+        mainPanel.add(sudokuBoard);
 
-
-
+        add(mainPanel);
         setVisible(true);
-
-
     }
 }
