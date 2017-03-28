@@ -44,7 +44,7 @@ public class Parking {
 
         boolean carNotFound = true;
         while(carNotFound && parkingLot.size() > 0){
-            if(parkingLot.peek() == aCar){
+            if(parkingLot.peek().getLicensePlate().equals(aCar.getLicensePlate()) ){
                 parkingLot.pop();
                 carNotFound = false;
             }

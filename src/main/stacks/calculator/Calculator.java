@@ -11,6 +11,7 @@ import struct.impl.LinkedStack;
 public class Calculator {
 
     public static void main(String[] args) {
+
         System.out.println(stringCalculator("4^2+2*4/2-1"));
     }
 
@@ -22,6 +23,7 @@ public class Calculator {
      * @return
      */
     public static double stringCalculator(String mathExpression) {
+
         LinkedStack<Character> expression = new LinkedStack<>();
         for (int i = mathExpression.length() - 1; i >= 0; i--) {
             expression.push(mathExpression.charAt(i));

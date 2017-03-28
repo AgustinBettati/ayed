@@ -72,7 +72,7 @@ public class SudokuFrame extends JFrame {
         setVisible(true);
     }
 
-    public int[][] valuesGetter (){
+    public int[][] getValuesFromWindow(){
 
         int [][] result= new int[9][9];
 
@@ -91,7 +91,7 @@ public class SudokuFrame extends JFrame {
        return result;
    }
 
-    public JTextField[][] valuesSetter (int [][] solvedBoard){
+    public JTextField[][] setValuesToWindow(int [][] solvedBoard){
         for(int i= 0; i < 9; i++) {
             for(int j = 0; j < 9; j++) {
                 board[i][j].setText(Integer.toString(solvedBoard[i][j]));
