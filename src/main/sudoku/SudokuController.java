@@ -24,7 +24,9 @@ public class SudokuController {
             */
             /*int[][] matrix = {{1,2,3,4,5,6,7,8,9},{1,2,3,4,5,6,7,8,9},{1,2,3,4,5,6,7,8,9},{1,2,3,4,5,6,7,8,9},{1,2,3,4,5,6,7,8,9},{1,2,3,4,5,6,7,8,9},{1,2,3,4,5,6,7,8,9},{1,2,3,4,5,6,7,8,9},{1,2,3,4,5,6,7,8,9}};
             sudokuWindow.valuesSetter(matrix);*/
-           print(sudokuWindow.valuesGetter());
+            solver.loadValues(sudokuWindow.valuesGetter());
+            solver.solveBoard();
+            sudokuWindow.valuesSetter(solver.getValues());
         }
     }
 
