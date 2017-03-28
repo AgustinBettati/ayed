@@ -34,7 +34,7 @@ public class SudokuSolver {
         int i = 0;
         int j = 0;
 
-        while(i <8 || j <8){
+        while(i < 9){
 
             // Hay un numero del board original.
             if(board[i][j] != 0 && stacks[i][j] == null){
