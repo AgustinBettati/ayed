@@ -12,14 +12,17 @@ public class SudokuSolver {
     }
 
     public class IndexOfMatrix{
+        int row;
+        int column;
+
+
         public IndexOfMatrix(){
         }
         public IndexOfMatrix(int i, int j){
             row = i;
             column = j;
         }
-        int row;
-        int column;
+
     }
 
     public void loadValues(int[][] values){
@@ -95,8 +98,8 @@ public class SudokuSolver {
                 else{
                     board[i][j] = stacks[i][j].peek();
                     IndexOfMatrix newPostion = moveForward(i,j);
-                    i = newPostion.row;
-                    j = newPostion.column;
+                     i = newPostion.row;
+                     j = newPostion.column;
                 }
             }
 
@@ -158,7 +161,7 @@ public class SudokuSolver {
         for(int i = 0; i < 3; i++){
             for(int j = 0; j < 3; j++){
                 if(board[i + squareStartRow][j + squareStartCol] == n &&
-                        i != row && j != col){
+                        i+squareStartRow!= row && j+squareStartCol != col){
                     return true;
                 }
             }
