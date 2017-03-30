@@ -1,14 +1,19 @@
 package main.sudoku;
-import struct.impl.LinkedStack;
 import struct.impl.StaticStack;
 
 public class SudokuSolver {
 
+    private boolean isSolved;
+    private int i;
+    private int j;
     private int[][] board;
     private StaticStack<Integer>[][] stacks;
 
     public SudokuSolver(){
         stacks = new StaticStack[9][9];
+        i = 0;
+        j = 0;
+        isSolved = false;
     }
 
     public class IndexOfMatrix{
@@ -22,10 +27,16 @@ public class SudokuSolver {
             row = i;
             column = j;
         }
-
     }
 
-    public void loadValues(int[][] values){
+    public boolean boardIsSolved(){
+        return isSolved;
+    }
+
+    public void loadNewBoard(int[][] values){
+        i = 0;
+        j = 0;
+        isSolved = false;
         board = values;
     }
 
@@ -33,25 +44,25 @@ public class SudokuSolver {
         return board;
     }
 
-    public void solveBoard(){
-        int i = 0;
-        int j = 0;
-
-        while(i < 9){
+    public void runNextStep(){
+        if(i >= 9){
+            isSolved = true;
+        }
+        else {
 
             // Hay un numero del board original.
-            if(board[i][j] != 0 && stacks[i][j] == null){
-                IndexOfMatrix newPostion = moveForward(i,j);
+            if (board[i][j] != 0 && stacks[i][j] == null) {
+                IndexOfMatrix newPostion = moveForward(i, j);
                 i = newPostion.row;
                 j = newPostion.column;
             }
 
             // Hay un numero que no es del board original y esta mal.
-            else if(board[i][j] != 0 &&
-                    (usedInRowOrCol(i,j,board[i][j]) || usedInSquare(i, j, board[i][j] ))){
+            else if (board[i][j] != 0 &&
+                    (usedInRowOrCol(i, j, board[i][j]) || usedInSquare(i, j, board[i][j]))) {
 
                 int size = stacks[i][j].size();
-                while(size <= 1){
+                while (size <= 1) {
                     board[i][j] = 0;
                     stacks[i][j] = null;
                     IndexOfMatrix newPostion = findClosestStackBackwards(i, j);
@@ -66,25 +77,25 @@ public class SudokuSolver {
             }
 
             // Hay un numero que no es del board original y esta bien.
-            else if(board[i][j] != 0 && !usedInRowOrCol(i,j,board[i][j]) &&
-                    !usedInSquare(i , j, board[i][j])){
-                IndexOfMatrix newPostion = moveForward(i,j);
+            else if (board[i][j] != 0 && !usedInRowOrCol(i, j, board[i][j]) &&
+                    !usedInSquare(i, j, board[i][j])) {
+                IndexOfMatrix newPostion = moveForward(i, j);
                 i = newPostion.row;
                 j = newPostion.column;
             }
 
             // Lugar sin numero y ningun stack presente
-            else if(board[i][j] == 0 && (stacks[i][j] == null ) ){
+            else if (board[i][j] == 0 && (stacks[i][j] == null)) {
 
-                stacks[i][j] = createStackForPosition(i,j);
+                stacks[i][j] = createStackForPosition(i, j);
 
-                if(stacks[i][j].isEmpty()){
+                if (stacks[i][j].isEmpty()) {
                     stacks[i][j] = null;
                     IndexOfMatrix newPostion = findClosestStackBackwards(i, j);
                     i = newPostion.row;
                     j = newPostion.column;
 
-                    while(stacks[i][j].size() <= 1){
+                    while (stacks[i][j].size() <= 1) {
                         board[i][j] = 0;
                         stacks[i][j] = null;
                         IndexOfMatrix auxPostion = findClosestStackBackwards(i, j);
@@ -94,21 +105,27 @@ public class SudokuSolver {
                     stacks[i][j].pop();
                     board[i][j] = stacks[i][j].peek();
 
-                }
-                else{
+                } else {
                     board[i][j] = stacks[i][j].peek();
-                    IndexOfMatrix newPostion = moveForward(i,j);
-                     i = newPostion.row;
-                     j = newPostion.column;
+                    IndexOfMatrix newPostion = moveForward(i, j);
+                    i = newPostion.row;
+                    j = newPostion.column;
                 }
             }
-
-            else{
-                System.out.println("Hay un caso raro");
-            }
-
         }
 
+    }
+
+    public boolean boardIsValid(){
+        for (int i = 0; i < 9; i++){
+            for(int j = 0; j < 9; j++){
+                if(board[i][j] != 0 &&
+                        (usedInSquare(i,j,board[i][j]) || usedInRowOrCol(i,j,board[i][j])) ){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public IndexOfMatrix moveForward(int i, int j){

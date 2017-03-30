@@ -18,7 +18,6 @@ public class SudokuFrame extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
-
         JPanel mainPanel= new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
 
@@ -72,14 +71,10 @@ public class SudokuFrame extends JFrame {
         setVisible(true);
     }
 
-    public int[][] getValuesFromWindow(){
-
+    public int[][] getValues(){
         int [][] result= new int[9][9];
-
         for(int i= 0; i < 9; i++) {
-
             for(int j = 0; j < 9; j++) {
-
                 if (board[i][j].getText().isEmpty()){
                     result[i][j]=0;
                 }
@@ -91,13 +86,12 @@ public class SudokuFrame extends JFrame {
        return result;
    }
 
-    public JTextField[][] setValuesToWindow(int [][] solvedBoard){
+    public void setValuesToWindow(int [][] solvedBoard){
         for(int i= 0; i < 9; i++) {
             for(int j = 0; j < 9; j++) {
                 board[i][j].setText(Integer.toString(solvedBoard[i][j]));
             }
         }
-        return board;
     }
 }
 
