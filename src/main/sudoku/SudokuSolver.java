@@ -38,6 +38,7 @@ public class SudokuSolver {
         j = 0;
         isSolved = false;
         board = values;
+        stacks = new StaticStack[9][9];
     }
 
     public int[][] getValues(){

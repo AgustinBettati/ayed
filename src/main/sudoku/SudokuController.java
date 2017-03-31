@@ -3,6 +3,9 @@ package main.sudoku;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 public class SudokuController {
 
@@ -27,15 +30,25 @@ public class SudokuController {
                 errorWindow.setVisible(true);
             }
             else {
-                while (!solver.boardIsSolved()) {
-
-                    solver.runNextStep();
-                    sudokuWindow.setValuesToWindow(solver.getValues());
-                    //Thread.sleep(500);
-                }
+                Timer timer = new Timer();
+                TimerTask task = new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (!solver.boardIsSolved()) {
+                            solver.runNextStep();
+                            sudokuWindow.setValuesToWindow(solver.getValues());
+                        } else {
+                            // stop the timer
+                            cancel();
+                        }
+                    }
+                };
+                timer.schedule(task,0, 50);
             }
         }
+
     }
+
 
     public class ClearBoardButtonListener implements ActionListener{
         @Override

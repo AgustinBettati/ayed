@@ -90,7 +90,7 @@ public class SudokuFrame extends JFrame {
     public void emptyBoard(){
         for(int i= 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                board[i][j].setText("");
+                board[i][j].setText(null);
             }
         }
     }
@@ -99,7 +99,7 @@ public class SudokuFrame extends JFrame {
         int [][] result= new int[9][9];
         for(int i= 0; i < 9; i++) {
             for(int j = 0; j < 9; j++) {
-                if (board[i][j].getText().isEmpty() || board[i][j].getText().equals("")){
+                if (board[i][j].getText().isEmpty()){
                     result[i][j]=0;
                 }
                 else {
