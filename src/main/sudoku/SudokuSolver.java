@@ -121,6 +121,8 @@ public class SudokuSolver {
             for(int j = 0; j < 9; j++){
                 if(board[i][j] != 0 &&
                         (usedInSquare(i,j,board[i][j]) || usedInRowOrCol(i,j,board[i][j])) ){
+                    boolean usedInSquare = usedInSquare(i,j,board[i][j]);
+                    boolean usedInRowOrCol = usedInRowOrCol(i,j,board[i][j]);
                     return false;
                 }
             }
