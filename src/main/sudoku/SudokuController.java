@@ -43,7 +43,7 @@ public class SudokuController {
                         }
                     }
                 };
-                timer.schedule(task,0, 50);
+                timer.schedule(task,0, 10);
             }
         }
 
