@@ -16,7 +16,7 @@ public class SudokuSolver {
         isSolved = false;
     }
 
-    public class IndexOfMatrix{
+    private class IndexOfMatrix{
         int row;
         int column;
 
@@ -131,7 +131,7 @@ public class SudokuSolver {
         return true;
     }
 
-    public IndexOfMatrix moveForward(int i, int j){
+    private IndexOfMatrix moveForward(int i, int j){
         IndexOfMatrix newPosition = new IndexOfMatrix();
         if(j == 8){
             newPosition.column = 0;
@@ -145,7 +145,7 @@ public class SudokuSolver {
     }
 
 
-    public IndexOfMatrix findClosestStackBackwards(int row,int column){
+    private IndexOfMatrix findClosestStackBackwards(int row,int column){
 
         for(int i = row; i >= 0; i--){
             int j = column - 1;
@@ -163,7 +163,7 @@ public class SudokuSolver {
 
 
 
-    public StaticStack<Integer> createStackForPosition(int row, int col){
+    private StaticStack<Integer> createStackForPosition(int row, int col){
         StaticStack<Integer> stack = new StaticStack<>(9);
 
         for (int k = 1; k <= 9; k++){
@@ -175,7 +175,7 @@ public class SudokuSolver {
     }
 
 
-    public boolean usedInSquare(int row, int col, int n){
+    private boolean usedInSquare(int row, int col, int n){
         int squareStartRow = row - (row % 3);
         int squareStartCol = col - (col % 3);
         for(int i = 0; i < 3; i++){
@@ -189,7 +189,7 @@ public class SudokuSolver {
         return false;
     }
 
-    public boolean usedInRowOrCol(int row, int col, int n){
+    private boolean usedInRowOrCol(int row, int col, int n){
         for (int i = 0; i < 9; i++){
             if( (board[row][i] == n & i != col ) || (board[i][col] == n && i != row) ){
                 return true;
