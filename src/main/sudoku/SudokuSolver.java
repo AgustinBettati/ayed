@@ -1,5 +1,6 @@
 package main.sudoku;
-import struct.impl.StaticStack;
+import struct.impl.LinkedStack;
+
 
 public class SudokuSolver {
 
@@ -7,10 +8,10 @@ public class SudokuSolver {
     private int i;
     private int j;
     private int[][] board;
-    private StaticStack<Integer>[][] stacks;
+    private LinkedStack<Integer>[][] stacks;
 
     public SudokuSolver(){
-        stacks = new StaticStack[9][9];
+        stacks = new LinkedStack[9][9];
         i = 0;
         j = 0;
         isSolved = false;
@@ -38,7 +39,7 @@ public class SudokuSolver {
         j = 0;
         isSolved = false;
         board = values;
-        stacks = new StaticStack[9][9];
+        stacks = new LinkedStack[9][9];
     }
 
     public int[][] getValues(){
@@ -163,8 +164,8 @@ public class SudokuSolver {
 
 
 
-    private StaticStack<Integer> createStackForPosition(int row, int col){
-        StaticStack<Integer> stack = new StaticStack<>(9);
+    private LinkedStack<Integer> createStackForPosition(int row, int col){
+        LinkedStack<Integer> stack = new LinkedStack<>();
 
         for (int k = 1; k <= 9; k++){
             if (!usedInRowOrCol(row, col, k) && !usedInSquare(row,col, k)){
