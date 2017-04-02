@@ -3,8 +3,6 @@ package main.chessMovement;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class ChessFrame extends JFrame {
 
@@ -39,7 +37,9 @@ public class ChessFrame extends JFrame {
              }
              else {
                  board[i][j].setBackground(Color.BLACK);
+
              }
+
 
                     board[i][j].setOpaque(true);
 
@@ -49,21 +49,42 @@ public class ChessFrame extends JFrame {
                 }
             }
 
-        Image image = new ImageIcon(this.getClass().getResource("/main/chessMovement/images/10_Silueta_Caballo_Rojo_by_DG-RA.png")).getImage();
-        ImageIcon icon = new ImageIcon(image);
-        board[2][4].setIcon(icon);
 
 
-            JButton resolveButton = new JButton("Resolve");
-            resolveButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-            resolveButton.setSize(30,25);
-            resolveButton.addActionListener(SolveButtonListener);
+
+
+        paintSquare(new PositionInBoard(1,2),1);
+            paintHorse(new PositionInBoard(3,3));
+
+
+
+        JButton nextButton = new JButton("Next path");
+            nextButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+            nextButton.setSize(30,25);
+            nextButton.addActionListener(SolveButtonListener);
 
             mainPanel.add(chessBoard);
-            mainPanel.add(resolveButton);
+            mainPanel.add(nextButton);
             add(mainPanel);
             setVisible(true);
-        }
+    }
+
+    private void paintSquare(PositionInBoard position, int numberOfMovement){
+        board[position.row()][position.column()].setBackground(Color.red);
+        board[position.row()][position.column()].setText(""+numberOfMovement);
+
+        Font font = new Font("Arial", Font.PLAIN, 30);
+        board[position.row()][position.column()].setFont(font);
+        board[position.row()][position.column()].setHorizontalAlignment(SwingConstants.CENTER);
+    }
+
+    private void paintHorse(PositionInBoard position){
+        Image image = new ImageIcon(this.getClass().getResource("/main/chessMovement/images/10_Silueta_Caballo_Rojo_by_DG-RA.png")).getImage();
+        ImageIcon icon = new ImageIcon(image);
+        board[position.row()][position.column()].setIcon(icon);
+    }
+
+
 
 
 }
