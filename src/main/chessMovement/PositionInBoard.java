@@ -38,7 +38,7 @@ public class PositionInBoard {
         return false;
     }
     public boolean isInBoard(){
-        if (this.column()>8||this.row()>8||this.column()<0||this.row()<0){
+        if (this.column()>7||this.row()>7||this.column()<0||this.row()<0){
             return false;
         }
         return true;

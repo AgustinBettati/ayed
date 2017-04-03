@@ -33,10 +33,10 @@ public class ChessFrame extends JFrame {
                 board[i][j].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
 
                 if ((i+j)%2==0) {
-                board[i][j].setBackground(Color.WHITE);
+                board[i][j].setBackground(Color.BLACK);
             }
             else {
-                board[i][j].setBackground(Color.BLACK);
+                board[i][j].setBackground(Color.WHITE);
             }
                 board[i][j].setOpaque(true);
                 chessBoard.add(board[i][j]);

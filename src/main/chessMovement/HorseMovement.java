@@ -18,20 +18,20 @@ public class HorseMovement {
 
 
 
-    private LinkedStack<PositionInBoard> createStackForPosition(PositionInBoard position, PositionInBoard previousPosition){
+    public LinkedStack<PositionInBoard> createStackForPosition(PositionInBoard position, PositionInBoard previousPosition){
         LinkedStack<PositionInBoard> stack = new LinkedStack<>();
 
         for (int i= position.row()-2;i<=position.row()+2;i++){
 
-            if (Math.abs(i)==position.row()+2 ) {
-                for (int j = position.column() + 2; j >= position.column() - 2; j--) {
-                     if (!(j==position.column()||Math.abs(j)== position.column()+2)) {
-                         for(int k = -2; k <=2; k+=4){
-                             PositionInBoard possiblePostion = new PositionInBoard(i, j + k);
-                             if(possiblePostion.isInBoard()&&!possiblePostion.equals(previousPosition)){
-                                 stack.push(possiblePostion);
+            if (i==position.row()+2 || i==position.row()-2 ) {
+                for (int j = position.column() - 2; j <= position.column() + 2; j++) {
+                     if (!(j==position.column() || (j==position.column()+2 || j==position.column()-2))) {
+
+                             PositionInBoard possiblePosition = new PositionInBoard(i , j );
+                             if(possiblePosition.isInBoard()&&!possiblePosition.equals(previousPosition)){
+                                 stack.push(possiblePosition);
                              }
-                         }
+
                      }
                 }
             }//cierra primer if
