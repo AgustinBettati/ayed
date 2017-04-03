@@ -6,12 +6,15 @@ import java.awt.event.ActionListener;
 /**
  * Created by agustin on 30/3/17.
  */
-public class InvalidBoardFrame extends JFrame {
+public class InvalidBoardDialog extends JDialog {
 
-    public InvalidBoardFrame(ActionListener backButtonListener){
+    public InvalidBoardDialog(ActionListener backButtonListener){
 
-        super("Invalid Board Entry");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       // super("Invalid Board Entry");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setModal(true);
+        setModalityType(ModalityType.APPLICATION_MODAL);
         setSize(400,120);
         setLocationRelativeTo(null);
         setResizable(false);

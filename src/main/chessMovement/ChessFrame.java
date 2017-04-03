@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class ChessFrame extends JFrame {
 
     private JLabel[][] board= new JLabel[8][8];
+
     private int amountOfMovements;
 
     public ChessFrame(int amountOfMovements,ActionListener NextPathButtonListener){
@@ -74,20 +75,23 @@ public class ChessFrame extends JFrame {
     public void cleanBoard(){
         for(int i= 7; i >=0; i--) {
             for(int j = 0; j < 8; j++) {
-                board[i][j] = new JLabel();
-                board[i][j].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+
                 if ((i+j)%2==0) {
-                    board[i][j].setBackground(Color.WHITE);
-                }
-                else {
                     board[i][j].setBackground(Color.BLACK);
                 }
-                board[i][j].setOpaque(true);
+                else {
+                    board[i][j].setBackground(Color.WHITE);
+                }
+
+                board[i][j].setText(null);
+                board[i][j].setIcon(null);
             }
+
         }
     }
 
     public void displayPathOfMovements(ArrayList<PositionInBoard> movements){
+
         cleanBoard();
 
         paintSquare(new PositionInBoard(0,0), 0);

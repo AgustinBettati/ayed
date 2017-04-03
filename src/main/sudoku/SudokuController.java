@@ -9,13 +9,13 @@ import java.util.TimerTask;
 public class SudokuController {
 
     private SudokuFrame sudokuWindow;
-    private InvalidBoardFrame errorWindow;
+    private InvalidBoardDialog errorWindow;
     private SudokuSolver solver;
 
 
     public SudokuController() {
         sudokuWindow = new SudokuFrame(new SudokuResolveButtonListener(), new ClearBoardButtonListener());
-        errorWindow = new InvalidBoardFrame(new InvalidBoardBackButtonListener());
+        errorWindow = new InvalidBoardDialog(new InvalidBoardBackButtonListener());
         solver = new SudokuSolver();
     }
 
@@ -25,7 +25,6 @@ public class SudokuController {
             solver.loadNewBoard(sudokuWindow.getValues());
 
             if(!solver.boardIsValid()){
-                sudokuWindow.dispose();
                 errorWindow.setVisible(true);
             }
             else {

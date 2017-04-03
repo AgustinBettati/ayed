@@ -15,6 +15,7 @@ public class ChessController {
     private HorseMovement horseMovement;
 
     public ChessController(){
+
         chessWindow = new ChessFrame(4,new NextPathButtonListener());
         horseMovement = new HorseMovement(4);
     }
@@ -23,7 +24,8 @@ public class ChessController {
     public class NextPathButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-//
+
+           chessWindow.displayPathOfMovements(horseMovement.getNextPath());
         }
     }
 }
