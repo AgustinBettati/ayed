@@ -5,6 +5,14 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * This class is window which displays a chess board and the movement of the horse with a button to display the next path.
+ *
+ * @author Marcos Khabie
+ * @author Agustin Bettati
+ * @version     1.0
+ *
+ */
 public class ChessFrame extends JFrame {
 
     private JLabel[][] board= new JLabel[8][8];
@@ -12,6 +20,13 @@ public class ChessFrame extends JFrame {
 
     private int amountOfMovements;
 
+    /**
+     * This constructor creates a new frame that represents the chess view .
+     * @param amountOfMovements
+     * The amount of movements that will be asked to do to the horse.
+     * @param NextPathButtonListener
+     * The Action Listener used to display the next path view.
+     */
     public ChessFrame(int amountOfMovements,ActionListener NextPathButtonListener){
         super("Chess");
         this.amountOfMovements = amountOfMovements;
@@ -57,6 +72,14 @@ public class ChessFrame extends JFrame {
         setVisible(true);
     }
 
+    /**
+     *
+     *  A method that paints red a square of the chess board with the corresponding number representing which number of movement is.
+     * @param position
+     * The position in board which will be painted
+     * @param numberOfMovement
+     * The number that will be shown inside the square.
+     */
     private void paintSquare(PositionInBoard position, int numberOfMovement){
         board[position.row()][position.column()].setBackground(Color.red);
         board[position.row()][position.column()].setText(""+numberOfMovement);
@@ -66,12 +89,20 @@ public class ChessFrame extends JFrame {
         board[position.row()][position.column()].setHorizontalAlignment(SwingConstants.CENTER);
     }
 
+    /**
+     * A method that paints the horse in the indicated position square
+     * @param position
+     * The position where the horse will be painted.
+     */
     private void paintHorse(PositionInBoard position){
         Image image = new ImageIcon(this.getClass().getResource("/main/chessMovement/images/10_Silueta_Caballo_Rojo_by_DG-RA.png")).getImage();
         ImageIcon icon = new ImageIcon(image);
         board[position.row()][position.column()].setIcon(icon);
     }
 
+    /**
+     * A method that cleans the board leaving it empty.
+     */
     public void cleanBoard(){
 
         for(PositionInBoard position : positionsThatArePainted){
@@ -90,6 +121,11 @@ public class ChessFrame extends JFrame {
         positionsThatArePainted.clear();
     }
 
+    /**
+     * A method  paints red squares of the chess board and paint the correct horses showing the horse's path and thr number of movements.
+     * @param movements
+     * An ArrayList that contains the positions in board of the path that will be painted.
+     */
     public void displayPathOfMovements(ArrayList<PositionInBoard> movements){
 
         cleanBoard();
