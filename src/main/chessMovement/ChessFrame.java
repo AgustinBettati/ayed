@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class ChessFrame extends JFrame {
 
     private JLabel[][] board= new JLabel[8][8];
+    private ArrayList<PositionInBoard> positionsThatArePainted = new ArrayList<>();
 
     private int amountOfMovements;
 
@@ -48,6 +49,7 @@ public class ChessFrame extends JFrame {
         nextButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         nextButton.setSize(30,25);
         nextButton.addActionListener(NextPathButtonListener);
+       // nextButton.setMultiClickThreshhold(500);
 
         mainPanel.add(chessBoard);
         mainPanel.add(nextButton);
@@ -71,21 +73,21 @@ public class ChessFrame extends JFrame {
     }
 
     public void cleanBoard(){
-        for(int i= 7; i >=0; i--) {
-            for(int j = 0; j < 8; j++) {
 
-                if ((i+j)%2==0) {
-                    board[i][j].setBackground(Color.BLACK);
-                }
-                else {
-                    board[i][j].setBackground(Color.WHITE);
-                }
-
-                board[i][j].setText(null);
-                board[i][j].setIcon(null);
+        for(PositionInBoard position : positionsThatArePainted){
+            int i = position.row();
+            int j = position.column();
+            if ((i+j)%2==0) {
+                board[i][j].setBackground(Color.BLACK);
+            }
+            else {
+                board[i][j].setBackground(Color.WHITE);
             }
 
+            board[i][j].setText(null);
+            board[i][j].setIcon(null);
         }
+        positionsThatArePainted.clear();
     }
 
     public void displayPathOfMovements(ArrayList<PositionInBoard> movements){
@@ -96,10 +98,12 @@ public class ChessFrame extends JFrame {
 
         for (int i = 0; i < amountOfMovements - 1; i++){
             paintSquare(movements.get(i), i+1);
+            positionsThatArePainted.add( movements.get(i) );
         }
 
         for(int j = amountOfMovements -1; j < movements.size(); j++) {
             paintHorse(movements.get(j));
+            positionsThatArePainted.add( movements.get(j) );
         }
 
     }

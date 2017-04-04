@@ -33,6 +33,7 @@ public class ChessController {
            catch (AllPathsDisplayedException exception){
                allPathsShownWindow.setVisible(true);
            }
+
         }
     }
 
