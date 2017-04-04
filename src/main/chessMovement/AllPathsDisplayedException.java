@@ -1,7 +1,12 @@
 package main.chessMovement;
 
 /**
- * Created by agustin on 3/4/17.
+ * @author Agustin Bettati
+ * @author Marcos Khabie
+ * @version 1.0
+ *
+ * This class represents the exception found when all of the paths of the horse
+ * have been displayed.
  */
 public class AllPathsDisplayedException extends RuntimeException {
 

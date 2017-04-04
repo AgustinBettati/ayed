@@ -5,10 +5,20 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
- * Created by agustin on 3/4/17.
+ * @author Agustin Bettati
+ * @author Marcos Khabie
+ * @version 1.0
+ *
+ * This class contains a window that states that all paths of the horse have
+ * been shown.
  */
 public class AllPathsShownDialog extends JDialog {
 
+
+    /**
+     * created the Dialog.
+     * @param restartButtonListener
+     */
     public AllPathsShownDialog(ActionListener restartButtonListener){
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

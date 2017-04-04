@@ -5,18 +5,31 @@ import struct.impl.LinkedStack;
 import java.util.ArrayList;
 
 /**
- * Created by marcos on 30/3/17.
+ * @author Agustin Bettati
+ * @author Marcos Khabie
+ * @version 1.0
+ *
+ * This class contains all the logic need to display all the paths for a horse that
+ * moves a certain amount of steps.
  */
 public class HorseMovement {
 
     private int amountOfMovements;
     private ArrayList<LinkedStack<PositionInBoard>> listOfStacks;
 
+    /**
+     * creates the horse movements solver.
+     * @param amountOfMovements
+     */
     public HorseMovement(int amountOfMovements) {
        listOfStacks=new ArrayList<>(amountOfMovements);
        this.amountOfMovements=amountOfMovements;
     }
 
+    /**
+     * Returns the next possible path that the horse can make.
+     * @return a list with all of the positions in the board.
+     */
     public ArrayList<PositionInBoard> getNextPath(){
          for (int i= listOfStacks.size();i<amountOfMovements;i++){
              if (i==0){
@@ -57,7 +70,8 @@ public class HorseMovement {
         return path;
     }
 
-    public LinkedStack<PositionInBoard> createStackForPosition(PositionInBoard position, PositionInBoard previousPosition){
+
+    private LinkedStack<PositionInBoard> createStackForPosition(PositionInBoard position, PositionInBoard previousPosition){
         LinkedStack<PositionInBoard> stack = new LinkedStack<>();
 
         for (int i= position.row()-2;i<=position.row()+2;i++){
@@ -73,12 +87,8 @@ public class HorseMovement {
 
                      }
                 }
-            }//cierra primer if
-            else if(i == position.row()){
-                //nada
             }
-            else{
-
+            else if(!(i == position.row())){
                 for(int k = -2; k <=2; k+=4){
                     PositionInBoard possiblePostion = new PositionInBoard(i, position.column() + k);
                     if(possiblePostion.isInBoard()&&!possiblePostion.equals(previousPosition)){
