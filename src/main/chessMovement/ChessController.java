@@ -12,12 +12,14 @@ import java.util.ArrayList;
 public class ChessController {
 
     private ChessFrame chessWindow;
+    private AllPathsShownDialog allPathsShownWindow;
     private HorseMovement horseMovement;
 
     public ChessController(){
 
         chessWindow = new ChessFrame(4,new NextPathButtonListener());
         horseMovement = new HorseMovement(4);
+        allPathsShownWindow = new AllPathsShownDialog(new ResetButtonListener());
     }
 
 
@@ -25,7 +27,21 @@ public class ChessController {
         @Override
         public void actionPerformed(ActionEvent e) {
 
-           chessWindow.displayPathOfMovements(horseMovement.getNextPath());
+           try {
+               chessWindow.displayPathOfMovements(horseMovement.getNextPath());
+           }
+           catch (AllPathsDisplayedException exception){
+               allPathsShownWindow.setVisible(true);
+           }
+        }
+    }
+
+    public class ResetButtonListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            allPathsShownWindow.dispose();
+            horseMovement = new HorseMovement(4);
+
         }
     }
 }

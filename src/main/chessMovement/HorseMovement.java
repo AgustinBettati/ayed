@@ -31,18 +31,24 @@ public class HorseMovement {
          }
 
        ArrayList<PositionInBoard> path=new ArrayList<>(amountOfMovements);
-        for (int i=0;i<listOfStacks.size();i++){
 
+        for (int i=0;i<listOfStacks.size() -1;i++){
             path.add(listOfStacks.get(i).peek());
+        }
+        LinkedStack<PositionInBoard> lastStack = listOfStacks.get(amountOfMovements -1);
+        int sizeOfLastStack = lastStack.size();
+
+        for (int i=0;i<sizeOfLastStack;i++){
+            path.add(lastStack.peek());
+            lastStack.pop();
 
         }
-        listOfStacks.get(amountOfMovements-1).pop();
 
         int i = amountOfMovements - 1;
 
         while (listOfStacks.get(i).isEmpty()){
             if(i == 0){
-                throw new RuntimeException("No more available paths.");
+                throw new AllPathsDisplayedException();
             }
             listOfStacks.remove(i);
             listOfStacks.get(i-1).pop();

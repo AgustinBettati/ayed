@@ -59,7 +59,6 @@ public class SudokuController {
         @Override
         public void actionPerformed(ActionEvent e) {
             errorWindow.dispose();
-            sudokuWindow.setVisible(true);
         }
     }
 

@@ -44,8 +44,6 @@ public class ChessFrame extends JFrame {
             }
         }
 
-
-
         JButton nextButton = new JButton("Next path");
         nextButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         nextButton.setSize(30,25);
