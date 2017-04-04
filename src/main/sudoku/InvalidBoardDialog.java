@@ -4,10 +4,19 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 /**
- * Created by agustin on 30/3/17.
+ * @author Agustin Bettati
+ * @author Marcos Khabie
+ * @version 1.0
+ *
+ * This class represents an exception found when a invalid board is entered.
  */
 public class InvalidBoardDialog extends JDialog {
 
+
+    /**
+     * Creates a dialog view that tells the user that a invalid board was entered.
+     * @param backButtonListener
+     */
     public InvalidBoardDialog(ActionListener backButtonListener){
 
        // super("Invalid Board Entry");

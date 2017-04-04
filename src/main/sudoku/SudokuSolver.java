@@ -2,6 +2,13 @@ package main.sudoku;
 import struct.impl.LinkedStack;
 
 
+/**
+ * @author Agustin Bettati
+ * @author Marcos Khabie
+ * @version 1.0
+ *
+ * This class contains all the logic needed to solve a sudoku board.
+ */
 public class SudokuSolver {
 
     private boolean isSolved;
@@ -10,6 +17,10 @@ public class SudokuSolver {
     private int[][] board;
     private LinkedStack<Integer>[][] stacks;
 
+    /**
+     * created a sudoku solver with an empty multi array of stacks, and counter pointing
+     * to the initial position of the board.
+     */
     public SudokuSolver(){
         stacks = new LinkedStack[9][9];
         i = 0;
@@ -17,6 +28,9 @@ public class SudokuSolver {
         isSolved = false;
     }
 
+    /**
+     * Inner class that is used to represent positions in the sudoku board.
+     */
     private class IndexOfMatrix{
         int row;
         int column;
@@ -30,10 +44,12 @@ public class SudokuSolver {
         }
     }
 
-    public boolean boardIsSolved(){
-        return isSolved;
-    }
-
+    /**
+     * This method is used to load a new board to the solver.
+     * It will load the new board and prepare all other needed variables in order to
+     * prepare for the process of the solution.
+     * @param values a sudoku board.
+     */
     public void loadNewBoard(int[][] values){
         i = 0;
         j = 0;
@@ -42,24 +58,41 @@ public class SudokuSolver {
         stacks = new LinkedStack[9][9];
     }
 
+    /**
+     * States if the board contained in the solver has been solved or not.
+     * @return
+     */
+    public boolean boardIsSolved(){
+        return isSolved;
+    }
+
+    /**
+     * Returns the values of the board in its current state.
+     * @return
+     */
     public int[][] getValues(){
         return board;
     }
 
+    /**
+     * Taking into count its current position in the board, it runs the following
+     * step to resolving the board.
+     */
     public void runNextStep(){
         if(i >= 9){
             isSolved = true;
         }
         else {
 
-            // Hay un numero del board original.
+            // There is a number of the original board which cannot be changed.
             if (board[i][j] != 0 && stacks[i][j] == null) {
                 IndexOfMatrix newPostion = moveForward(i, j);
                 i = newPostion.row;
                 j = newPostion.column;
             }
 
-            // Hay un numero que no es del board original y esta mal.
+            /* There is a number that is not from the original board and its value
+               is incorrect. */
             else if (board[i][j] != 0 &&
                     (usedInRowOrCol(i, j, board[i][j]) || usedInSquare(i, j, board[i][j]))) {
 
@@ -78,7 +111,8 @@ public class SudokuSolver {
 
             }
 
-            // Hay un numero que no es del board original y esta bien.
+            /* There is a number that is not from the original board and its value
+               is correct. */
             else if (board[i][j] != 0 && !usedInRowOrCol(i, j, board[i][j]) &&
                     !usedInSquare(i, j, board[i][j])) {
                 IndexOfMatrix newPostion = moveForward(i, j);
@@ -86,7 +120,7 @@ public class SudokuSolver {
                 j = newPostion.column;
             }
 
-            // Lugar sin numero y ningun stack presente
+            // Position has no value and no stack.
             else if (board[i][j] == 0 && (stacks[i][j] == null)) {
 
                 stacks[i][j] = createStackForPosition(i, j);
@@ -118,6 +152,11 @@ public class SudokuSolver {
 
     }
 
+    /**
+     * States if a board complies with the rules of sudoku, to make sure that
+     * it can be resolved.
+     * @return
+     */
     public boolean boardIsValid(){
         for (int i = 0; i < 9; i++){
             for(int j = 0; j < 9; j++){
@@ -161,7 +200,6 @@ public class SudokuSolver {
         }
         throw new RuntimeException("No stack found to pop");
     }
-
 
 
     private LinkedStack<Integer> createStackForPosition(int row, int col){

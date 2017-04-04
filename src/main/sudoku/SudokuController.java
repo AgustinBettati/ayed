@@ -6,6 +6,13 @@ import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * @author Agustin Bettati
+ * @author Marcos Khabie
+ * @version 1.0
+ *
+ * This class is used to manage the view and solver of the sudoku.
+ */
 public class SudokuController {
 
     private SudokuFrame sudokuWindow;
@@ -13,12 +20,19 @@ public class SudokuController {
     private SudokuSolver solver;
 
 
+    /**
+     * Creates the controller and instantiates all of its local variables.
+     */
     public SudokuController() {
         sudokuWindow = new SudokuFrame(new SudokuResolveButtonListener(), new ClearBoardButtonListener());
         errorWindow = new InvalidBoardDialog(new InvalidBoardBackButtonListener());
         solver = new SudokuSolver();
     }
 
+    /**
+     * A class that contains the action executed when the user presses the solve button.
+     *
+     */
     public class SudokuResolveButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -47,7 +61,9 @@ public class SudokuController {
 
     }
 
-
+    /**
+     * A class that contains the action executed when the clear button is pressed.
+     */
     public class ClearBoardButtonListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -55,6 +71,10 @@ public class SudokuController {
         }
     }
 
+    /**
+     * A class that contains the action executed when the back button of the
+     * invalid board dialog is pressed.
+     */
     public class InvalidBoardBackButtonListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {

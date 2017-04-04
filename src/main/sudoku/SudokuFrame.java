@@ -7,11 +7,24 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * @author Agustin Bettati
+ * @author Marcos Khabie
+ * @version 1.0
+ *
+ * This class contains the view of a sudoku.
+ */
 public class SudokuFrame extends JFrame {
 
     private JTextField[][] board= new JTextField[9][9];
     private JPanel[][] panels = new JPanel [3][3];
 
+    /**
+     * creates a view that shows a sudoku board, a button that responds to solving,
+     * and another botton that cleans the board.
+     * @param resolveButtonListener
+     * @param clearButtonListener
+     */
     public SudokuFrame(ActionListener resolveButtonListener, ActionListener clearButtonListener) {
 
        super("Sudoku Solver");
@@ -87,6 +100,9 @@ public class SudokuFrame extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Empties the board displayed in the view.
+     */
     public void emptyBoard(){
         for(int i= 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
@@ -95,6 +111,10 @@ public class SudokuFrame extends JFrame {
         }
     }
 
+    /**
+     * Returns the values contained in the board of the view.
+     * @return
+     */
     public int[][] getValues(){
         int [][] result= new int[9][9];
         for(int i= 0; i < 9; i++) {
@@ -108,8 +128,12 @@ public class SudokuFrame extends JFrame {
             }
         }
        return result;
-   }
+    }
 
+    /**
+     * This method is used to set values to the board of the view.
+     * @param solvedBoard
+     */
     public void setValuesToWindow(int [][] solvedBoard){
         for(int i= 0; i < 9; i++) {
             for(int j = 0; j < 9; j++) {
