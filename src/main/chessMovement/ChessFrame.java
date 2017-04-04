@@ -42,6 +42,27 @@ public class ChessFrame extends JFrame {
 
         JPanel chessBoard = new JPanel(new GridLayout(8, 8));
 
+        JPanel stacksPanel = new JPanel();
+        stacksPanel.setLayout(new BoxLayout(stacksPanel,BoxLayout.X_AXIS));
+
+        JPanel firstStack = new JPanel();
+        firstStack.setLayout(new BoxLayout(firstStack, BoxLayout.PAGE_AXIS));
+
+        JPanel secondStack = new JPanel();
+        secondStack.setLayout(new BoxLayout(secondStack, BoxLayout.PAGE_AXIS));
+
+        JPanel thirdStack = new JPanel();
+        thirdStack.setLayout(new BoxLayout(thirdStack, BoxLayout.PAGE_AXIS));
+
+        JPanel fourthStack = new JPanel();
+        fourthStack.setLayout(new BoxLayout(fourthStack, BoxLayout.PAGE_AXIS));
+
+        stacksPanel.add(firstStack);
+        stacksPanel.add(secondStack);
+        stacksPanel.add(thirdStack);
+        stacksPanel.add(fourthStack);
+
+
 
         for(int i= 7; i >=0; i--) {
             for(int j = 0; j < 8; j++) {

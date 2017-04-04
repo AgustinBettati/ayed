@@ -37,7 +37,18 @@ public class ChessController {
     public class NextPathButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
+            ArrayList<LinkedStack<PositionInBoard>> stacks = horseMovement.getStacks();
 
+            for (LinkedStack<PositionInBoard> stack : stacks){
+                String result = "";
+                int size = stack.size();
+                for (int i = 0; i< size; i++){
+                    result += "(" + stack.peek().row()+ ", " + stack.peek().column()+ ") ";
+                    stack.pop();
+                }
+                System.out.println(result);
+            }
+            System.out.println();
            try {
                chessWindow.displayPathOfMovements(horseMovement.getNextPath());
            }

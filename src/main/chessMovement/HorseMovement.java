@@ -69,7 +69,47 @@ public class HorseMovement {
         }
         return path;
     }
+public ArrayList<LinkedStack<PositionInBoard>> getStacks(){
+        ArrayList<LinkedStack<PositionInBoard>> stacks= new ArrayList<>();
 
+        for (int i=0; i<listOfStacks.size();i++){
+            LinkedStack<PositionInBoard> aux = new LinkedStack<>();
+            LinkedStack<PositionInBoard> stack = new LinkedStack<>();
+            int length = listOfStacks.get(i).size();
+            for (int j = 0; j < length; j++){
+                aux.push(listOfStacks.get(i).peek());
+                stack.push(listOfStacks.get(i).peek());
+                listOfStacks.get(i).pop();
+            }
+            stacks.add(stack);
+
+            for(int j = 0; j < length; j++){
+                listOfStacks.get(i).push(aux.peek());
+                aux.pop();
+            }
+        }
+//        if (listOfStacks.size()==0){
+//
+//        }
+//
+//        else if(listOfStacks.size() - 3 < 0){
+//            stacks.add(createStackForPosition(stacks.get(amountOfMovements -2).peek(), new PositionInBoard(0,0)));
+//        }
+//        else {
+//            stacks.add(createStackForPosition(stacks.get(amountOfMovements - 2).peek(), stacks.get(amountOfMovements - 3).peek()));
+//        }
+        if (listOfStacks.size()==0){
+
+        }
+        else if (listOfStacks.size()-2<0){
+            stacks.add(createStackForPosition(listOfStacks.get(listOfStacks.size() - 1).peek(), new PositionInBoard(0,0)));
+        }
+        else {
+        stacks.add(createStackForPosition(listOfStacks.get(listOfStacks.size() - 1).peek(), (listOfStacks.get(listOfStacks.size()-2).peek())));
+    }
+        return stacks;
+
+}
 
     private LinkedStack<PositionInBoard> createStackForPosition(PositionInBoard position, PositionInBoard previousPosition){
         LinkedStack<PositionInBoard> stack = new LinkedStack<>();
