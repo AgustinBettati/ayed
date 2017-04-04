@@ -1,10 +1,7 @@
 package main.chessMovement;
 
-import struct.impl.LinkedStack;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 
 /**
@@ -37,20 +34,10 @@ public class ChessController {
     public class NextPathButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            ArrayList<LinkedStack<PositionInBoard>> stacks = horseMovement.getStacks();
 
-            for (LinkedStack<PositionInBoard> stack : stacks){
-                String result = "";
-                int size = stack.size();
-                for (int i = 0; i< size; i++){
-                    result += "(" + stack.peek().row()+ ", " + stack.peek().column()+ ") ";
-                    stack.pop();
-                }
-                System.out.println(result);
-            }
-            System.out.println();
            try {
                chessWindow.displayPathOfMovements(horseMovement.getNextPath());
+               chessWindow.displayStacks(horseMovement.getStacks());
            }
            catch (AllPathsDisplayedException exception){
                allPathsShownWindow.setVisible(true);
@@ -67,6 +54,8 @@ public class ChessController {
         public void actionPerformed(ActionEvent e) {
             allPathsShownWindow.dispose();
             horseMovement = new HorseMovement(4);
+            chessWindow.displayPathOfMovements(horseMovement.getNextPath());
+            chessWindow.displayStacks(horseMovement.getStacks());
 
         }
     }

@@ -1,5 +1,7 @@
 package main.chessMovement;
 
+import struct.impl.LinkedStack;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 public class ChessFrame extends JFrame {
 
     private JLabel[][] board= new JLabel[8][8];
+    private JPanel[] stackPanels;
     private ArrayList<PositionInBoard> positionsThatArePainted = new ArrayList<>();
 
     private int amountOfMovements;
@@ -30,9 +33,10 @@ public class ChessFrame extends JFrame {
     public ChessFrame(int amountOfMovements,ActionListener NextPathButtonListener){
         super("Chess");
         this.amountOfMovements = amountOfMovements;
+        stackPanels = new JPanel[amountOfMovements];
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(450,480);
+        setSize(485,630);
         setLocationRelativeTo(null);
         setResizable(false);
 
@@ -45,24 +49,15 @@ public class ChessFrame extends JFrame {
         JPanel stacksPanel = new JPanel();
         stacksPanel.setLayout(new BoxLayout(stacksPanel,BoxLayout.X_AXIS));
 
-        JPanel firstStack = new JPanel();
-        firstStack.setLayout(new BoxLayout(firstStack, BoxLayout.PAGE_AXIS));
 
-        JPanel secondStack = new JPanel();
-        secondStack.setLayout(new BoxLayout(secondStack, BoxLayout.PAGE_AXIS));
-
-        JPanel thirdStack = new JPanel();
-        thirdStack.setLayout(new BoxLayout(thirdStack, BoxLayout.PAGE_AXIS));
-
-        JPanel fourthStack = new JPanel();
-        fourthStack.setLayout(new BoxLayout(fourthStack, BoxLayout.PAGE_AXIS));
-
-        stacksPanel.add(firstStack);
-        stacksPanel.add(secondStack);
-        stacksPanel.add(thirdStack);
-        stacksPanel.add(fourthStack);
-
-
+        for (int i = 0; i< stackPanels.length; i++){
+            stackPanels[i] = new JPanel();
+            stackPanels[i].setLayout(new BoxLayout(stackPanels[i], BoxLayout.PAGE_AXIS));
+            stackPanels[i].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+            stackPanels[i].setAlignmentX(Component.BOTTOM_ALIGNMENT);
+            stacksPanel.add(stackPanels[i]);
+            stacksPanel.add(Box.createRigidArea(new Dimension(15,130)));
+        }
 
         for(int i= 7; i >=0; i--) {
             for(int j = 0; j < 8; j++) {
@@ -85,12 +80,30 @@ public class ChessFrame extends JFrame {
         nextButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         nextButton.setSize(30,25);
         nextButton.addActionListener(NextPathButtonListener);
-       // nextButton.setMultiClickThreshhold(500);
 
         mainPanel.add(chessBoard);
+        mainPanel.add(stacksPanel);
         mainPanel.add(nextButton);
+        mainPanel.add(stacksPanel.add(Box.createRigidArea(new Dimension(0,10))));
+
         add(mainPanel);
         setVisible(true);
+    }
+
+    /**
+     * Displays a list of stacks in the view.
+     * @param listOfStacks
+     */
+    public void displayStacks(ArrayList<ArrayList<PositionInBoard>> listOfStacks){
+
+        for(int i = 0; i< listOfStacks.size(); i++){
+            stackPanels[i].removeAll();
+            ArrayList<PositionInBoard> aStack = listOfStacks.get(i);
+
+            for (PositionInBoard position : aStack){
+                stackPanels[i].add(new JLabel("" + position));
+            }
+        }
     }
 
     /**

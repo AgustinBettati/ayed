@@ -16,6 +16,7 @@ public class HorseMovement {
 
     private int amountOfMovements;
     private ArrayList<LinkedStack<PositionInBoard>> listOfStacks;
+    private ArrayList<ArrayList<PositionInBoard>> listToDisplay;
 
     /**
      * creates the horse movements solver.
@@ -24,6 +25,7 @@ public class HorseMovement {
     public HorseMovement(int amountOfMovements) {
        listOfStacks=new ArrayList<>(amountOfMovements);
        this.amountOfMovements=amountOfMovements;
+       listToDisplay = new ArrayList<>();
     }
 
     /**
@@ -31,17 +33,22 @@ public class HorseMovement {
      * @return a list with all of the positions in the board.
      */
     public ArrayList<PositionInBoard> getNextPath(){
+
          for (int i= listOfStacks.size();i<amountOfMovements;i++){
              if (i==0){
                  listOfStacks.add(createStackForPosition(new PositionInBoard(0,0),new PositionInBoard(0,0)));
              }
            else if (i==1){
+                 if(listOfStacks.get(0).isEmpty()){
+                     throw new AllPathsDisplayedException();
+                 }
                listOfStacks.add(createStackForPosition(listOfStacks.get(i-1).peek(),new PositionInBoard(0,0)));
            }
            else{
                listOfStacks.add(createStackForPosition(listOfStacks.get(i-1).peek(),listOfStacks.get(i-2).peek()));
            }
          }
+        saveValuesOfStacksToLaterDisplay();
 
        ArrayList<PositionInBoard> path=new ArrayList<>(amountOfMovements);
 
@@ -59,57 +66,42 @@ public class HorseMovement {
 
         int i = amountOfMovements - 1;
 
-        while (listOfStacks.get(i).isEmpty()){
-            if(i == 0){
-                throw new AllPathsDisplayedException();
-            }
+        while (i > 0&&listOfStacks.get(i).isEmpty()){
+
             listOfStacks.remove(i);
             listOfStacks.get(i-1).pop();
             i--;
         }
+
         return path;
     }
-public ArrayList<LinkedStack<PositionInBoard>> getStacks(){
-        ArrayList<LinkedStack<PositionInBoard>> stacks= new ArrayList<>();
 
-        for (int i=0; i<listOfStacks.size();i++){
+    /**
+     * Returns the list of stacks in form of a multi array.
+     * @return
+     */
+    public ArrayList<ArrayList<PositionInBoard>> getStacks(){
+            return listToDisplay;
+    }
+
+    private void saveValuesOfStacksToLaterDisplay(){
+        listToDisplay.clear();
+        for(LinkedStack<PositionInBoard> stack : listOfStacks){
+            int size = stack.size();
+            ArrayList<PositionInBoard> list = new ArrayList<>();
             LinkedStack<PositionInBoard> aux = new LinkedStack<>();
-            LinkedStack<PositionInBoard> stack = new LinkedStack<>();
-            int length = listOfStacks.get(i).size();
-            for (int j = 0; j < length; j++){
-                aux.push(listOfStacks.get(i).peek());
-                stack.push(listOfStacks.get(i).peek());
-                listOfStacks.get(i).pop();
+            for (int j = size -1; j >= 0; j--){
+                aux.push(stack.peek());
+                list.add(stack.peek());
+                stack.pop();
             }
-            stacks.add(stack);
-
-            for(int j = 0; j < length; j++){
-                listOfStacks.get(i).push(aux.peek());
+            listToDisplay.add(list);
+            for(int j = 0; j < size; j++){
+                stack.push(aux.peek());
                 aux.pop();
             }
         }
-//        if (listOfStacks.size()==0){
-//
-//        }
-//
-//        else if(listOfStacks.size() - 3 < 0){
-//            stacks.add(createStackForPosition(stacks.get(amountOfMovements -2).peek(), new PositionInBoard(0,0)));
-//        }
-//        else {
-//            stacks.add(createStackForPosition(stacks.get(amountOfMovements - 2).peek(), stacks.get(amountOfMovements - 3).peek()));
-//        }
-        if (listOfStacks.size()==0){
-
-        }
-        else if (listOfStacks.size()-2<0){
-            stacks.add(createStackForPosition(listOfStacks.get(listOfStacks.size() - 1).peek(), new PositionInBoard(0,0)));
-        }
-        else {
-        stacks.add(createStackForPosition(listOfStacks.get(listOfStacks.size() - 1).peek(), (listOfStacks.get(listOfStacks.size()-2).peek())));
     }
-        return stacks;
-
-}
 
     private LinkedStack<PositionInBoard> createStackForPosition(PositionInBoard position, PositionInBoard previousPosition){
         LinkedStack<PositionInBoard> stack = new LinkedStack<>();

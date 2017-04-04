@@ -63,6 +63,40 @@ public class PositionInBoard {
     }
 
     /**
+     * Returns a representation of the position in form of chess.
+     * @return
+     */
+    public String toString(){
+        String xAxisValue = "";
+        if(column == 0){
+            xAxisValue = "A";
+        }
+        else if(column == 1){
+            xAxisValue = "B";
+        }
+        else if(column == 2){
+            xAxisValue = "C";
+        }
+        else if(column == 3){
+            xAxisValue = "D";
+        }
+        else if(column == 4){
+            xAxisValue = "E";
+        }
+        else if(column == 5){
+            xAxisValue = "F";
+        }
+        else if(column == 6){
+            xAxisValue = "G";
+        }
+        else if(column == 7){
+            xAxisValue = "H";
+        }
+
+        return " " + (row +1) + ", " + xAxisValue + " ";
+    }
+
+    /**
      * A method that tells if a position is in the board or if its out of bounds.
      * @return
      * True if is in board false if not.
