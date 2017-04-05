@@ -1,5 +1,6 @@
 package main.chessMovement;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,6 +15,7 @@ import java.awt.event.ActionListener;
 
 public class ChessController {
 
+    private int amountOfMovements;
     private ChessFrame chessWindow;
     private AllPathsShownDialog allPathsShownWindow;
     private HorseMovement horseMovement;
@@ -22,9 +24,11 @@ public class ChessController {
      * This constructor creates a ChessFrame, a HorseMovement and a AllPathsShownDialog. with its respectives parameters
      */
     public ChessController(){
-
-        chessWindow = new ChessFrame(4,new NextPathButtonListener());
-        horseMovement = new HorseMovement(4);
+        amountOfMovements = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter the amount of movements:",
+                "Horse Movements",
+                JOptionPane.INFORMATION_MESSAGE));
+        chessWindow = new ChessFrame(amountOfMovements,new NextPathButtonListener());
+        horseMovement = new HorseMovement(amountOfMovements);
         allPathsShownWindow = new AllPathsShownDialog(new ResetButtonListener());
     }
 
@@ -53,7 +57,7 @@ public class ChessController {
         @Override
         public void actionPerformed(ActionEvent e) {
             allPathsShownWindow.dispose();
-            horseMovement = new HorseMovement(4);
+            horseMovement = new HorseMovement(amountOfMovements);
             chessWindow.displayPathOfMovements(horseMovement.getNextPath());
             chessWindow.displayStacks(horseMovement.getStacks());
 
