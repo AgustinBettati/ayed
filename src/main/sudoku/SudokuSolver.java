@@ -56,6 +56,9 @@ public class SudokuSolver {
         isSolved = false;
         board = values;
         stacks = new LinkedStack[9][9];
+        if(!boardIsValid()){
+            throw new InvalidBoardException();
+        }
     }
 
     /**

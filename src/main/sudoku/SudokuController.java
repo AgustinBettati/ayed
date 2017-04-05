@@ -36,12 +36,9 @@ public class SudokuController {
     public class SudokuResolveButtonListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            solver.loadNewBoard(sudokuWindow.getValues());
+            try {
+                solver.loadNewBoard(sudokuWindow.getValues());
 
-            if(!solver.boardIsValid()){
-                errorWindow.setVisible(true);
-            }
-            else {
                 Timer timer = new Timer();
                 TimerTask task = new TimerTask() {
                     @Override
@@ -56,10 +53,14 @@ public class SudokuController {
                     }
                 };
                 timer.schedule(task,0, 10);
+
+            }catch (InvalidBoardException exception){
+                errorWindow.setVisible(true);
             }
         }
-
     }
+
+
 
     /**
      * A class that contains the action executed when the clear button is pressed.
