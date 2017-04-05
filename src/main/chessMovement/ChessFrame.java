@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class ChessFrame extends JFrame {
 
-    private JLabel[][] board= new JLabel[8][8];
+    private JLabel[][] board = new JLabel[8][8];
     private JPanel[] stackPanels;
     private ArrayList<PositionInBoard> positionsThatArePainted = new ArrayList<>();
 
@@ -25,56 +25,141 @@ public class ChessFrame extends JFrame {
 
     /**
      * This constructor creates a new frame that represents the chess view .
-     * @param amountOfMovements
-     * The amount of movements that will be asked to do to the horse.
-     * @param NextPathButtonListener
-     * The Action Listener used to display the next path view.
+     *
+     * @param amountOfMovements      The amount of movements that will be asked to do to the horse.
+     * @param NextPathButtonListener The Action Listener used to display the next path view.
      */
-    public ChessFrame(int amountOfMovements,ActionListener NextPathButtonListener){
+    public ChessFrame(int amountOfMovements, ActionListener NextPathButtonListener) {
         super("Chess");
         this.amountOfMovements = amountOfMovements;
         stackPanels = new JPanel[amountOfMovements];
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(485,630);
+        setSize(520, 700);
         setLocationRelativeTo(null);
         setResizable(false);
 
 
-        JPanel mainPanel= new JPanel();
+        JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
 
-        JPanel chessBoard = new JPanel(new GridLayout(8, 8));
+
+        JPanel chessBoard = new JPanel(new GridLayout(9, 9));
 
         JPanel stacksPanel = new JPanel();
-        stacksPanel.setLayout(new BoxLayout(stacksPanel,BoxLayout.X_AXIS));
+        stacksPanel.setLayout(new BoxLayout(stacksPanel, BoxLayout.X_AXIS));
 
 
-        for (int i = 0; i< stackPanels.length; i++){
+        for (int i = 0; i < stackPanels.length; i++) {
             stackPanels[i] = new JPanel();
             stackPanels[i].setLayout(new BoxLayout(stackPanels[i], BoxLayout.PAGE_AXIS));
             stackPanels[i].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
             stackPanels[i].setAlignmentX(Component.BOTTOM_ALIGNMENT);
             stacksPanel.add(stackPanels[i]);
-            stacksPanel.add(Box.createRigidArea(new Dimension(15,130)));
+            stacksPanel.add(Box.createRigidArea(new Dimension(15, 130)));
         }
+        Font font = new Font("Arial", Font.PLAIN, 15);
 
-        for(int i= 7; i >=0; i--) {
-            for(int j = 0; j < 8; j++) {
+        for (int i = 7; i >= 0; i--) {
+            for (int j = 0; j < 8; j++) {
 
-                board[i][j] = new JLabel();
-                board[i][j].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+                if (j == 0) {
+                    JLabel number = new JLabel();
+                    number.setText(""+ (i+1));
+                    chessBoard.add(number);
+                    number.setHorizontalAlignment(SwingConstants.CENTER);
+                    number.setFont(font);
 
-                if ((i+j)%2==0) {
-                board[i][j].setBackground(Color.BLACK);
+                }
+
+
+                    board[i][j] = new JLabel();
+                    board[i][j].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+
+                    if ((i + j) % 2 == 0) {
+                        board[i][j].setBackground(Color.BLACK);
+                    } else {
+                        board[i][j].setBackground(Color.WHITE);
+                    }
+                    board[i][j].setOpaque(true);
+                    chessBoard.add(board[i][j]);
+                }
             }
-            else {
-                board[i][j].setBackground(Color.WHITE);
+
+
+        chessBoard.add(Box.createRigidArea(new Dimension(1,1)));
+
+        for (int i=0;i<9;i++){
+            switch (i){
+                case 1:
+                    JLabel letter= new JLabel();
+                    letter.setText("A");
+                    chessBoard.add(letter);
+                    letter.setHorizontalAlignment(SwingConstants.CENTER);
+                    letter.setFont(font);
+                    break;
+
+                case 2:
+                    letter = new JLabel();
+                    letter.setText("B");
+                    chessBoard.add(letter);
+                    letter.setHorizontalAlignment(SwingConstants.CENTER);
+                    letter.setFont(font);
+                    break;
+                case 3:
+                   letter= new JLabel();
+                    letter.setText("C");
+                    chessBoard.add(letter);
+                    letter.setHorizontalAlignment(SwingConstants.CENTER);
+                    letter.setFont(font);
+                    break;
+                case 4:
+                    letter= new JLabel();
+                    letter.setText("D");
+                    chessBoard.add(letter);
+                    letter.setHorizontalAlignment(SwingConstants.CENTER);
+                    letter.setFont(font);
+                    break;
+                case 5:
+                    letter= new JLabel();
+                    letter.setText("E");
+                    chessBoard.add(letter);
+                    letter.setHorizontalAlignment(SwingConstants.CENTER);
+                    letter.setFont(font);
+                    break;
+                case 6:
+                    letter= new JLabel();
+                    letter.setText("F");
+                    chessBoard.add(letter);
+                    letter.setHorizontalAlignment(SwingConstants.CENTER);
+                    letter.setFont(font);
+                    break;
+                case 7:
+                    letter= new JLabel();
+                    letter.setText("G");
+                    chessBoard.add(letter);
+                    letter.setHorizontalAlignment(SwingConstants.CENTER);
+                    letter.setFont(font);
+                    break;
+                case 8:
+                    letter= new JLabel();
+                    letter.setText("H");
+                    chessBoard.add(letter);
+                    letter.setHorizontalAlignment(SwingConstants.CENTER);
+                    letter.setFont(font);
+                    break;
+
             }
-                board[i][j].setOpaque(true);
-                chessBoard.add(board[i][j]);
+
+
+
             }
-        }
+
+
+
+
+
+
 
         JButton nextButton = new JButton("Next path");
         nextButton.setAlignmentX(Component.CENTER_ALIGNMENT);
