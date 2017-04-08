@@ -2,72 +2,62 @@ package struct.impl;
 
 import struct.istruct.Queue;
 
+
 /**
  * Created by marcos on 5/4/17.
  */
+
+
 public class StaticQueue<T> implements Queue<T> {
 
-        private int size;
-        private int front;
-        private T[] data;
-        private int back;
+    private int front;
+    private int back;
+    private int size;
+    private T[] data;
 
-    public StaticQueue(int capacity) {
-        this.size = 0;
-        this.front = 0;
-        this.data = (T[])new Object[capacity];
-        this.back = 0;
+    public StaticQueue(int initialCapacity){
+        front = 0;
+        back = 0;
+        size = 0;
+        data = (T[])new Object[initialCapacity];
     }
 
     @Override
-    public void enqueue(T t) {
+    public void enqueue(T o) {
 
-    if (size== data.length-1){
-      grow();
-        size++;
-      data[back]=t;
-      back++;
+        if(size < data.length){
+            data[back] = o;
+            back = nextIndex(back);
+            size++;
+        }
+        else {
+            grow();
+            data[back] = o;
+            back = nextIndex(back);
+            size++;
+        }
 
-
-    }
-    else if (back== data.length-1){
-        back=0;
-        data[back]= t;
-        size++;
-    }
-    else{
-        data[back]=t;
-       back++;
-       size++;
-
-    }
     }
 
     @Override
     public T dequeue() {
-        T result;
-        if (!isEmpty()&& front== data.length-1){
-            result= data[front];
-            front=0;
+        if(!isEmpty()){
+            T valueToReturn = data[front];
+            front = nextIndex(front);
             size--;
-
-
-        }
-        else if (!isEmpty()){
-            result=data[front];
-            front++;
-            size--;
-
+            return valueToReturn;
         }
         else {
-           throw new RuntimeException("The queue is empty");
+            throw  new RuntimeException("Empty queue");
         }
-        return result;
+
     }
 
     @Override
     public boolean isEmpty() {
-        if (size==0){
+
+
+        if(size <= 0){
             return true;
         }
         return false;
@@ -85,61 +75,33 @@ public class StaticQueue<T> implements Queue<T> {
 
     @Override
     public void empty() {
-        front=0;
-        back=0;
 
+        front = 0;
+        back = 0;
+        size = 0;
     }
 
-    public void grow(){
-        T[] aux=(T[])new Object[data.length*2];
-        int auxiliar=0;
-        for (int i= front;i<data.length;i++, auxiliar++){
+    private void grow(){
+        T[] newArray = (T[])new Object[data.length *2];
 
-            aux[auxiliar]= data[i];
+        int j= 0;
+        for(int i = front; i < data.length; i++, j++){
+            newArray[j] = data[i];
         }
-        for (int i=auxiliar,j=0;j<auxiliar;i++,j++){
-            aux[i]= data[j];
+        for(int i = 0;i < back;j++, i++){
+            newArray[j] = data[i];
         }
-        back=size;
-        front=0;
 
-        data =aux;
+        data = newArray;
+        front = 0;
+        back = size;
     }
 
-//    public static void main(String[] args) {
-//        Queue<Integer> test= new StaticQueue<Integer>(4);
-//
-//        test.enqueue(1);
-//        test.enqueue(2);
-//        test.enqueue(3);
-//        test.enqueue(3);
-//        test.enqueue(4);
-//        test.enqueue(5);
-//        test.enqueue(6);
-//        for (int i=0;i< 7;i++){
-//            System.out.println(test.dequeue());
-//        }
-////        System.out.println(test.dequeue());
-//    }
+    private int nextIndex(int currentIndex){
+        if(currentIndex + 1 >= data.length)
+            return 0;
 
-    public static void main(String[] args) {
-        StaticQueue<Integer> queue = new StaticQueue<>(4);
+        return currentIndex + 1;
 
-        queue.enqueue(1);
-        queue.enqueue(2);
-        queue.enqueue(3);
-        queue.dequeue();
-        queue.dequeue();
-        queue.enqueue(4);
-        queue.enqueue(5);
-        queue.enqueue(6);
-        queue.enqueue(7);
-
-
-        for (int i =0 ; i < 4; i++){
-            System.out.println(queue.dequeue());
-        }
-        System.out.println();
-        System.out.println(queue.size());
     }
 }

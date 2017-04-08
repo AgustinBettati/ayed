@@ -35,7 +35,7 @@ public class ChessFrame extends JFrame {
         stackPanels = new JPanel[amountOfMovements];
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(520, 700);
+        setSize(520, 670);
         setLocationRelativeTo(null);
         setResizable(false);
 
@@ -89,76 +89,43 @@ public class ChessFrame extends JFrame {
 
         chessBoard.add(Box.createRigidArea(new Dimension(1,1)));
 
-        for (int i=0;i<9;i++){
-            switch (i){
-                case 1:
-                    JLabel letter= new JLabel();
-                    letter.setText("A");
-                    chessBoard.add(letter);
-                    letter.setHorizontalAlignment(SwingConstants.CENTER);
-                    letter.setFont(font);
-                    break;
 
-                case 2:
-                    letter = new JLabel();
-                    letter.setText("B");
-                    chessBoard.add(letter);
-                    letter.setHorizontalAlignment(SwingConstants.CENTER);
-                    letter.setFont(font);
-                    break;
-                case 3:
-                   letter= new JLabel();
-                    letter.setText("C");
-                    chessBoard.add(letter);
-                    letter.setHorizontalAlignment(SwingConstants.CENTER);
-                    letter.setFont(font);
-                    break;
-                case 4:
-                    letter= new JLabel();
-                    letter.setText("D");
-                    chessBoard.add(letter);
-                    letter.setHorizontalAlignment(SwingConstants.CENTER);
-                    letter.setFont(font);
-                    break;
-                case 5:
-                    letter= new JLabel();
-                    letter.setText("E");
-                    chessBoard.add(letter);
-                    letter.setHorizontalAlignment(SwingConstants.CENTER);
-                    letter.setFont(font);
-                    break;
-                case 6:
-                    letter= new JLabel();
-                    letter.setText("F");
-                    chessBoard.add(letter);
-                    letter.setHorizontalAlignment(SwingConstants.CENTER);
-                    letter.setFont(font);
-                    break;
-                case 7:
-                    letter= new JLabel();
-                    letter.setText("G");
-                    chessBoard.add(letter);
-                    letter.setHorizontalAlignment(SwingConstants.CENTER);
-                    letter.setFont(font);
-                    break;
-                case 8:
-                    letter= new JLabel();
-                    letter.setText("H");
-                    chessBoard.add(letter);
-                    letter.setHorizontalAlignment(SwingConstants.CENTER);
-                    letter.setFont(font);
-                    break;
+            for (int i=1;i<9;i++){
+                String character = "";
+                switch (i){
+                    case 1:
+                        character = "A";
+                        break;
 
-            }
+                    case 2:
+                        character = "B";
+                        break;
+                    case 3:
+                        character = "C";
+                        break;
+                    case 4:
+                        character = "D";
+                        break;
+                    case 5:
+                        character = "E";
+                        break;
+                    case 6:
+                        character = "F";
+                        break;
+                    case 7:
+                        character = "G";
+                        break;
+                    case 8:
+                        character = "H";
+                        break;
+                }
+                JLabel letter= new JLabel();
+                letter.setText(character);
+                letter.setHorizontalAlignment(SwingConstants.CENTER);
+                letter.setFont(font);
+                chessBoard.add(letter);
 
-
-
-            }
-
-
-
-
-
+        }
 
 
         JButton nextButton = new JButton("Next path");
@@ -262,10 +229,6 @@ public class ChessFrame extends JFrame {
         }
 
     }
-
-
-
-
 }
 
 
