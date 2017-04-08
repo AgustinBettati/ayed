@@ -154,6 +154,34 @@ public class BinaryTreeApi<T> {
     }
 
 
+    public boolean equalTrees(BinaryTree<T> tree1, BinaryTree<T> tree2) {
+        if (tree1 == null || tree2 == null)
+            return tree1 == tree2;
+
+        if (tree1.getRoot() != tree2.getRoot())
+            return false;
+
+        return equalTrees(tree1.getLeft(), tree2.getLeft()) && equalTrees(tree1.getRight(), tree2.getRight());
+    }
+
+    public boolean isomorphicTrees(BinaryTree<T> tree1, BinaryTree<T> tree2){
 
 
-}
+            if (tree1.isEmpty() && tree2.isEmpty())
+                return true;
+
+            if ((tree1.isEmpty() && !tree2.isEmpty()) || (!tree1.isEmpty() && tree2.isEmpty()))
+                return false;
+
+            return equalTrees(tree1.getLeft(), tree2.getLeft())
+                    && equalTrees(tree1.getRight(), tree2.getRight());
+        }
+
+        
+
+    }
+
+
+
+
+
