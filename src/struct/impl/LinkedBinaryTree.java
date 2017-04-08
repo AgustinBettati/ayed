@@ -62,7 +62,7 @@ public class LinkedBinaryTree<T> implements BinaryTree<T>{
     @Override
     public BinaryTree<T> getRight() {
         LinkedBinaryTree<T> rightTree = new LinkedBinaryTree<>();
-        rightTree.root = root.left;
+        rightTree.root = root.right;
         return rightTree;
     }
 }
