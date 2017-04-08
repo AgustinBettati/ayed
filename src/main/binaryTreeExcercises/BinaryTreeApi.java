@@ -61,21 +61,6 @@ public class BinaryTreeApi<T> {
         }
     }
 
-    public static void main(String[] args) {
-        LinkedBinaryTree<Integer> leftTree=new LinkedBinaryTree<>(5);
-        LinkedBinaryTree<Integer> rrightTree=new LinkedBinaryTree<>(6);
-        LinkedBinaryTree<Integer> rightTree=new LinkedBinaryTree<>(3, new LinkedBinaryTree<>(), rrightTree);
-
-        LinkedBinaryTree<Integer> mainTree=new LinkedBinaryTree<>(6, leftTree, rightTree);
-
-        BinaryTreeApi<Integer> api = new BinaryTreeApi<>();
-        System.out.println(api.weightOfTree(mainTree));
-        System.out.println(api.numberOfLeaves(mainTree));
-        System.out.println(api.amountOfElementOcurrencies(mainTree,6));
-
-        System.out.println(api.amountGivenLevel(mainTree,3));
-    }
-
     public ArrayList<T> getTreePreOrder(BinaryTree<T> tree){
         ArrayList<T> list  = new ArrayList<>();
         getTreePreOrder(tree, list);
@@ -153,7 +138,31 @@ public class BinaryTreeApi<T> {
         }
     }
 
+    public int sumOfElements(BinaryTree<Integer> tree){
 
+        if(tree.isEmpty()){
+            return 0;
+        }
+        int partialResult = 0;
+        partialResult += tree.getRoot();
+        partialResult += sumOfElements(tree.getLeft()) + sumOfElements(tree.getRight());
+
+        return partialResult;
+    }
+
+    public int sumOfElementsThatAreDivisibleBy3(BinaryTree<Integer> tree){
+        if(tree.isEmpty()){
+            return 0;
+        }
+        int partialResult = 0;
+        if(tree.getRoot() % 3 == 0){
+            partialResult += tree.getRoot();
+        }
+        partialResult += sumOfElementsThatAreDivisibleBy3(tree.getLeft()) +
+                 sumOfElementsThatAreDivisibleBy3(tree.getRight());
+
+        return partialResult;
+    }
 
 
 }
