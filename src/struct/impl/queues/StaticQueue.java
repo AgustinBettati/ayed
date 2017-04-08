@@ -1,5 +1,4 @@
-package struct.impl;
-
+package struct.impl.queues;
 import struct.istruct.Queue;
 
 

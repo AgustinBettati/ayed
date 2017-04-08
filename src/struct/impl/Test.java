@@ -1,5 +1,7 @@
 package struct.impl;
 
+import struct.impl.queues.DynamicQueue;
+
 /**
  * Created by agustin on 5/4/17.
  */

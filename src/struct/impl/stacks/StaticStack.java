@@ -1,4 +1,4 @@
-package struct.impl;
+package struct.impl.stacks;
 
 import struct.istruct.Stack;
 

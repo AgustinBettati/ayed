@@ -1,6 +1,6 @@
 package main.chessMovement;
 
-import struct.impl.LinkedStack;
+import struct.impl.stacks.LinkedStack;
 
 import java.util.ArrayList;
 

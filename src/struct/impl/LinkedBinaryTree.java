@@ -6,19 +6,19 @@ import struct.istruct.BinaryTree;
  * @author Agustin Bettati
  * @version 1.0
  */
-public class BinaryTreeImp<T> implements BinaryTree<T>{
+public class LinkedBinaryTree<T> implements BinaryTree<T>{
 
     private DoubleNode root;
 
-    public BinaryTreeImp(){
+    public LinkedBinaryTree(){
         root = null;
     }
 
-    public BinaryTreeImp(T o){
+    public LinkedBinaryTree(T o){
         root = new DoubleNode(o);
     }
 
-    public BinaryTreeImp(T o, BinaryTreeImp<T> leftTree, BinaryTreeImp<T> rightTree){
+    public LinkedBinaryTree(T o, LinkedBinaryTree<T> leftTree, LinkedBinaryTree<T> rightTree){
         root = new DoubleNode(o, leftTree.root, rightTree.root);
     }
 
@@ -53,7 +53,7 @@ public class BinaryTreeImp<T> implements BinaryTree<T>{
 
     @Override
     public BinaryTree<T> getLeft() {
-        BinaryTreeImp<T> leftTree = new BinaryTreeImp<>();
+        LinkedBinaryTree<T> leftTree = new LinkedBinaryTree<>();
         leftTree.root = root.left;
         return leftTree;
 
@@ -61,7 +61,7 @@ public class BinaryTreeImp<T> implements BinaryTree<T>{
 
     @Override
     public BinaryTree<T> getRight() {
-        BinaryTreeImp<T> rightTree = new BinaryTreeImp<>();
+        LinkedBinaryTree<T> rightTree = new LinkedBinaryTree<>();
         rightTree.root = root.left;
         return rightTree;
     }

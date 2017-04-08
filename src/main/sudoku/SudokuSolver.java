@@ -1,5 +1,5 @@
 package main.sudoku;
-import struct.impl.LinkedStack;
+import struct.impl.stacks.LinkedStack;
 
 
 /**

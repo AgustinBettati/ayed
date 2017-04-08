@@ -1,5 +1,5 @@
 package main.stacks.calculator;
-import struct.impl.LinkedStack;
+import struct.impl.stacks.LinkedStack;
 
 /**
  * @author Agustin Bettati

@@ -1,7 +1,5 @@
 package main.chessMovement;
 
-import struct.impl.LinkedStack;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;

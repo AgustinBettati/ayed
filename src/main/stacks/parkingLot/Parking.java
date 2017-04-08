@@ -1,5 +1,5 @@
 package main.stacks.parkingLot;
-import struct.impl.StaticStack;
+import struct.impl.stacks.StaticStack;
 
 /**
  * @author Agustin Bettati
