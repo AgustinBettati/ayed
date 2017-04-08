@@ -39,20 +39,25 @@ public class SudokuController {
             try {
                 solver.loadNewBoard(sudokuWindow.getValues());
 
-                Timer timer = new Timer();
-                TimerTask task = new TimerTask() {
-                    @Override
-                    public void run() {
-                        if (!solver.boardIsSolved()) {
-                            solver.runNextStep();
-                            sudokuWindow.setValuesToWindow(solver.getValues());
-                        } else {
-                            // stop the timer
-                            cancel();
-                        }
-                    }
-                };
-                timer.schedule(task,0, 10);
+//                Timer timer = new Timer();
+//                TimerTask task = new TimerTask() {
+//                    @Override
+//                    public void run() {
+//                        if (!solver.boardIsSolved()) {
+//                            solver.runNextStep();
+//                            sudokuWindow.setValuesToWindow(solver.getValues());
+//                        } else {
+//                            // stop the timer
+//                            cancel();
+//                        }
+//                    }
+//                };
+//                timer.schedule(task,0, 10);
+                while(!solver.boardIsSolved()){
+                    solver.runNextStep();
+                }
+                sudokuWindow.setValuesToWindow(solver.getValues());
+
 
             }catch (InvalidBoardException exception){
                 errorWindow.setVisible(true);

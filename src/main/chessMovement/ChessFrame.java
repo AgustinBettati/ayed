@@ -229,10 +229,6 @@ public class ChessFrame extends JFrame {
         }
 
     }
-
-
-
-
 }
 
 
