@@ -6,7 +6,7 @@ package struct.impl;
 public class Test {
 
     public static void main(String[] args) {
-        StaticQueue<Integer> queue = new StaticQueue<>(4);
+        DynamicQueue<Integer> queue = new DynamicQueue<>();
 
         queue.enqueue(1);
         queue.enqueue(2);
@@ -17,6 +17,7 @@ public class Test {
         queue.enqueue(5);
         queue.enqueue(6);
         queue.enqueue(7);
+        queue.empty();
 
 
         for (int i =0 ; i < 5; i++){
@@ -24,5 +25,6 @@ public class Test {
         }
         System.out.println();
         System.out.println(queue.size());
+
     }
 }
