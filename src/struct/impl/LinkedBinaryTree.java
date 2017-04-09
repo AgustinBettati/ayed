@@ -4,7 +4,9 @@ import struct.istruct.BinaryTree;
 
 /**
  * @author Agustin Bettati
+ * @author Marcos Khabie
  * @version 1.0
+ *
  */
 public class LinkedBinaryTree<T> implements BinaryTree<T>{
 
@@ -19,6 +21,12 @@ public class LinkedBinaryTree<T> implements BinaryTree<T>{
     }
 
     public LinkedBinaryTree(T o, LinkedBinaryTree<T> leftTree, LinkedBinaryTree<T> rightTree){
+        if(leftTree == null){
+            leftTree = new LinkedBinaryTree<>();
+        }
+        if(rightTree == null){
+            rightTree = new LinkedBinaryTree<>();
+        }
         root = new DoubleNode(o, leftTree.root, rightTree.root);
     }
 
