@@ -1,5 +1,7 @@
 package main.queues;
 
+import struct.impl.queues.DynamicQueue;
+import struct.impl.stacks.LinkedStack;
 import struct.istruct.Queue;
 import struct.istruct.Stack;
 
@@ -8,10 +10,12 @@ import struct.istruct.Stack;
  */
 public class Palindrome {
 
-    private Stack<Character> wordInStack;
-    private Queue<Character> wordInQueue;
+
 
     public boolean isPalindrome(String word) {
+        Stack<Character> wordInStack= new LinkedStack<>();
+        Queue<Character> wordInQueue= new DynamicQueue<>();
+
         for (int i = 0; i < word.length(); i++) {
             wordInQueue.enqueue(word.charAt(i));
             wordInStack.push(word.charAt(i));
@@ -22,7 +26,7 @@ public class Palindrome {
             }
             wordInStack.pop();
         }
-        return false;
+        return true;
     }
 
 
