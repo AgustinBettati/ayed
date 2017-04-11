@@ -1,11 +1,8 @@
-package main.queues;
+package main.queues.simulation;
 
 import struct.impl.queues.DynamicQueue;
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * Created by marcos on 11/4/17.
- */
 public class Cashier {
     private boolean isOccupied;
     private int scheduledTime;
@@ -18,10 +15,15 @@ public class Cashier {
         this.isOccupied=false;
         this.minTime = minTime;
         this.maxTime = maxTime;
-        clients=new DynamicQueue<Client>();
+        clients=new DynamicQueue<>();
     }
-    public void newClientEnqueue(Client client){
-        clients.enqueue(client);
+
+    public int amountOfClients(){
+        return clients.size();
+    }
+
+    public void newClientEnqueue(Client aClient){
+        clients.enqueue(aClient);
     }
 
     public boolean isOccupied(){
@@ -44,10 +46,8 @@ public class Cashier {
 
     }
 
-        public void determineNewScheduledTime(int currentTime){
-
+    public void determineNewScheduledTime(int currentTime){
         int randomNumber= ThreadLocalRandom.current().nextInt(minTime,maxTime+1);
-
         scheduledTime = currentTime + randomNumber;
     }
 }
