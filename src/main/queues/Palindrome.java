@@ -6,12 +6,20 @@ import struct.istruct.Queue;
 import struct.istruct.Stack;
 
 /**
- * Created by marcos on 10/4/17.
+ * @author Agustin Bettati
+ * @author Marcos Khabie
+ * @version 1.0
+ *
+ * A class that tests and contains the functionality of seeing if a phrase or word is
+ * palindrome.
  */
 public class Palindrome {
 
-
-
+    /**
+     * Examines if a word or phrase is palindrome.
+     * @param word
+     * @return
+     */
     public boolean isPalindrome(String word) {
         Stack<Character> wordInStack= new LinkedStack<>();
         Queue<Character> wordInQueue= new DynamicQueue<>();
@@ -29,9 +37,12 @@ public class Palindrome {
         return true;
     }
 
-
+    /**
+     * Simple test.
+     * @param args
+     */
     public static void main(String[] args) {
-        String a = "hola";
+        String a = "hola aloh";
         String b = "ala";
         Palindrome c= new Palindrome();
         System.out.println(c.isPalindrome(a));

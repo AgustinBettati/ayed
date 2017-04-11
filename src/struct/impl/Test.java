@@ -19,7 +19,6 @@ public class Test {
         queue.enqueue(5);
         queue.enqueue(6);
         queue.enqueue(7);
-        queue.empty();
 
 
         for (int i =0 ; i < 5; i++){
