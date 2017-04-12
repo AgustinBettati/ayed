@@ -18,6 +18,7 @@ public class Bank {
         cashiers.add(new Cashier(30, 120));
         cashiers.add(new Cashier(30, 150));
         amountOfClientsThatLeftDueToQueue = 0;
+
     }
 
     public void enqueueNewClients(int amountOfNewClients){
@@ -42,5 +43,13 @@ public class Bank {
 
     public int getAmountOfClientsThatLeftDueToQueue() {
         return amountOfClientsThatLeftDueToQueue;
+    }
+
+    public int getTotalAmountsOfClientsAttended(){
+        int result=0;
+        for (Cashier c:cashiers) {
+            result+=c.getClientsAttended();
+        }
+        return result;
     }
 }

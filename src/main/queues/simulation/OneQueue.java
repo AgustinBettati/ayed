@@ -1,7 +1,6 @@
 package main.queues.simulation;
 
 import struct.impl.queues.DynamicQueue;
-
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 

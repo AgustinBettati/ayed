@@ -16,7 +16,7 @@ public class ClientSimulator {
         if(currentTime == scheduledTime){
             scheduledTime = 90 + currentTime;
             // range from 0 to 4 clients
-            return ThreadLocalRandom.current().nextInt(0,4+1);
+            return ThreadLocalRandom.current().nextInt(0,10+1);
         }
         else
             return 0;

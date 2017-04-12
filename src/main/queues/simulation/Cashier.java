@@ -9,6 +9,8 @@ public class Cashier {
     private int minTime;
     private int maxTime;
     private DynamicQueue<Client> clients;
+    private int clientsAttended=0;
+
 
 
     public Cashier(int minTime, int maxTime) {
@@ -35,8 +37,9 @@ public class Cashier {
             isOccupied = true;
             determineNewScheduledTime(currentTime);
         }
-        if (currentTime==scheduledTime){
+        if (currentTime==scheduledTime&& isOccupied()){
             clients.dequeue();
+            clientsAttended++;
             if(clients.isEmpty())
                 isOccupied = false;
             else
@@ -44,6 +47,10 @@ public class Cashier {
 
         }
 
+    }
+
+    public int getClientsAttended() {
+        return clientsAttended;
     }
 
     public void determineNewScheduledTime(int currentTime){

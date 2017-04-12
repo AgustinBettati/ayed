@@ -23,8 +23,22 @@ public class DaySimulator {
                bank.enqueueNewClients(amountOfClients);
            }
         }
-        for ()
 
+    }
+
+    public static void main(String[] args) {
+       DaySimulator daySimulator= new DaySimulator(new OneQueue());
+        DaySimulator daySimulator2= new DaySimulator(new MultipleQueues());
+        daySimulator.daySimulation();
+        daySimulator2.daySimulation();
+        System.out.println("Clients left in A strategy");
+        System.out.println(daySimulator.bank.getAmountOfClientsThatLeftDueToQueue());
+        System.out.println("Clients attended in A strategy");
+        System.out.println(daySimulator.bank.getTotalAmountsOfClientsAttended());
+        System.out.println("Clients left in B strategy");
+        System.out.println(daySimulator2.bank.getAmountOfClientsThatLeftDueToQueue());
+        System.out.println("Clients attended in B strategy");
+        System.out.println(daySimulator2.bank.getTotalAmountsOfClientsAttended());
     }
 
 }
