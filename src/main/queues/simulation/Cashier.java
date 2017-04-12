@@ -11,7 +11,6 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  * This class represents a cashier that has its respective queue and attends its clients
  * with a speed ranging from two values given.
- *
  */
 public class Cashier {
     private boolean isOccupied;
@@ -21,7 +20,13 @@ public class Cashier {
     private DynamicQueue<Client> clients;
     private Bank bank;
 
-
+    /**
+     * Creates a cashier given a bank and a certain time range that represents the amount of seconds
+     * it takes to attend a client.
+     * @param aBank
+     * @param minTime
+     * @param maxTime
+     */
     public Cashier(Bank aBank,int minTime, int maxTime) {
         this.isOccupied=false;
         this.minTime = minTime;
@@ -42,6 +47,11 @@ public class Cashier {
         return isOccupied;
     }
 
+    /**
+     * Given a certain time, it will see if its clientes have been attended, or is a cliente is ready
+     * to be attended.
+     * @param currentTime
+     */
     public void takeAction(int currentTime){
         if(!clients.isEmpty() && !isOccupied){
             isOccupied = true;
@@ -59,6 +69,10 @@ public class Cashier {
 
     }
 
+    /**
+     * Determines a time in the future in which the cashier will have attended the new client.
+     * @param currentTime
+     */
     public void determineNewScheduledTime(int currentTime){
         int randomNumber= ThreadLocalRandom.current().nextInt(minTime,maxTime+1);
         scheduledTime = currentTime + randomNumber;

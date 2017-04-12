@@ -16,6 +16,12 @@ public class ClientSimulator{
     private int minRange;
     private int maxRange;
 
+    /**
+     * Creates a client simulator that generates a certain amount of clients every 1.5 minutes.
+     * The amount is randomly picked given the range entered in the constructor.
+     * @param min
+     * @param max
+     */
     public ClientSimulator(int min, int max){
         scheduledTime = 0;
         minRange = min;
@@ -23,6 +29,11 @@ public class ClientSimulator{
 
     }
 
+    /**
+     * Given a certain time, it returns the amount of new clients that appear.
+     * @param currentTime
+     * @return
+     */
     public int amountOfNewClients(int currentTime){
 
         if(currentTime == scheduledTime){

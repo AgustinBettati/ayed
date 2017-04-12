@@ -17,6 +17,11 @@ public class Bank {
     private int amountOfClientsThatLeftDueToQueue;
     private int amountOfClientsAttended;
 
+
+    /**
+     * Creates a bank with a certain strategy.
+     * @param strategy
+     */
     public Bank(Strategy strategy) {
         this.strategy = strategy;
         alternativeQueue = new DynamicQueue<>();
@@ -29,6 +34,10 @@ public class Bank {
 
     }
 
+    /**
+     * Enqueues a certain amount of clients to the bank.
+     * @param amountOfNewClients
+     */
     public void enqueueNewClients(int amountOfNewClients){
         strategy.enqueue(this, amountOfNewClients);
     }
@@ -56,6 +65,10 @@ public class Bank {
         return amountOfClientsThatLeftDueToQueue;
     }
 
+    /**
+     * When the banks ends its labour day, this method makes sure that all remaining clients
+     * are attended.
+     */
     public void closeBankAndAttendLastClients(){
         int remainingClients = 0;
         for(Cashier cashier: cashiers){
