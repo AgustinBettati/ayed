@@ -9,15 +9,15 @@ public class Cashier {
     private int minTime;
     private int maxTime;
     private DynamicQueue<Client> clients;
-    private int clientsAttended=0;
+    private Bank bank;
 
 
-
-    public Cashier(int minTime, int maxTime) {
+    public Cashier(Bank aBank,int minTime, int maxTime) {
         this.isOccupied=false;
         this.minTime = minTime;
         this.maxTime = maxTime;
         clients=new DynamicQueue<>();
+        this.bank = aBank;
     }
 
     public int amountOfClients(){
@@ -39,7 +39,7 @@ public class Cashier {
         }
         if (currentTime==scheduledTime&& isOccupied()){
             clients.dequeue();
-            clientsAttended++;
+            bank.clientWasAttended();
             if(clients.isEmpty())
                 isOccupied = false;
             else
@@ -47,10 +47,6 @@ public class Cashier {
 
         }
 
-    }
-
-    public int getClientsAttended() {
-        return clientsAttended;
     }
 
     public void determineNewScheduledTime(int currentTime){

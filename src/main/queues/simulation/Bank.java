@@ -9,15 +9,17 @@ public class Bank {
     private ArrayList<Cashier> cashiers;
     private Strategy strategy;
     private int amountOfClientsThatLeftDueToQueue;
+    private int amountOfClientsAttended;
 
     public Bank(Strategy strategy) {
         this.strategy = strategy;
         alternativeQueue = new DynamicQueue<>();
         cashiers = new ArrayList<>();
-        cashiers.add(new Cashier(30, 90));
-        cashiers.add(new Cashier(30, 120));
-        cashiers.add(new Cashier(30, 150));
+        cashiers.add(new Cashier(this,30, 90));
+        cashiers.add(new Cashier(this,30, 120));
+        cashiers.add(new Cashier(this,30, 150));
         amountOfClientsThatLeftDueToQueue = 0;
+        amountOfClientsAttended = 0;
 
     }
 
@@ -40,16 +42,26 @@ public class Bank {
     public void clientLeft(){
         amountOfClientsThatLeftDueToQueue++;
     }
+    public void clientWasAttended(){
+        amountOfClientsAttended++;
+    }
 
     public int getAmountOfClientsThatLeftDueToQueue() {
         return amountOfClientsThatLeftDueToQueue;
     }
 
-    public int getTotalAmountsOfClientsAttended(){
-        int result=0;
-        for (Cashier c:cashiers) {
-            result+=c.getClientsAttended();
+    public void closeBankAndAttendLastClients(){
+        int remainingClients = 0;
+        for(Cashier cashier: cashiers){
+            remainingClients += cashier.amountOfClients();
         }
-        return result;
+        remainingClients += alternativeQueue.size();
+
+        amountOfClientsAttended += remainingClients;
+
+    }
+
+    public int getAmountsOfClientsAttended(){
+        return amountOfClientsAttended;
     }
 }
