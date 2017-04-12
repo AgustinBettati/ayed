@@ -16,6 +16,7 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  */
 public class OneQueue implements Strategy {
+
     @Override
     public void enqueue(Bank aBank,int amountOfClients) {
         DynamicQueue<Client> alternativeQueue = aBank.getAlternativeQueue();

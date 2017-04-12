@@ -10,5 +10,11 @@ package main.queues.simulation;
  */
 public interface Strategy {
 
+    /**
+     * Enqueues a given amount of clients to a bank.
+     * @param aBank
+     * @param amountOfClients
+     */
+
     void enqueue(Bank aBank,int amountOfClients);
 }

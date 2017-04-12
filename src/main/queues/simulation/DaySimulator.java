@@ -12,12 +12,22 @@ public class DaySimulator {
     private Bank bank;
     private ClientSimulator clientSimulator;
 
+    /**
+     * Creates a day simulator where the bank implements a certain strategy, and a frecuency
+     * of amount of clients that enter the bank every 1.5 minutes.
+     * @param strategy
+     * @param minRange
+     * @param maxRange
+     */
     public DaySimulator( Strategy strategy, int minRange, int maxRange) {
         this.bank = new Bank(strategy);
         clientSimulator=new ClientSimulator(minRange, maxRange);
 
     }
 
+    /**
+     * Simulates a working day of a bank.
+     */
     public void daySimulation(){
         for (int timer=0;timer<=18000;timer++){
             bank.getCashiers().get(0).takeAction(timer);
