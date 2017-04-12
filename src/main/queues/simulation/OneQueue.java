@@ -5,6 +5,16 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 
+/**
+ * @author Marcos Khabie
+ * @author Agustin Bettati
+ * @version 1.0
+ *
+ * This class is a strategy for arranging clients that are waiting within the bank.
+ * It will always assign a new client to a single queue, and as soon as one of the three cashiers
+ * are available the client standing at the front will be assigned to this cashier.
+ *
+ */
 public class OneQueue implements Strategy {
     @Override
     public void enqueue(Bank aBank,int amountOfClients) {

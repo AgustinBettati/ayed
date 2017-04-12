@@ -4,6 +4,16 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 
+
+/**
+ * @author Marcos Khabie
+ * @author Agustin Bettati
+ * @version 1.0
+ *
+ * This class is a strategy for arranging clients that are waiting within the bank.
+ * It will always assign a new client the shortest queue from the 3 cashiers, and in the
+ * case that two or more have the same amount, it will randomly pick one.
+ */
 public class MultipleQueues implements Strategy {
 
     @Override

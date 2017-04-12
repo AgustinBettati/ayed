@@ -3,7 +3,13 @@ package main.queues.simulation;
 import struct.impl.queues.DynamicQueue;
 import java.util.ArrayList;
 
-
+/**
+ * @author Marcos Khabie
+ * @author Agustin Bettati
+ * @version 1.0
+ *
+ * This class represents a bank and its interaction with clients.
+ */
 public class Bank {
     private DynamicQueue<Client> alternativeQueue;
     private ArrayList<Cashier> cashiers;

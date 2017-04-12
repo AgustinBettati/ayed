@@ -1,7 +1,12 @@
 package main.queues.simulation;
 
+
 /**
- * Created by marcos on 11/4/17.
+ * @author Marcos Khabie
+ * @author Agustin Bettati
+ * @version 1.0
+ *
+ * This class is used to represent a client.
  */
 public class Client {
 

@@ -1,8 +1,15 @@
 package main.queues.simulation;
 
-
 import java.util.concurrent.ThreadLocalRandom;
 
+
+/**
+ * @author Marcos Khabie
+ * @author Agustin Bettati
+ * @version 1.0
+ *
+ * This class simulates the coming of a certain amount of clients every 1.5 minutes.
+ */
 public class ClientSimulator{
 
     private int scheduledTime;

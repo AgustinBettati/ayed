@@ -1,7 +1,12 @@
 package main.queues.simulation;
 
+
 /**
- * Created by marcos on 11/4/17.
+ * @author Marcos Khabie
+ * @author Agustin Bettati
+ * @version 1.0
+ *
+ * This class is used to simulate a working day of a banking.
  */
 public class DaySimulator {
     private Bank bank;
@@ -28,8 +33,8 @@ public class DaySimulator {
     }
 
     public static void main(String[] args) {
-        int minRange = 4;
-        int maxRange = 4;
+        int minRange = 2;
+        int maxRange = 5;
         DaySimulator daySimulatorOneQueue= new DaySimulator(new OneQueue(), minRange,maxRange);
         DaySimulator daySimulatorMultipleQueue= new DaySimulator(new MultipleQueues(),minRange,maxRange);
         daySimulatorOneQueue.daySimulation();

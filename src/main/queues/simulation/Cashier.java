@@ -3,6 +3,16 @@ package main.queues.simulation;
 import struct.impl.queues.DynamicQueue;
 import java.util.concurrent.ThreadLocalRandom;
 
+
+/**
+ * @author Marcos Khabie
+ * @author Agustin Bettati
+ * @version 1.0
+ *
+ * This class represents a cashier that has its respective queue and attends its clients
+ * with a speed ranging from two values given.
+ *
+ */
 public class Cashier {
     private boolean isOccupied;
     private int scheduledTime;
