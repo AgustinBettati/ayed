@@ -32,6 +32,7 @@ public class MultipleQueues implements Strategy {
         }
     }
 
+
     private Cashier getBestCashier(ArrayList<Cashier> cashiers){
         ArrayList<Integer> indexOfBestCashiers = new ArrayList<>();
 
