@@ -27,18 +27,23 @@ public class DaySimulator {
     }
 
     public static void main(String[] args) {
-       DaySimulator daySimulator= new DaySimulator(new OneQueue());
-        DaySimulator daySimulator2= new DaySimulator(new MultipleQueues());
-        daySimulator.daySimulation();
-        daySimulator2.daySimulation();
-        System.out.println("Clients left in A strategy");
-        System.out.println(daySimulator.bank.getAmountOfClientsThatLeftDueToQueue());
-        System.out.println("Clients attended in A strategy");
-        System.out.println(daySimulator.bank.getTotalAmountsOfClientsAttended());
-        System.out.println("Clients left in B strategy");
-        System.out.println(daySimulator2.bank.getAmountOfClientsThatLeftDueToQueue());
-        System.out.println("Clients attended in B strategy");
-        System.out.println(daySimulator2.bank.getTotalAmountsOfClientsAttended());
+       DaySimulator daySimulatorA= new DaySimulator(new OneQueue());
+        DaySimulator daySimulatorB= new DaySimulator(new MultipleQueues());
+        daySimulatorA.daySimulation();
+        daySimulatorB.daySimulation();
+
+        int totalAumountOfClientsA= daySimulatorA.bank.getAmountOfClientsThatLeftDueToQueue() + daySimulatorA.bank.getTotalAmountsOfClientsAttended();
+        int deficiencyA= (daySimulatorA.bank.getAmountOfClientsThatLeftDueToQueue()*100)/totalAumountOfClientsA;
+        int eficiencyA= 100-deficiencyA;
+
+        int totalAumountOfClientsB= daySimulatorB.bank.getAmountOfClientsThatLeftDueToQueue() + daySimulatorB.bank.getTotalAmountsOfClientsAttended();
+        int deficiencyB= (daySimulatorB.bank.getAmountOfClientsThatLeftDueToQueue()*100)/totalAumountOfClientsB;
+        int eficiencyB= 100-deficiencyB;
+
+        System.out.println("eficiency in A strategy");
+        System.out.println(eficiencyA + " %");
+        System.out.println("eficiency in B strategy");
+        System.out.println(eficiencyB + " %");
     }
 
 }
