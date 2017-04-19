@@ -47,7 +47,11 @@ public class SoccerTableSolver {
 
             }
         }
+<<<<<<< HEAD
         return new ArrayList<>();
+=======
+        return null;
+>>>>>>> 7c65acb2b23aaa387f0adbe333e80caa482eb3db
     }
 
     private boolean newResultIsValid(Match aMatch, int result){
