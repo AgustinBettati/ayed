@@ -22,7 +22,7 @@ public class Cashier {
 
     /**
      * Creates a cashier given a bank and a certain time range that represents the amount of seconds
-     * it takes to attend a client.
+     * it takes to tryAttendNext a client.
      * @param aBank
      * @param minTime
      * @param maxTime
