@@ -7,9 +7,9 @@ import struct.impl.stacks.LinkedStack;
  * Created by marcos on 13/4/17.
  */
 public class Match {
-        Team home;
-        Team away;
-        LinkedStack<Integer> possibleResults;
+       private Team home;
+       private Team away;
+       private LinkedStack<Integer> possibleResults;
 
     public Match(Team home, Team away) {
         this.home = home;
@@ -32,4 +32,5 @@ public class Match {
     public LinkedStack<Integer> getPossibleResults(){
         return possibleResults;
     }
+
 }

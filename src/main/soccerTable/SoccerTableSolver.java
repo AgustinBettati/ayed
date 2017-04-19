@@ -6,9 +6,9 @@ import java.util.HashMap;
 
 public class SoccerTableSolver {
 
-    ArrayList<Team> teams;
-    ArrayList<Match> matches;
-    HashMap<Team, Integer> currentScores;
+    private ArrayList<Team> teams;
+    private ArrayList<Match> matches;
+    private HashMap<Team, Integer> currentScores;
 
 
     public SoccerTableSolver(ArrayList<Team> teams, ArrayList<Match> matches) {
@@ -32,26 +32,34 @@ public class SoccerTableSolver {
             else {
                 // Hacer peek de posible results, y ver si agregando ese resultado
                 // ninguno de los dos equipos se pasa de su score posta
+                int possibleResult=matches.get(i).getPossibleResults().peek();
 
-                //if (esta bien con el nuevo resultado){
-                //    computar nuevo resultado
-                //    avanzar
-                // }
+                if (newResultIsValid(matches.get(i),possibleResult)){
+                    computeNewResult(matches.get(i),possibleResult);
+                    i++;
+                }
+                else{
+                    matches.get(i).getPossibleResults().pop();
+                    if (matches.get(i).getPossibleResults().isEmpty()){
+                        i--;
+                        while(matches.get(i).getPossibleResults().size() <= 1){
+                            popPosibleResult(matches.get(i));
+                            i--;
+                        }
+                        popPosibleResult(matches.get(i));
+                    }
 
-                // else{
-                //    hacer pop
-                //    loopear hast que me quede con un stack mayor a 1
-                //    pop devuelta
-                // }
-
+                }
 
             }
         }
-<<<<<<< HEAD
-        return new ArrayList<>();
-=======
-        return null;
->>>>>>> 7c65acb2b23aaa387f0adbe333e80caa482eb3db
+        ArrayList<Integer> result= new ArrayList<>();
+        for (Match match:matches) {
+
+            result.add(match.getPossibleResults().peek());
+
+        }
+        return result;
     }
 
     private boolean newResultIsValid(Match aMatch, int result){
@@ -107,42 +115,6 @@ public class SoccerTableSolver {
 
     }
 
-//    private void generateStackForMatch(){
-//
-//        for (Match match:matches){
-//            LinkedStack<Integer> possibleResults=new LinkedStack<>();
-//           //crear un result
-//            if (match.getAway().getScore()<3 || match.getHome().getScore()<3){
-//
-//                if(match.getHome().getScore() == 0 || match.getAway().getScore() == 0){
-//                    if(match.getHome().getScore() == 0){
-//                        possibleResults.push(2);
-//                    }
-//                    else {
-//                        possibleResults.push(1);
-//                    }
-//
-//                }
-//                else {
-//                    if (match.getHome().getScore() <= 2) {
-//                        possibleResults.push(0);
-//                        possibleResults.push(2);
-//                    } else {
-//                        possibleResults.push(0);
-//                        possibleResults.push(1);
-//                    }
-//                }
-//            }
-//            else {
-//                for (int i=0;i<3;i++ ){
-//                    possibleResults.push(i);
-//                }
-//            }
-//            match.setPossibleResults(possibleResults);
-//        }
-//
-//    }
-
     private void generateStackForMatch(Match match){
 
         LinkedStack<Integer> possibleResults=new LinkedStack<>();
@@ -175,7 +147,4 @@ public class SoccerTableSolver {
         }
         match.setPossibleResults(possibleResults);
     }
-
-
-
 }
