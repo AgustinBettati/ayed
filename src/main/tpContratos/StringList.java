@@ -71,7 +71,7 @@ public class StringList {
      * @exception IllegalArgumentException when the item is not present in the list
      */
     /*@
-      ensures \result >= 0;
+      ensures \results >= 0;
      @*/
     public /*@ pure @*/ int indexOf(/*@ non_null @*/ String item) {
         for (int i = 0; i < items.length; i++){

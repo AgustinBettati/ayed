@@ -1,16 +1,25 @@
 package main.soccerTable;
 
-import main.queues.simulation.Strategy;
 import struct.impl.stacks.LinkedStack;
 
 /**
- * Created by marcos on 13/4/17.
+ * @author Agustin Bettati
+ * @author Marcos Khabie
+ * @version 1.0
+ *
+ * This class represents a match between two teams.
  */
+
 public class Match {
        private Team home;
        private Team away;
        private LinkedStack<Integer> possibleResults;
 
+    /**
+     * Creates a Match and initializes its variables.
+     * @param home
+     * @param away
+     */
     public Match(Team home, Team away) {
         this.home = home;
         this.away = away;

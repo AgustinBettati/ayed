@@ -4,13 +4,28 @@ import struct.impl.stacks.LinkedStack;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
+
+/**
+ * @author Agustin Bettati
+ * @author Marcos Khabie
+ * @version 1.0
+ *
+ * This class solves the problem.
+ *
+ */
+
 public class SoccerTableSolver {
 
     private ArrayList<Team> teams;
     private ArrayList<Match> matches;
     private HashMap<Team, Integer> currentScores;
 
-
+    /**
+     * Creates a SoccerTableSolver and initializes its variables.
+     * @param teams
+     * @param matches
+     */
     public SoccerTableSolver(ArrayList<Team> teams, ArrayList<Match> matches) {
         this.teams = teams;
         this.matches = matches;
@@ -21,7 +36,11 @@ public class SoccerTableSolver {
         }
     }
 
-    public ArrayList<Integer> result () {
+    /**
+     * Returns the results of all the matches in the following the initial order.
+     * @return
+     */
+    public ArrayList<Integer> results() {
         int i =0;
         while(i < matches.size()){
 
