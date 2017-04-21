@@ -1,33 +1,47 @@
 package main.metroviasAgustin;
 
 import struct.impl.StaticList;
-import struct.impl.queues.DynamicQueue;
+import struct.impl.queues.StaticQueue;
 
 /**
  * @author Agustin Bettati
  * @version 1.0
+ * This class represents a window that has a 0.3 probability of attending a client every 10 seconds.
  */
 public class Window {
 
+    private double fee;
     private int amountOfFreeTime;
     private int amountOfAttendedClients;
     private StaticList<Integer> timeWaitedByEachClient;
-    private DynamicQueue<Client> queueOfWindow;
+    private StaticQueue<Client> queueOfWindow;
 
 
-
-    public Window(){
+    /**
+     * Creates a window with a certain fee for each trip.
+     * @param feeOfTrip
+     */
+    public Window(double feeOfTrip){
+        fee = feeOfTrip;
         amountOfFreeTime = 0;
         amountOfAttendedClients = 0;
         timeWaitedByEachClient = new StaticList<>();
-        queueOfWindow = new DynamicQueue<>();
+        queueOfWindow = new StaticQueue<>(10);
     }
 
+    /**
+     * Responds to a new cicle of action, where it will determine if a client will be attended.
+     * @param currentTime
+     */
     public void newCicle(int currentTime){
         checkForFreeTime();
         checkForAttendedClient(0.3, currentTime);
     }
 
+    /**
+     * Responds to the last cicles of action, where all clients in the queue will be attended.
+     * @param currentTime
+     */
     public void lastCicles(int currentTime){
         checkForFreeTime();
 
@@ -38,6 +52,10 @@ public class Window {
 
     }
 
+    /**
+     * Enqueues a new client.
+     * @param currentTime
+     */
     public void enqueueNewClient(int currentTime){
         Client newClient = new Client(currentTime);
         queueOfWindow.enqueue(newClient);
@@ -50,8 +68,9 @@ public class Window {
     }
 
     private void checkForAttendedClient(double probabilityOfTrue, int currentTime){
-        if(probability(probabilityOfTrue)){
-            timeWaitedByEachClient.insertNext(queueOfWindow.dequeue().getWaitedTime(currentTime));
+        if(probability(probabilityOfTrue) && !queueOfWindow.isEmpty() ){
+            int timeWaitedByClient = queueOfWindow.dequeue().getWaitedTime(currentTime);
+            timeWaitedByEachClient.insertNext(timeWaitedByClient);
             amountOfAttendedClients++;
         }
     }
@@ -73,4 +92,7 @@ public class Window {
         return timeWaitedByEachClient;
     }
 
+    public double getAmountOfMoneyCollected(){
+        return fee * amountOfAttendedClients;
+    }
 }
