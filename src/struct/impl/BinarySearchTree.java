@@ -7,6 +7,10 @@ import struct.istruct.BinaryTree;
  * @author Agustin Bettati
  * @author Marcos Khabie
  * @version 1.0
+ *
+ * Binary search tree is a binary tree that always maintains a simple condition: given a node,
+ * its left child mush contain a smaller value, and its right child must contain a bigger value.
+ * There will never be a repeated value.
  */
 public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>{
     private DoubleNode root;
