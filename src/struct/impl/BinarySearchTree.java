@@ -1,11 +1,14 @@
 package struct.impl;
 
 
+import struct.istruct.BinaryTree;
+
 /**
  * @author Agustin Bettati
+ * @author Marcos Khabie
  * @version 1.0
  */
-public class BinarySearchTree<T extends Comparable<T>>{
+public class BinarySearchTree<T extends Comparable<T>> implements BinaryTree<T>{
     private DoubleNode root;
 
     public BinarySearchTree(){
@@ -26,15 +29,16 @@ public class BinarySearchTree<T extends Comparable<T>>{
             this.left = left;
             this.right = right;
         }
-
     }
 
     public boolean isEmpty(){
         return (root == null);
     }
+
     public T getRoot(){
         return root.data;
     }
+
     public BinarySearchTree<T> getLeft(){
         BinarySearchTree<T> tree = new BinarySearchTree<T>();
         tree.root = root.left;
@@ -50,21 +54,32 @@ public class BinarySearchTree<T extends Comparable<T>>{
     public boolean isPresent(T x){
         return isPresent(root, x);
     }
-    // precondicion: árbol distinto de vacío
+
     public T getMin(){ return getMin(root).data;
     }
-    // precondicion: árbol distinto de vacío
+
     public T getMax(){ return getMax(root).data;
     }
 
-    public T search(T x){ return buscar(root, x).data;
+    public T search(T x){
+        return search(root, x).data;
     }
 
-//    public void insertar(Comparable x){ root = insertar(root, x);
-//    }
-//
-//    public void eliminar(Comparable x){ root = eliminar(root, x);
-//    }
+    public void insert(T x){
+        if (isPresent(x)){
+            throw new RuntimeException("this element is already present in the tree");
+        }
+        root = insert(root, x);
+
+
+    }
+
+    public void delete(T x){
+        if (!isPresent(x)){
+            throw new RuntimeException("this element is not present in the tree");
+        }
+        root = delete(root, x);
+    }
 
     private boolean isPresent(DoubleNode t, T x) {
         if (t == null)
@@ -90,36 +105,50 @@ public class BinarySearchTree<T extends Comparable<T>>{
         else
             return getMax(t.right);
     }
-    private DoubleNode buscar(DoubleNode t, T x){
+    private DoubleNode search(DoubleNode t, T x){
         if (x.compareTo( t.data)== 0)
             return t;
         else if (x.compareTo( t.data)< 0)
-            return buscar(t.left, x);
+            return search(t.left, x);
         else
-            return buscar(t.right, x);
+            return search(t.right, x);
     }
-//    private NodoDoble insertar (NodoDoble t, Comparable x) { if (t == null){
-//        t = new NodoDoble();
-//        t.elem = x; }
-//    else if (x.compareTo(t.elem) < 0) t.izq = insertar(t.izq, x);
-//    else
-//        t.der = insertar(t.der, x); return t;
-//    }
-//    private NodoDoble eliminar (NodoDoble t, Comparable x) {
-//        if (x.compareTo(t.elem) < 0)
-//        t.izq = eliminar(t.izq, x); else if (x.compareTo(t.elem) > 0) t.der = eliminar(t.der, x);
-//    else
-//    if (t.izq != null && t.der != null ) {
-//        t.elem = getMin(t.der).elem;
-//        t.der = eliminarMin(t.der);
-//    }
-//    else if (t.izq != null) t = t.izq;
-//    else
-//        t =t.der; return t;
-//    }
-    private DoubleNode eliminarMin(DoubleNode t){
+
+
+    private DoubleNode insert (DoubleNode t, T x)  {
+        if (t == null)
+            t = new DoubleNode(x);
+
+        else if (x.compareTo(t.data) < 0)
+            t.left = insert(t.left, x);
+
+        else
+            t.right = insert(t.right, x);
+
+        return t;
+    }
+    private DoubleNode delete (DoubleNode t, T x) {
+        if (x.compareTo(t.data) < 0)
+            t.left = delete(t.left, x);
+        else if (x.compareTo(t.data) > 0)
+            t.right = delete(t.right, x);
+        else {
+            if (t.left != null && t.right != null) {
+                t.data = getMin(t.right).data;
+                t.right = deleteMin(t.right);
+            }
+            else if (t.left != null) t = t.left;
+            else
+                t = t.right;
+        }
+        return t;
+
+    }
+
+
+    private DoubleNode deleteMin(DoubleNode t){
         if (t.left != null){
-            t.left = eliminarMin(t.left);
+            t.left = deleteMin(t.left);
         }
         else {
             t = t.right;
