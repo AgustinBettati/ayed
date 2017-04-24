@@ -12,6 +12,11 @@ public class Metrovias {
     public Metrovias(int workingTimeDuration, int amountOfWindows) {
         this.workingTimeDuration = workingTimeDuration;
         windows=new StaticList<Window>(amountOfWindows);
+        windows.goTo(0);
+        for (int i = 0; i<amountOfWindows;i++){
+            windows.insertNext(new Window());
+        }
+
 
     }
 
@@ -22,4 +27,5 @@ public class Metrovias {
     public StaticList<Window> getWindows() {
         return windows;
     }
+
 }
