@@ -18,7 +18,7 @@ public class DaySimulator {
     public static void main(String[] args) {
         Scanner scanner= new Scanner(System.in);
 
-        System.out.println("Enter amount of windows:");
+        System.out.println("Enter amount of windows between 3 and 10:");
         int a= scanner.nextInt();
 
 

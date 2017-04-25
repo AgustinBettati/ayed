@@ -1,6 +1,6 @@
 package main.simulacionParcialMarcos;
 
-import struct.impl.StaticList;
+import struct.impl.lists.StaticList;
 
 import java.util.Random;
 

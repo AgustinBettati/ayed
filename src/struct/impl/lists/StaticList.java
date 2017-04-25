@@ -1,4 +1,4 @@
-package struct.impl;
+package struct.impl.lists;
 
 
 /**

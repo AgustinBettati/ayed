@@ -1,6 +1,6 @@
 package main.metroviasAgustin;
 
-import struct.impl.StaticList;
+import struct.impl.lists.StaticList;
 import struct.impl.queues.StaticQueue;
 
 /**

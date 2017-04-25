@@ -1,5 +1,7 @@
 package struct.impl;
 
+import struct.impl.lists.DynamicList;
+
 import java.util.Scanner;
 
 /**
