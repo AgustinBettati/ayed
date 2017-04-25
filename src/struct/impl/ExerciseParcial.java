@@ -56,9 +56,14 @@ public class ExerciseParcial<T> {
         return result + sumWithItsDecendants(binaryTree.getLeft())+sumWithItsDecendants(binaryTree.getRight());
     }
 
+    public int amountOfTimesThatappear(T o, BinaryTree<T> tree){
+        int result=0;
+        if (tree.isEmpty()) return 0;
+        if (tree.getRoot().equals(o)){
+            result=1;
+        }
+      return result+amountOfTimesThatappear(o,tree.getLeft())+ amountOfTimesThatappear(o,tree.getRight());
+    }
 }
 
-//    public static void main(String[] args) {
-//
-//    }
 

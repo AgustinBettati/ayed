@@ -1,12 +1,19 @@
 package main.simulacionParcialMarcos;
 
 /**
- * Created by marcos on 19/4/17.
+ * @author Marcos Khabie
+ * @version 1.0
+ *
+ * A class that represents a Person.
  */
 public class Person {
    private int waitedTime;
     private int arrivedTime;
 
+    /**
+     * A constructor that creates a person initializating its variables.
+     * @param arrivedTime
+     */
     public Person( int arrivedTime) {
         this.waitedTime = 0;
         this.arrivedTime = arrivedTime;

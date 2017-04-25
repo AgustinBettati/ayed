@@ -5,7 +5,10 @@ import struct.impl.queues.DynamicQueue;
 import java.util.Random;
 
 /**
- * Created by marcos on 19/4/17.
+ * @author Marcos Khabie
+ * @version 1.0
+ *
+ * This class represents a window of attendance.
  */
 public class Window {
     private DynamicQueue<Person> waitingPeople;
@@ -40,6 +43,10 @@ public class Window {
         this.waitingPeople.enqueue(person);
     }
 
+    /**
+     * A method that try to attend the next person waiting with a 0.3 probability of attending it.
+     * @param actualTime
+     */
     public void tryAttendNext(int actualTime){
         Random r= new Random();
         if (r.nextFloat()<=0.3){
@@ -55,6 +62,11 @@ public class Window {
         }
 
     }
+
+    /**
+     * A method that will attend the next client.
+     * @param actualTime
+     */
     public void attendNext(int actualTime){
 
             Person person = waitingPeople.dequeue();
