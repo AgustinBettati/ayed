@@ -1,6 +1,6 @@
 package main.cuartoOscuroAgustin;
 
-import struct.impl.StaticList;
+import struct.impl.lists.StaticList;
 import struct.impl.stacks.LinkedStack;
 
 import java.util.concurrent.ThreadLocalRandom;

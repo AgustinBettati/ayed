@@ -1,6 +1,7 @@
 package main.cuartoOscuroAgustin;
 
-import struct.impl.StaticList;
+import struct.impl.lists.StaticList;
+
 import java.util.Scanner;
 
 /**

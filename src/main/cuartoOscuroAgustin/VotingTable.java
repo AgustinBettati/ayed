@@ -1,6 +1,6 @@
 package main.cuartoOscuroAgustin;
 
-import struct.impl.StaticList;
+import struct.impl.lists.StaticList;
 import struct.impl.queues.StaticQueue;
 
 /**
