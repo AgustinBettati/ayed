@@ -1,4 +1,4 @@
-package main.simulacionCuartoOscuroMarcos;
+package main.cuartoOscuroMarcos;
 
 
 import struct.impl.lists.StaticList;

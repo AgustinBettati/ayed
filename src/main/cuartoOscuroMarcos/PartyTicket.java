@@ -1,6 +1,5 @@
-package main.simulacionCuartoOscuroMarcos;
+package main.cuartoOscuroMarcos;
 
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**

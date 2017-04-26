@@ -1,9 +1,8 @@
-package main.simulacionCuartoOscuroMarcos;
+package main.cuartoOscuroMarcos;
 
 
 import struct.impl.queues.DynamicQueue;
 import struct.impl.stacks.LinkedStack;
-import struct.impl.stacks.StaticStack;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -77,6 +76,7 @@ public class VotingTable {
         LinkedStack<PartyTicket> aux= new LinkedStack<>();
         try {
             for (int i = 0; i < 10; i++) {
+                if (votes.peek()==null)throw new NullPointerException();
                 aux.push(votes.peek());
                 System.out.println("partido:   "+votes.peek().getNameOfParty() + "     ID   " +votes.peek().getId());
                 votes.pop();
@@ -88,6 +88,10 @@ public class VotingTable {
             }
         }
         catch (NullPointerException e){
+            for (int i = 0; i <=aux.size()-1; i++) {
+                votes.push(aux.peek());
+                aux.pop();
+            }
             System.out.println("less than 10 votes");
         }
     }
@@ -96,7 +100,9 @@ public class VotingTable {
 
 
         while (!votes.isEmpty()){
+            System.out.println(votes.peek().getNameOfParty());
             for(Map.Entry<String,Integer> element : counter.entrySet()){
+
                 if (element.getKey().equals(votes.peek().getNameOfParty())){
                     element.setValue(element.getValue()+1);
                 }

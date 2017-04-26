@@ -1,4 +1,4 @@
-package main.simulacionCuartoOscuroMarcos;
+package main.cuartoOscuroMarcos;
 
 import java.util.Date;
 import java.util.concurrent.ThreadLocalRandom;

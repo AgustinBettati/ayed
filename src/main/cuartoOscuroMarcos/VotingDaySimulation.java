@@ -1,4 +1,4 @@
-package main.simulacionCuartoOscuroMarcos;
+package main.cuartoOscuroMarcos;
 
 import struct.impl.lists.StaticList;
 
@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @author Marcos Khabie
  * @version 1.0
  */
-public class Simulation {
+public class VotingDaySimulation {
 
     public static void main(String[] args) {
         StaticList<String> names= new StaticList<>(5);
