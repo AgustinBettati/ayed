@@ -1,6 +1,5 @@
-package main.simulacionParcialMarcos;
+package main.metroviasParcialMarcos;
 
-import java.util.Random;
 import java.util.Scanner;
 
 /**

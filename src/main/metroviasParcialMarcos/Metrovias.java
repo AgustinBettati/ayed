@@ -1,4 +1,4 @@
-package main.simulacionParcialMarcos;
+package main.metroviasParcialMarcos;
 
 import struct.impl.lists.StaticList;
 

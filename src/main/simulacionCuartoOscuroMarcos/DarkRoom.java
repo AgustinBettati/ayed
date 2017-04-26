@@ -12,11 +12,16 @@ public class DarkRoom {
     private StaticList<StaticStack<PartyTicket>> parties;
     private StaticList<String> nameofParties;
     private boolean isOccupied;
+    public Person personThatIsInside;
 
     public DarkRoom(StaticList<String> nameOfParties) {
 
         this.nameofParties=nameOfParties;
         parties= new StaticList<>(5);
+        parties.goTo(0);
+        for (int i = 0; i<5;i++){
+            parties.insertNext(new StaticStack<PartyTicket>(200));
+        }
         isOccupied=false;
         refill();
 
@@ -32,18 +37,25 @@ public class DarkRoom {
     }
 
     public void refill() {
+        if (!isOccupied()){
 
-        parties.goTo(0);
-        nameofParties.goTo(0);
-        for (int i = 0; i <=5; i++) {
-            parties.goTo(i);
-            nameofParties.goTo(i);
-            for (int a = parties.size(); a <= 200; a++) {
-                parties.getActual().push(new PartyTicket(nameofParties.getActual()));
+            parties.goTo(0);
+            nameofParties.goTo(0);
+            for (int i = 0; i <5; i++) {
+                parties.goTo(i);
+                nameofParties.goTo(i);
+                int amountOfAdded=0;
+                for (int a = parties.getActual().size(); a < 200; a++,amountOfAdded++) {
+                    parties.getActual().push(new PartyTicket(nameofParties.getActual()));
+
+                }
+
+                System.out.println("For the party"+ nameofParties.getActual() +"it has been added " + (amountOfAdded)+ " tickets");
+                System.out.println("--------------------------");
+
             }
 
         }
-
     }
 
     public boolean isOccupied() {
