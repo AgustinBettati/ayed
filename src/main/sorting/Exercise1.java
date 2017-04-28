@@ -1,4 +1,4 @@
-package main.tp1;
+package main.sorting;
 
 import java.util.NoSuchElementException;
 

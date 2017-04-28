@@ -1,4 +1,4 @@
-package main.tp1;
+package main.sorting;
 
 
 public class GenericMerge<T extends Comparable<T>> {

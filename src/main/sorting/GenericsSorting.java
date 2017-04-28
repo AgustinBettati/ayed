@@ -1,8 +1,5 @@
-package main.tp1;
+package main.sorting;
 
-
-import java.util.Comparator;
-import java.util.List;
 
 /**
  * @author Agustin Bettati
