@@ -9,7 +9,9 @@ package struct.impl.lists;
 import struct.istruct.list.GeneralList;
 import struct.istruct.list.List;
 
-public class StaticList<T> implements List<T> {
+import java.io.Serializable;
+
+public class StaticList<T> implements List<T>, Serializable {
     private static final int DEFAULT_CAPACITY = 10;
     private Object[] data;
     private int window;
