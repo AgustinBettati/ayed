@@ -30,8 +30,9 @@ public class Attraction {
     }
 
     public void takeAction(int time){
+        clientsThatFinishedRide = new StaticList<>();
+
         if(timeOfNextRide <= time){
-            clientsThatFinishedRide = new StaticList<>();
 
             for (int i = 0; i < clientsInRide.size(); i++){
                 clientsInRide.goTo(i);
@@ -61,7 +62,6 @@ public class Attraction {
                 timeOfNextRide = time + 5;
             }
             clientsInRide = newRide;
-
         }
     }
 
