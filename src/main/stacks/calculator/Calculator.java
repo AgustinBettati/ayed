@@ -1,5 +1,5 @@
 package main.stacks.calculator;
-import struct.impl.stacks.LinkedStack;
+import struct.impl.stacks.DynamicStack;
 
 /**
  * @author Agustin Bettati
@@ -24,7 +24,7 @@ public class Calculator {
      */
     public static double stringCalculator(String mathExpression) {
 
-        LinkedStack<Character> expression = new LinkedStack<>();
+        DynamicStack<Character> expression = new DynamicStack<>();
         for (int i = mathExpression.length() - 1; i >= 0; i--) {
             expression.push(mathExpression.charAt(i));
         }

@@ -13,7 +13,7 @@ import struct.istruct.Stack;
  *
  * @param <T> Generics parameter
  */
-public class LinkedStack<T> implements Stack<T>{
+public class DynamicStack<T> implements Stack<T>{
 
     private int size = 0;
     private Node first;

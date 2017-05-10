@@ -1,6 +1,6 @@
 package main.chessMovement;
 
-import struct.impl.stacks.LinkedStack;
+import struct.impl.stacks.DynamicStack;
 
 import java.util.ArrayList;
 
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class HorseMovement {
 
     private int amountOfMovements;
-    private ArrayList<LinkedStack<PositionInBoard>> listOfStacks;
+    private ArrayList<DynamicStack<PositionInBoard>> listOfStacks;
     private ArrayList<ArrayList<PositionInBoard>> listToDisplay;
 
     /**
@@ -55,7 +55,7 @@ public class HorseMovement {
         for (int i=0;i<listOfStacks.size() -1;i++){
             path.add(listOfStacks.get(i).peek());
         }
-        LinkedStack<PositionInBoard> lastStack = listOfStacks.get(amountOfMovements -1);
+        DynamicStack<PositionInBoard> lastStack = listOfStacks.get(amountOfMovements -1);
         int sizeOfLastStack = lastStack.size();
 
         for (int i=0;i<sizeOfLastStack;i++){
@@ -86,10 +86,10 @@ public class HorseMovement {
 
     private void saveValuesOfStacksToLaterDisplay(){
         listToDisplay.clear();
-        for(LinkedStack<PositionInBoard> stack : listOfStacks){
+        for(DynamicStack<PositionInBoard> stack : listOfStacks){
             int size = stack.size();
             ArrayList<PositionInBoard> list = new ArrayList<>();
-            LinkedStack<PositionInBoard> aux = new LinkedStack<>();
+            DynamicStack<PositionInBoard> aux = new DynamicStack<>();
             for (int j = size -1; j >= 0; j--){
                 aux.push(stack.peek());
                 list.add(stack.peek());
@@ -103,8 +103,8 @@ public class HorseMovement {
         }
     }
 
-    private LinkedStack<PositionInBoard> createStackForPosition(PositionInBoard position, PositionInBoard previousPosition){
-        LinkedStack<PositionInBoard> stack = new LinkedStack<>();
+    private DynamicStack<PositionInBoard> createStackForPosition(PositionInBoard position, PositionInBoard previousPosition){
+        DynamicStack<PositionInBoard> stack = new DynamicStack<>();
 
         for (int i= position.row()-2;i<=position.row()+2;i++){
 

@@ -1,6 +1,6 @@
 package main.soccerTable;
 
-import struct.impl.stacks.LinkedStack;
+import struct.impl.stacks.DynamicStack;
 
 /**
  * @author Agustin Bettati
@@ -13,7 +13,7 @@ import struct.impl.stacks.LinkedStack;
 public class Match {
        private Team home;
        private Team away;
-       private LinkedStack<Integer> possibleResults;
+       private DynamicStack<Integer> possibleResults;
 
     /**
      * Creates a Match and initializes its variables.
@@ -23,7 +23,7 @@ public class Match {
     public Match(Team home, Team away) {
         this.home = home;
         this.away = away;
-        possibleResults=new LinkedStack<>();
+        possibleResults=new DynamicStack<>();
     }
 
     public Team getHome() {
@@ -34,11 +34,11 @@ public class Match {
         return away;
     }
 
-    public void setPossibleResults(LinkedStack<Integer> possibleResults) {
+    public void setPossibleResults(DynamicStack<Integer> possibleResults) {
         this.possibleResults = possibleResults;
     }
 
-    public LinkedStack<Integer> getPossibleResults(){
+    public DynamicStack<Integer> getPossibleResults(){
         return possibleResults;
     }
 

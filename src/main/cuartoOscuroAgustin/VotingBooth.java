@@ -1,7 +1,7 @@
 package main.cuartoOscuroAgustin;
 
 import struct.impl.lists.StaticList;
-import struct.impl.stacks.LinkedStack;
+import struct.impl.stacks.DynamicStack;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class VotingBooth {
     private StaticList<String> nameOfParties;
-    private StaticList<LinkedStack<Ticket>> listOfStacks;
+    private StaticList<DynamicStack<Ticket>> listOfStacks;
     private Voter voter;
 
     public VotingBooth(StaticList<String> nameOfParties){
@@ -19,7 +19,7 @@ public class VotingBooth {
         voter = null;
         listOfStacks = new StaticList<>();
         for(int i = 0 ; i< 5; i++){
-            listOfStacks.insertNext(new LinkedStack<Ticket>());
+            listOfStacks.insertNext(new DynamicStack<Ticket>());
         }
         restockTickets();
     }
@@ -28,7 +28,7 @@ public class VotingBooth {
 
         for (int i =0; i< 5; i++){
             listOfStacks.goTo(i);
-            LinkedStack<Ticket> stackOfTickets = listOfStacks.getActual();
+            DynamicStack<Ticket> stackOfTickets = listOfStacks.getActual();
 
             nameOfParties.goTo(i);
 

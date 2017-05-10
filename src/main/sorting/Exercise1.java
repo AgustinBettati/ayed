@@ -8,7 +8,7 @@ public class Exercise1 {
     public static void main(String[] args) {
         int[] array = {2, 5, 7, 8, 14, 17, 20};
         System.out.println(linearSearch(array, 8));
-        System.out.println(binarySearch(array, 8));
+        System.out.println(binarySearch(array, 2));
     }
 
     public static int linearSearch(int[] array, int number) {

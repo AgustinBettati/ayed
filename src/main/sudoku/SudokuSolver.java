@@ -1,5 +1,5 @@
 package main.sudoku;
-import struct.impl.stacks.LinkedStack;
+import struct.impl.stacks.DynamicStack;
 
 
 /**
@@ -15,14 +15,14 @@ public class SudokuSolver {
     private int i;
     private int j;
     private int[][] board;
-    private LinkedStack<Integer>[][] stacks;
+    private DynamicStack<Integer>[][] stacks;
 
     /**
      * created a sudoku solver with an empty multi array of stacks, and counter pointing
      * to the initial position of the board.
      */
     public SudokuSolver(){
-        stacks = new LinkedStack[9][9];
+        stacks = new DynamicStack[9][9];
         i = 0;
         j = 0;
         isSolved = false;
@@ -55,7 +55,7 @@ public class SudokuSolver {
         j = 0;
         isSolved = false;
         board = values;
-        stacks = new LinkedStack[9][9];
+        stacks = new DynamicStack[9][9];
         if(!boardIsValid()){
             throw new InvalidBoardException();
         }
@@ -205,8 +205,8 @@ public class SudokuSolver {
     }
 
 
-    private LinkedStack<Integer> createStackForPosition(int row, int col){
-        LinkedStack<Integer> stack = new LinkedStack<>();
+    private DynamicStack<Integer> createStackForPosition(int row, int col){
+        DynamicStack<Integer> stack = new DynamicStack<>();
 
         for (int k = 1; k <= 9; k++){
             if (!usedInRowOrCol(row, col, k) && !usedInSquare(row,col, k)){

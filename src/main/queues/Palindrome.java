@@ -1,7 +1,7 @@
 package main.queues;
 
 import struct.impl.queues.DynamicQueue;
-import struct.impl.stacks.LinkedStack;
+import struct.impl.stacks.DynamicStack;
 import struct.istruct.Queue;
 import struct.istruct.Stack;
 
@@ -21,7 +21,7 @@ public class Palindrome {
      * @return
      */
     public boolean isPalindrome(String word) {
-        Stack<Character> wordInStack= new LinkedStack<>();
+        Stack<Character> wordInStack= new DynamicStack<>();
         Queue<Character> wordInQueue= new DynamicQueue<>();
 
         for (int i = 0; i < word.length(); i++) {

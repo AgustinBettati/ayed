@@ -1,6 +1,6 @@
 package main.soccerTable;
 
-import struct.impl.stacks.LinkedStack;
+import struct.impl.stacks.DynamicStack;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -136,7 +136,7 @@ public class SoccerTableSolver {
 
     private void generateStackForMatch(Match match){
 
-        LinkedStack<Integer> possibleResults=new LinkedStack<>();
+        DynamicStack<Integer> possibleResults=new DynamicStack<>();
 
         if (match.getAway().getScore()<3 || match.getHome().getScore()<3){
 

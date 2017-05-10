@@ -1,7 +1,7 @@
 package main.stacks.lexicalAnalyzer;
 
 
-import struct.impl.stacks.LinkedStack;
+import struct.impl.stacks.DynamicStack;
 
 /**
  * @author Agustin Bettati
@@ -31,7 +31,7 @@ public class LexicalAnalyzer {
         if(arrayOfContent.length % 2 != 0)
             return false;
 
-        LinkedStack<Character> stack = new LinkedStack<>();
+        DynamicStack<Character> stack = new DynamicStack<>();
 
         for(int i = 0; i < arrayOfContent.length; i++) {
             if(stack.isEmpty())

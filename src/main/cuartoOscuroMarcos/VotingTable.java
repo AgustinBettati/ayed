@@ -2,7 +2,7 @@ package main.cuartoOscuroMarcos;
 
 
 import struct.impl.queues.DynamicQueue;
-import struct.impl.stacks.LinkedStack;
+import struct.impl.stacks.DynamicStack;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -17,7 +17,7 @@ public class VotingTable {
     private DarkRoom darkRoom;
     private DynamicQueue<Person> waitingPeople;
     private long averageWaitedTime;
-    private LinkedStack<PartyTicket> votes;
+    private DynamicStack<PartyTicket> votes;
     private HashMap<String,Integer> counter;
     private long averageLastedTime;
 
@@ -25,7 +25,7 @@ public class VotingTable {
     public VotingTable(DarkRoom darkRoom) {
         this.darkRoom = darkRoom;
         waitingPeople= new DynamicQueue<>();
-        votes= new LinkedStack<>();
+        votes= new DynamicStack<>();
         averageWaitedTime=0;
         averageLastedTime=0;
         counter=new HashMap<>();
@@ -73,7 +73,7 @@ public class VotingTable {
     }
 
     public void lastTen(){
-        LinkedStack<PartyTicket> aux= new LinkedStack<>();
+        DynamicStack<PartyTicket> aux= new DynamicStack<>();
         try {
             for (int i = 0; i < 10; i++) {
                 if (votes.peek()==null)throw new NullPointerException();
