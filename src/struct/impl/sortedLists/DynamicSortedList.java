@@ -6,7 +6,7 @@ import struct.istruct.list.List;
  */
 
 
-public class DynamicSortedList<T> implements List<T> {
+public class DynamicSortedList<T extends Comparable<T>> implements List<T> {
     private Node<T> head, window, sentinel;
     private int size;
     public DynamicSortedList(){
@@ -99,9 +99,13 @@ public class DynamicSortedList<T> implements List<T> {
         remove();
 
     }
-    public void binaryInsert(){
-
-
+    public void insertOrdered(T  element){
+        goTo(0);
+        int i=0;
+        while (element.compareTo(getActual())>0){
+            goTo(i);
+        }
+        insertNext(element);
     }
     @Override
     public int size() {
