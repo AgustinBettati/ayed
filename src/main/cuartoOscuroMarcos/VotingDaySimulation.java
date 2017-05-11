@@ -48,7 +48,8 @@ public class VotingDaySimulation {
                     votingTable.refill();
                     break;
                 case 5:
-                    System.out.println("average wait:"+votingTable.getAverageWaitedTime() );
+                    System.out.println("average wait:");
+                    System.out.println(String.format( "%.2f", (double)votingTable.getAverageWaitedTime()));
                     System.out.println("---------------");
                     System.out.println("average lasted: "+ votingTable.getAverageLastedTime());
                     System.out.println("---------------");
