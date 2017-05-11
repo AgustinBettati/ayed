@@ -1,12 +1,14 @@
 package struct.impl.sortedLists;
 import struct.istruct.list.GeneralList;
 import struct.istruct.list.List;
+import struct.istruct.list.SortedList;
+
 /**
  * Created by marcos on 19/4/17.
  */
 
 
-public class DynamicSortedList<T extends Comparable<T>> implements List<T> {
+public class DynamicSortedList<T extends Comparable<T>> implements SortedList<T> {
     private Node<T> head, window, sentinel;
     private int size;
     public DynamicSortedList(){
@@ -40,14 +42,14 @@ public class DynamicSortedList<T extends Comparable<T>> implements List<T> {
     public GeneralList<T> clone() {
         return null;
     }
-    @Override
-    public void insertPrev(T obj) {
+
+    private void insertPrev(T obj) {
         if (!isVoid()) {
             goBack(); }
         insertNext(obj);
     }
-    @Override
-    public void insertNext(T obj) {
+
+    private void insertNext(T obj) {
         window.next = new Node<>(obj, window.next);
         window = window.next;
         size++;
@@ -90,27 +92,38 @@ public class DynamicSortedList<T extends Comparable<T>> implements List<T> {
         goTo(0);
         int i=0;
         while (element!=getActual()){
-            goTo(i);
+
             if(endList()){
               throw new RuntimeException("The element is not in the list");
             }
             i++;
+            goTo(i);
         }
         remove();
 
     }
-    public void insertOrdered(T  element){
+    @Override
+    public void insert(T element) {
         goTo(0);
         int i=0;
-        while (element.compareTo(getActual())>0){
+        while (element.compareTo(getActual())>0&&!window.hasNoObj()){
+
+            if (endList()){
+                insertNext(element);
+                return;
+            }
+            i++;
             goTo(i);
         }
-        insertNext(element);
+        insertPrev(element);
     }
     @Override
     public int size() {
         return size;
     }
+
+
+
     private static class Node<E> {
         E obj;
         Node<E> next;

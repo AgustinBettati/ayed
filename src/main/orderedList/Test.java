@@ -1,5 +1,6 @@
 package main.orderedList;
 
+import struct.impl.sortedLists.DynamicSortedList;
 import struct.impl.sortedLists.StaticSortedList;
 
 /**
@@ -9,7 +10,7 @@ import struct.impl.sortedLists.StaticSortedList;
 public class Test {
 
     public static void main(String[] args) {
-        StaticSortedList<Integer> orderedList = new StaticSortedList<>();
+        DynamicSortedList<Integer> orderedList = new DynamicSortedList<>();
 
         orderedList.insert(20);
         orderedList.insert(-1);
