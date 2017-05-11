@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
  */
 public class StaticSortedList<T extends Comparable<T>>  implements SortedList<T> {
     private static final int DEFAULT_CAPACITY = 10;
-    private T[] data;
+    private Comparable<T>[] data;
     private int window;
     private int size;
     private final int capacity;
@@ -22,12 +22,12 @@ public class StaticSortedList<T extends Comparable<T>>  implements SortedList<T>
     }
 
     public StaticSortedList(int capacity) {
-        this.data = (T[])new Object[capacity];
+        this.data = new Comparable[capacity];
         this.capacity = capacity;
         this.window = 0;
         this.size = 0;
     }
-    private StaticSortedList(int window, int size, int capacity, T[] data) {
+    private StaticSortedList(int window, int size, int capacity, Comparable<T>[] data) {
         this.window = window;
         this.size = size;
         this.capacity = capacity;
@@ -37,11 +37,44 @@ public class StaticSortedList<T extends Comparable<T>>  implements SortedList<T>
     @Override
     public void insert(T obj) {
         if (size == data.length) enlarge();
-
-
-        // insertar para que quede ordenado
-
+        binaryInsert(data, obj, 0, size-1);
     }
+
+    private void binaryInsert(Comparable<T>[] array, T element, int first, int last){
+
+        if(first > last){
+            goTo(first);
+            insertPrev(element);
+            return;
+        }
+
+        int middleIndex = (first + last) / 2;
+
+        if (array[middleIndex].compareTo(element) == 0){
+            goTo(middleIndex);
+            insertNext(element);
+            return;
+        }
+
+        if(array[middleIndex].compareTo(element) < 0){
+            binaryInsert(array, element, middleIndex +1, last);
+        }
+        else{
+            binaryInsert(array, element, first, middleIndex -1 );
+        }
+    }
+
+    private void insertPrev(T obj) {
+        for (int i = data.length - 1; i > window; i--) data[i] = data[i - 1];
+        data[window] = obj;
+        size++;
+    }
+    private void insertNext(T obj) {
+        if (!isVoid()) window++;
+        insertPrev(obj);
+    }
+
+
 
     @Override
     public void goNext() {
@@ -67,13 +100,13 @@ public class StaticSortedList<T extends Comparable<T>>  implements SortedList<T>
     }
 
     public void removeWithKey(T element){
-        int index = binarySearch(data, element, 0, size);
+        int index = binarySearch(data, element, 0, size-1);
         goTo(index);
         remove();
 
     }
 
-    private int binarySearch(T[] array, T element, int first, int last){
+    private int binarySearch(Comparable<T>[] array, T element, int first, int last){
 
         if(first > last){
             throw new NoSuchElementException();
@@ -124,13 +157,13 @@ public class StaticSortedList<T extends Comparable<T>>  implements SortedList<T>
 
     @Override
     public GeneralList<T> clone() {
-        T[] cloned = (T[])new Object[data.length];
+        Comparable<T>[] cloned = new Comparable[data.length];
         for (int i = 0; i < data.length; i++) cloned[i] = data[i];
         return new StaticSortedList<T>(window, size, capacity, cloned);
     }
 
     private void enlarge() {
-        T[] tempObjects = (T[])new Object[data.length + DEFAULT_CAPACITY];
+        Comparable<T>[] tempObjects = (T[])new Object[data.length + DEFAULT_CAPACITY];
         for (int i = 0; i < data.length; i++) tempObjects[i] = data[i];
         data = tempObjects;
     }
