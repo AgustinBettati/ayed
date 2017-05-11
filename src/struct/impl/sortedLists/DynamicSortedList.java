@@ -91,7 +91,7 @@ public class DynamicSortedList<T extends Comparable<T>> implements SortedList<T>
     public void removeWithKey(T element){
         goTo(0);
         int i=0;
-        while (element!=getActual()){
+        while (!window.hasNoObj()&&element!=getActual()){
 
             if(endList()){
               throw new RuntimeException("The element is not in the list");
@@ -104,17 +104,18 @@ public class DynamicSortedList<T extends Comparable<T>> implements SortedList<T>
     }
     @Override
     public void insert(T element) {
+
         goTo(0);
         int i=0;
-        while (element.compareTo(getActual())>0&&!window.hasNoObj()){
-
-            if (endList()){
-                insertNext(element);
-                return;
-            }
+        while (!window.hasNoObj()&&element.compareTo(getActual())>0){
             i++;
             goTo(i);
         }
+        if (isVoid()){
+            head.next=new Node<T>(element,sentinel);
+            size++;
+        }
+        else
         insertPrev(element);
     }
     @Override

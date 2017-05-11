@@ -31,8 +31,14 @@ public class Test {
         orderedList.removeWithKey(40);
         orderedList.removeWithKey(20);
         orderedList.removeWithKey(20);
+        orderedList.removeWithKey(-1);
+        orderedList.removeWithKey(3);
+        orderedList.removeWithKey(18);
+        orderedList.removeWithKey(20);
+        orderedList.removeWithKey(30);
 
-        System.out.println();
+
+        System.out.println(orderedList.isVoid());
 
         for(int i =0; i< orderedList.size(); i++){
             orderedList.goTo(i);
