@@ -2,13 +2,15 @@ package struct.impl.sortedLists;
 import struct.istruct.list.GeneralList;
 import struct.istruct.list.List;
 import struct.istruct.list.SortedList;
+import java.io.Serializable;
 
 /**
- * Created by marcos on 19/4/17.
+ * @author Agustin Bettati
+ * @author Marcos Khabie
+ * @version 1.0
  */
 
-
-public class DynamicSortedList<T extends Comparable<T>> implements SortedList<T> {
+public class DynamicSortedList<T extends Comparable<T>> implements SortedList<T>, Serializable {
     private Node<T> head, window, sentinel;
     private int size;
     public DynamicSortedList(){
@@ -125,7 +127,7 @@ public class DynamicSortedList<T extends Comparable<T>> implements SortedList<T>
 
 
 
-    private static class Node<E> {
+    private static class Node<E> implements Serializable {
         E obj;
         Node<E> next;
         Node() {

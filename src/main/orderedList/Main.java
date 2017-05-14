@@ -1,67 +1,90 @@
 package main.orderedList;
 
-import struct.impl.lists.StaticList;
+import main.util.Scanner;
+import struct.istruct.list.GeneralList;
 
-import java.io.*;
+import java.util.Map;
 
 /**
  * @author Agustin Bettati
  * @author Marcos Khabie
  * @version 1.0
+ *
+ * This class is used to interact with the bus system through the terminal.
  */
 public class Main {
 
     public static void main(String[] args) {
-        StaticList<Integer> listOfNumbers = new StaticList<>(20);
+        BusSystem system = new BusSystem();
 
-        listOfNumbers.insertNext(1);
-        listOfNumbers.insertNext(2);
-        listOfNumbers.insertNext(3);
-        listOfNumbers.insertNext(4);
-        listOfNumbers.insertNext(5);
-        listOfNumbers.insertNext(6);
+        //Some buses are initially added in order to see the functionality of the
+        //system.
+        system.addNewBus(new Bus(57,20,40,true));
+        system.addNewBus(new Bus(57,40,30,false));
+        system.addNewBus(new Bus(57,10,35,true));
+        system.addNewBus(new Bus(105,20,40,true));
+        system.addNewBus(new Bus(105,50,20,true));
 
-        saveObjectInFile(listOfNumbers, "list");
+        int action;
+        do{
+            System.out.println("Operations:\n" +
+                    " 1- Add new bus to system.\n" +
+                    " 2- Remove bus from system.\n" +
+                    " 3- Obtain ordered list of buses.\n" +
+                    " 4- Amount of buses for disabled in each line.\n" +
+                    " 5- Amount of buses with more than 27 seats in each line. \n"+
+                    " 6- Save system information in file. \n"+
+                    " 7- Retrieve system information from file. \n"+
+                    " 8- Close program.\n");
 
-        StaticList<Integer> retrievedList = (StaticList<Integer>)retrieveObjectFromFile("list");
+            action = Scanner.getInt("Enter a operation: ");
 
-        for (int i = 0; i < retrievedList.size(); i++) {
-            retrievedList.goTo(i);
-            int number = retrievedList.getActual();
-            System.out.println(number);
-        }
-    }
+            switch (action){
+                case 1:
+                    System.out.println("New bus is being created.");
+                    int lineNumber = Scanner.getInt("Enter line number: ");
+                    int localNumber = Scanner.getInt("Enter local number: ");
+                    int amtOfSeats = Scanner.getInt("Amount of seats: ");
+                    int forDisabled = Scanner.getInt("Has seats for disabled: (1 for true, 0 for false)");
+                    system.addNewBus(new Bus(lineNumber,localNumber,amtOfSeats, forDisabled == 1));
+                    break;
+                case 2:
+                    System.out.println("A bus is being removed.");
+                    lineNumber = Scanner.getInt("Enter line number: ");
+                    localNumber = Scanner.getInt("Enter local number: ");
+                    system.removeBus(new Bus(lineNumber,localNumber));
+                    break;
+                case 3:
+                    GeneralList<Bus> orderedList = system.obtainOrderedList();
+                    for (int i = 0; i < orderedList.size(); i++) {
+                        orderedList.goTo(i);
+                        System.out.println(orderedList.getActual());
 
+                    }
+                    break;
+                case 4:
+                    for (Map.Entry<Integer, Integer> entry : system.amtOfBusesForDisabledInEachLine().entrySet()) {
+                        System.out.println("Line: " +entry.getKey() + " -> Amount of buses for disabled: " + entry.getValue());
+                    }
+                    break;
+                case 5:
+                    for (Map.Entry<Integer, Integer> entry : system.amtOfBusesWithMoreThan27SeatInEachLine().entrySet()) {
+                        System.out.println("Line: " +entry.getKey() + " -> More than 27 seats: " + entry.getValue());
+                    }
+                    break;
+                case 6:
+                    system.saveOrderedListInFile("list");
+                    break;
+                case 7:
+                    system.retrieveObjectFromFile("list");
+                    break;
+                case 8:
+                    System.out.println("System has closed.");
+                    break;
+                default:
+                    System.out.println("Please enter a valid operation.");
+            }
 
-
-    public static void saveObjectInFile(Object object, String fileName){
-        try {
-            FileOutputStream fileOut =
-                    new FileOutputStream( fileName + ".ser");
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
-            out.writeObject(object);
-            out.close();
-            fileOut.close();
-            System.out.println("Serialized data is saved in /" + fileName + ".ser");
-        }catch(IOException i) {
-            i.printStackTrace();
-        }
-    }
-
-    public static Object retrieveObjectFromFile(String fileName){
-        Object e = null;
-        try {
-            FileInputStream fileIn = new FileInputStream(fileName+".ser");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            e = in.readObject();
-            in.close();
-            fileIn.close();
-
-        }catch(IOException i) {
-            i.printStackTrace();
-        } catch (ClassNotFoundException j) {
-            j.printStackTrace();
-        }
-        return e;
+        }while (action != 8);
     }
 }
