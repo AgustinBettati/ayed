@@ -32,12 +32,22 @@ public class RedBlackTree<T extends Comparable<T>> implements BinaryTree<T> {
             right = null;
             parent = null;
         }
+
+        public RedBlackNode getUncle(){
+            RedBlackNode grandfather = parent.parent;
+            if(grandfather.left == parent){
+                return grandfather.right;
+            }
+            else{
+                return grandfather.left;
+            }
+        }
     }
 
     public void insert(T data){
         RedBlackNode newNode = new RedBlackNode(data, RedBlackNode.RED);
         accomodateInTree(newNode);
-        //fixInsertion(newNode);
+        fixInsertion(newNode);
     }
 
     private void accomodateInTree(RedBlackNode newNode){
@@ -63,6 +73,24 @@ public class RedBlackTree<T extends Comparable<T>> implements BinaryTree<T> {
         }
         else{
             currentNode.right = newNode;
+        }
+    }
+
+    private void fixInsertion(RedBlackNode node){
+        if(node != root){
+            if(node.parent.color == RedBlackNode.RED){
+
+                RedBlackNode parent = node.parent;
+                if(node.getUncle().color == RedBlackNode.BLACK){
+                    //rotacion
+                }
+                else{
+                    parent.color = RedBlackNode.BLACK;
+                    node.getUncle().color = RedBlackNode.BLACK;
+                    parent.parent.color = RedBlackNode.RED;
+                    fixInsertion(parent.parent);
+                }
+            }
         }
     }
 
