@@ -35,11 +35,23 @@ public class RedBlackTree<T extends Comparable<T>> implements BinaryTree<T> {
 
         public RedBlackNode getUncle(){
             RedBlackNode grandfather = parent.parent;
+            if(grandfather == null){
+                throw new RuntimeException("cannot find uncle");
+            }
             if(grandfather.left == parent){
                 return grandfather.right;
             }
             else{
                 return grandfather.left;
+            }
+        }
+
+        public boolean isLeftNode(){
+            if(parent.left == this){
+                return true;
+            }
+            else{
+                return false;
             }
         }
     }
@@ -81,10 +93,16 @@ public class RedBlackTree<T extends Comparable<T>> implements BinaryTree<T> {
             if(node.parent.color == RedBlackNode.RED){
 
                 RedBlackNode parent = node.parent;
-                if(node.getUncle().color == RedBlackNode.BLACK){
-                    //rotacion
+                if(node.getUncle() == null || node.getUncle().color == RedBlackNode.BLACK){
+                    if(isExternal(node)){
+                        simpleRotation(node);
+                    }
+                    else{
+                        doubleRotation(node);
+                    }
                 }
                 else{
+                    // Caso 4
                     parent.color = RedBlackNode.BLACK;
                     node.getUncle().color = RedBlackNode.BLACK;
                     parent.parent.color = RedBlackNode.RED;
@@ -92,6 +110,119 @@ public class RedBlackTree<T extends Comparable<T>> implements BinaryTree<T> {
                 }
             }
         }
+        else {
+            node.color = RedBlackNode.BLACK;
+        }
+    }
+
+    private boolean isExternal(RedBlackNode node){
+        RedBlackNode grandfather = node.parent.parent;
+        RedBlackNode parent = node.parent;
+
+        if(node.data.compareTo(parent.data) > 0
+                && parent.data.compareTo(grandfather.data) > 0){
+            return true;
+        }
+        if(node.data.compareTo(parent.data) < 0
+                && parent.data.compareTo(grandfather.data) < 0){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Caso 2
+     * @param node
+     */
+    private void simpleRotation(RedBlackNode node){
+        RedBlackNode grandfather = node.parent.parent;
+        RedBlackNode parent = node.parent;
+
+        if(grandfather == root){
+            root = parent;
+        }
+        else{
+            RedBlackNode upperNode = grandfather.parent;
+            if(grandfather.isLeftNode()){
+                upperNode.left = parent;
+            }
+            else {
+                upperNode.right = parent;
+            }
+        }
+        if(node.data.compareTo(parent.data) < 0){
+            RedBlackNode q = parent.right;
+
+            parent.parent = grandfather.parent;
+            parent.right = grandfather;
+
+            grandfather.left = q;
+            grandfather.parent = parent;
+        }
+        else{
+            RedBlackNode q = parent.left;
+
+            parent.parent = grandfather.parent;
+            parent.left = grandfather;
+
+            grandfather.parent = parent;
+            grandfather.right = q;
+        }
+
+        grandfather.color = RedBlackNode.RED;
+        parent.color = RedBlackNode.BLACK;
+        node.color = RedBlackNode.RED;
+    }
+
+    /**
+     * Caso 3
+     * @param node
+     */
+    private void doubleRotation(RedBlackNode node){
+        RedBlackNode grandfather = node.parent.parent;
+        RedBlackNode parent = node.parent;
+        RedBlackNode r = node.left;
+        RedBlackNode q = node.right;
+
+        if(grandfather == root){
+            root = node;
+        }
+        else{
+            RedBlackNode upperNode = grandfather.parent;
+            if(grandfather.isLeftNode()){
+                upperNode.left = node;
+            }
+            else {
+                upperNode.right = node;
+            }
+        }
+        if(node.data.compareTo(parent.data) > 0){
+
+            node.left = parent;
+            node.right = grandfather;
+            node.parent = grandfather.parent;
+
+            grandfather.parent = node;
+            grandfather.left = q;
+
+            parent.parent = node;
+            parent.right = r;
+        }
+        else{
+
+            node.parent = grandfather.parent;
+            node.left = grandfather;
+            node.right = parent;
+
+            grandfather.parent = node;
+            grandfather.right = r;
+
+            parent.parent = node;
+            parent.left = q;
+        }
+        node.color = RedBlackNode.BLACK;
+        parent.color = RedBlackNode.RED;
+        grandfather.color = RedBlackNode.RED;
     }
 
     @Override
