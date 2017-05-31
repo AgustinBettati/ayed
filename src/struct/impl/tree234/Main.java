@@ -8,13 +8,13 @@ public class Main {
 
     public static void main(String[] args) {
         Tree234<Integer> arbol = new Tree234<>();
-        arbol.insert(new Integer(5));
-        arbol.insert(new Integer(6));
-        arbol.insert(new Integer(4));
-        arbol.insert(new Integer (2));
-        arbol.insert(new Integer (10));
-        arbol.insert(new Integer (20));
-        arbol.insert(new Integer (8));
+        arbol.insert(5);
+        arbol.insert(6);
+        arbol.insert(4);
+        arbol.insert(2);
+        arbol.insert(10);
+        arbol.insert(20);
+        arbol.insert(8);
 
         arbol.print();
 
