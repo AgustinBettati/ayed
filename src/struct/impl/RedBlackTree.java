@@ -15,7 +15,7 @@ public class RedBlackTree<T extends Comparable<T>> implements BinaryTree<T> {
         root = null;
     }
 
-    private class RedBlackNode{
+    public class RedBlackNode{
         public static final int RED = 1;
         public static final int BLACK = 0;
 
@@ -53,6 +53,13 @@ public class RedBlackTree<T extends Comparable<T>> implements BinaryTree<T> {
             else{
                 return false;
             }
+        }
+
+        public T getData(){
+            return data;
+        }
+        public int getColor(){
+            return color;
         }
     }
 
@@ -209,7 +216,6 @@ public class RedBlackTree<T extends Comparable<T>> implements BinaryTree<T> {
             parent.right = r;
         }
         else{
-
             node.parent = grandfather.parent;
             node.left = grandfather;
             node.right = parent;
@@ -233,6 +239,14 @@ public class RedBlackTree<T extends Comparable<T>> implements BinaryTree<T> {
     @Override
     public T getRoot() {
         return root.data;
+    }
+
+    /**
+     * This method is only used to simplify the process of printing the tree
+     * @return
+     */
+    public RedBlackNode getNode(){
+        return root;
     }
 
     @Override
