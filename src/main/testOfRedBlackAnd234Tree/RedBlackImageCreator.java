@@ -47,7 +47,7 @@ public class RedBlackImageCreator {
     private static void paintTree(Graphics2D g2d,int x, int y,int height, RedBlackTree.RedBlackNode node){
         if(node != null){
             paintNode(g2d, x, y, node);
-            int distance = 190 - (height*50);
+            int distance = 300 / (2 * height);
             paintLine(g2d, x, y + 35, x -distance, y + 70);
             paintLine(g2d, x, y + 35,x + distance, y + 70);
             paintTree(g2d, x - distance, y + 70, height+1, node.left);
