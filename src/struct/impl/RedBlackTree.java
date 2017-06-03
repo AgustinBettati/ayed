@@ -19,11 +19,11 @@ public class RedBlackTree<T extends Comparable<T>> implements BinaryTree<T> {
         public static final int RED = 1;
         public static final int BLACK = 0;
 
-        T data;
-        int color;
-        RedBlackNode left;
-        RedBlackNode right;
-        RedBlackNode parent;
+        public T data;
+        public int color;
+        public RedBlackNode left;
+        public RedBlackNode right;
+        public RedBlackNode parent;
 
         public RedBlackNode(T data, int color){
             this.data = data;
