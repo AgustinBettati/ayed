@@ -1,4 +1,4 @@
-package struct.impl.tree234Jorge;
+package main.testOfRedBlackAnd234Tree.tree234;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.*;

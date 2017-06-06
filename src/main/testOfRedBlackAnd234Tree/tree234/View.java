@@ -1,4 +1,6 @@
-package struct.impl.tree234Jorge;
+package main.testOfRedBlackAnd234Tree.tree234;
+import struct.impl.tree234.Tree234;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;

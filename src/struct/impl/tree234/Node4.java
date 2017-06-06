@@ -82,7 +82,7 @@ public class Node4<T extends Comparable<T>> extends Node3<T> {
         }
     }
     public T[] getData() {
-        T[] array = (T[])new Object[3];
+        T[] array = (T[])new Comparable[3];
         array[0] = data1;
         array[1] = data2;
         array[2] = data3;

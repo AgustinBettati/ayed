@@ -9,8 +9,8 @@ package struct.impl.tree234;
 public abstract class Node <J extends Comparable<J>> {
     private Node<J> father;
     public int type;
-    int x;
-    int y;
+    public int x;
+    public int y;
     public abstract Node<J> search(J c);
     public abstract boolean isLeaf();
     public abstract Node<J> insert(J object);

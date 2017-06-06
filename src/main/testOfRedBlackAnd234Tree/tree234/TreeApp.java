@@ -1,4 +1,7 @@
-package struct.impl.tree234Jorge;
+package main.testOfRedBlackAnd234Tree.tree234;
+
+import struct.impl.tree234.Tree234;
+
 /**
  * Created by IntelliJ IDEA.
  * User: Jorge

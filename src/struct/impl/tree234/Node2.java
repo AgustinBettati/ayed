@@ -74,8 +74,8 @@ public class Node2<T extends Comparable<T>> extends Node<T>{
         if(right!=null) right.print();
     }
 
-    public Object[] getData() {
-        Object[] array = new Object[1];
+    public T[] getData() {
+        T[] array = (T[])new Comparable[1];
         array[0] = data1;
         return array ;
     }

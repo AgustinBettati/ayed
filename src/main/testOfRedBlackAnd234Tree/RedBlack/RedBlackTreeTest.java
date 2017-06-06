@@ -1,4 +1,4 @@
-package main.testOfRedBlackAnd234Tree;
+package main.testOfRedBlackAnd234Tree.RedBlack;
 
 import main.util.Scanner;
 import struct.impl.RedBlackTree;
