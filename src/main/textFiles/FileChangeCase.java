@@ -8,6 +8,7 @@ import java.io.IOException;
 
 /**
  * @author Agustin Bettati
+ * @author Marcos Khabie
  * @version 1.0
  */
 public class FileChangeCase {
@@ -38,14 +39,17 @@ public class FileChangeCase {
         catch (IOException e){
             System.out.println("File was not found");
         }
+        String nameOfNewFile;
         if(toUpper) {
             text = text.toUpperCase();
+            nameOfNewFile = nameOfFile + "UpperCase";
         }
         else {
             text = text.toLowerCase();
+            nameOfNewFile = nameOfFile + "LowerCase";
         }
         try {
-            FileWriter fw = new FileWriter(nameOfFile + "UpperCase");
+            FileWriter fw = new FileWriter(nameOfNewFile);
             fw.write(text);
             fw.close();
         }

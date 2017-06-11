@@ -7,43 +7,45 @@ import java.io.IOException;
 
 /**
  * @author Marcos Khabie
+ * @author Agustin Bettati
  * @version 1.0
  */
 public class Excerise4 {
 
- public void sortCountriesOnTxt(String fileName){
+    public static void main(String[] args) {
+        sortCountriesOnTxt("countries");
+    }
 
-     String[] camps;
+    public static void sortCountriesOnTxt(String fileName){
 
-     try {
+        String[] fields;
+
+        try {
          FileReader fileReader = new FileReader(fileName);
          BufferedReader bufferedReader= new BufferedReader(fileReader);
          String line= bufferedReader.readLine();
 
+         FileWriter lessThan30 = new FileWriter("CountriesLessThan30mill",true);
+         FileWriter moreThan30 = new FileWriter("CountriesMoreThan30mill",true);
          while (line!= null) {
-             camps=line.split(";");
+             fields=line.split(";");
 
-             double population= Double.parseDouble(camps[1]);
+             double population= Double.parseDouble(fields[1]);
 
-             if (population<30000000) {
-                 FileWriter fileWriter= new FileWriter("Countries With Less Than 30000000 ",true);
-                 fileWriter.write(line);
-                 fileWriter.close();
+             if (population<30) {
+                 lessThan30.write(line + "\n");
              }
              else {
-                 FileWriter fileWriter= new FileWriter("Countries With more Than 30000000 ",true);
-                 fileWriter.write(line);
-                 fileWriter.close();
+                 moreThan30.write(line+ "\n");
              }
+             line  = bufferedReader.readLine();
          }
-         fileReader.close();
-     }
-     catch (IOException e){
-
+         bufferedReader.close();
+         lessThan30.close();
+         moreThan30.close();
+        }
+        catch (IOException e){
          System.out.println("File do not exist!");
-
-     }
-
-
- }
+        }
+    }
 }

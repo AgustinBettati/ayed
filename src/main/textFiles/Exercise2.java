@@ -6,9 +6,9 @@ import java.io.IOException;
 
 /**
  * @author Marcos Khabie
+ * @author Agustin Bettati
  * @version 1.0
  */
-
 
 public class Exercise2 {
     public static void main(String[] args) {
@@ -35,8 +35,6 @@ public class Exercise2 {
             System.out.println("File do not exist!");
 
         }
-
-
     return amountOfOcurrences;
     }
 
