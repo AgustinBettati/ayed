@@ -13,12 +13,39 @@ public class Dictionary {
         table = new DynamicList[26000];
     }
 
-    public void addNewWord(String word);
+    public void addNewWord(String word){
+        if(!wordIsPresent(word)) {
+            int index = hash(word);
+            if (table[index] == null) {
+                table[index] = new DynamicList<>();
+            }
 
-    public boolean wordIsPresent(String word);
+            table[index].insertNext(word);
+        }
+    }
 
-    public DynamicList<String> getSimilarWords(String word);
+    public boolean wordIsPresent(String word){
+        int index = hash(word);
+        if(table[index] != null) {
+            DynamicList<String> list = table[index];
+            int size = list.size();
+            for (int i = 0; i < size; i++) {
+                list.goTo(i);
+                if (list.getActual().equals(word)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
+    public DynamicList<String> getSimilarWords(String word){
+        int index = hash(word);
+        if(table[index] == null){
+            return new DynamicList<>();
+        }
+        return table[index];
+    }
     /**
      * Devuelve valores entre 0 y 25999.
      * @param word
@@ -43,7 +70,6 @@ public class Dictionary {
                 case 'V':
                     x[i] = '1';
                     break;
-
                 case 'C':
                 case 'G':
                 case 'J':
