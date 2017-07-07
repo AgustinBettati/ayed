@@ -12,6 +12,7 @@ import struct.impl.tree234.Tree234;
 public class TreeApp implements Runnable{
     View view;
 
+
     public TreeApp(View view) {
         this.view = view;
     }

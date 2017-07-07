@@ -40,7 +40,9 @@ public class Simulator {
         for(int i =0; i <= 600; i++){
 
             if(i <= 540){
-                themePark.normalCycle(i);
+                themePark.createFiveNewClients();
+                themePark.makeMovementOfClientsInHubNormalHours( i );
+                themePark.attractionsTakeAction( i );
             }
 
             else{

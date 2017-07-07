@@ -45,13 +45,6 @@ public class ThemePark {
         }
     }
 
-    public void normalCycle(int time){
-        createFiveNewClients();
-        makeMovementOfClientsInHubNormalHours( time );
-
-        attractionsTakeAction(time);
-    }
-
     public void lastHour(int time){
 
         for (int i = 0; i < hub.size(); i++){
@@ -83,7 +76,7 @@ public class ThemePark {
 
     }
 
-    private void attractionsTakeAction(int time) {
+    public void attractionsTakeAction(int time) {
         int size = availableAttractions.size();
         for(int i = 0; i < availableAttractions.size(); i++){
             availableAttractions.goTo(i);
@@ -101,7 +94,7 @@ public class ThemePark {
         }
     }
 
-    private void createFiveNewClients(){
+    public void createFiveNewClients(){
         for (int i = 0; i< 5; i++){
             Client newClient = new Client();
 
@@ -118,7 +111,7 @@ public class ThemePark {
         amtOfClientsThatEnter += 5;
     }
 
-    private void makeMovementOfClientsInHubNormalHours(int time){
+    public void makeMovementOfClientsInHubNormalHours(int time){
         StaticList<Client> newHub = new StaticList<>();
 
         for (int i = 0; i < hub.size(); i++){
