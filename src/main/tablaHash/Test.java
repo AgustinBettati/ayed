@@ -7,17 +7,20 @@ import struct.impl.lists.DynamicList;
  * @version 1.0
  */
 public class Test {
+
     public static void main(String[] args) {
-        Dictionary test = new Dictionary();
+//        Dictionary test = new Dictionary();
+//
+//        DynamicList<String> similarWords = test.getSimilarWords("hegh");
+//
+//        int size = similarWords.size();
+//        for (int i = 0; i < size; i++) {
+//            similarWords.goTo(i);
+//            System.out.println(similarWords.getActual());
+//        }
 
-        test.addNewWord("Hegh");
-        DynamicList<String> similarWords = test.getSimilarWords("High");
+      ViewControler viewControler= new ViewControler();
 
-        int size = similarWords.size();
-        for (int i = 0; i < size; i++) {
-            similarWords.goTo(i);
-            System.out.println(similarWords.getActual());
-        }
 
 
     }

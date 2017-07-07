@@ -2,6 +2,11 @@ package main.tablaHash;
 
 import struct.impl.lists.DynamicList;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 /**
  * @author Agustin Bettati
  * @version 1.0
@@ -11,6 +16,21 @@ public class Dictionary {
 
     public Dictionary(){
         table = new DynamicList[26000];
+        FileReader fileReader = null;
+        try {
+            fileReader = new FileReader("commonWords.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line= bufferedReader.readLine();
+            while (line!=null){
+                addNewWord(line);
+                line=bufferedReader.readLine();
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void addNewWord(String word){
@@ -115,4 +135,5 @@ public class Dictionary {
         output = output + "0000";
         return output.substring(0, 4);
     }
+
 }
