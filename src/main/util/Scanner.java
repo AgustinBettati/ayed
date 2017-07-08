@@ -84,7 +84,7 @@ public class Scanner {
         }
     }
 
-    /** Test */
+    /** Main */
 
     public static void main(String[] args) {
         final String text = Scanner.getString("Enter some text: ");
