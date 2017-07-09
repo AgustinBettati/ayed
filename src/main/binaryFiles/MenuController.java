@@ -155,8 +155,23 @@ public class MenuController {
         public void actionPerformed(ActionEvent e) {
 
             try {
-                file.deleteStudent(studentsFrame.getDniOfSelected());
+
+                    file.deleteStudent(studentsFrame.getDniOfSelected());
+
+
+                    DynamicList<Student> listAllStudents = file.studentsList();
+                    String[] list= new String[listAllStudents.size()];
+                    for (int i = 0; i <listAllStudents.size(); i++) {
+                        listAllStudents.goTo(i);
+                        list[i]=listAllStudents.getActual().toString();
+                    }
+
+                    studentsFrame.dispose();
+                    studentsFrame= new ListStudentsFrame(new GoBack(),list,true,new Delete());
+
+//                studentsFrame.refreshList(list);
             } catch (IOException e1) {
+
                 e1.printStackTrace();
             }
         }
