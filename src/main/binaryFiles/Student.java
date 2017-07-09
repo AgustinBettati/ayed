@@ -66,4 +66,13 @@ public class Student {
     public void setAverage(double average) {
         this.average = average;
     }
+    @Override
+    public String toString() {
+        return "DNI:" + dni +
+                ", Name:" + name.trim()  +
+                ", Surname:" + surname.trim()  +
+                ", Average:" + average;
+    }
 }
+
+

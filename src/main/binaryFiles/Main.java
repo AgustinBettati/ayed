@@ -8,7 +8,8 @@ import struct.impl.lists.DynamicList;
  */
 public class Main {
     public static void main(String[] args) throws Exception {
-        new MenuFrame(null,null, null);
+//        new MenuFrame(null,null, null);
 
+        new MenuController();
     }
 }
