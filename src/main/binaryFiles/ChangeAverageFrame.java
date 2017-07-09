@@ -12,11 +12,11 @@ public class ChangeAverageFrame extends JFrame{
     private JTextField dni;
     private JTextField average;
 
-    public ChangeAverageFrame(ActionListener changeAverageButton) {
+    public ChangeAverageFrame(ActionListener changeAverageButton, ActionListener goBackButton) {
 
         super("");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(340,250);
+        setSize(340,270);
         setLocationRelativeTo(null);
         setResizable(false);
 
@@ -55,6 +55,10 @@ public class ChangeAverageFrame extends JFrame{
         submitValues.setAlignmentX(Component.CENTER_ALIGNMENT);
         submitValues.addActionListener(changeAverageButton);
 
+        JButton goBack = new JButton("Back");
+        goBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+        goBack.addActionListener(goBackButton);
+
 
         mainPanel.add(Box.createRigidArea(new Dimension(0,10)));
         mainPanel.add(title);
@@ -64,6 +68,8 @@ public class ChangeAverageFrame extends JFrame{
         mainPanel.add(averagePanel);
         mainPanel.add(Box.createRigidArea(new Dimension(0,15)));
         mainPanel.add(submitValues);
+        mainPanel.add(Box.createRigidArea(new Dimension(0,15)));
+        mainPanel.add(goBack);
         mainPanel.add(Box.createRigidArea(new Dimension(0,15)));
 
         add(mainPanel);
@@ -75,5 +81,10 @@ public class ChangeAverageFrame extends JFrame{
 
     public double getAverage(){
         return Double.parseDouble(average.getText());
+    }
+
+    public void emptyFields(){
+        dni.setText("");
+        average.setText("");
     }
 }

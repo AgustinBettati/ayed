@@ -21,8 +21,8 @@ public class MenuController {
     public MenuController(){
         menu = new MenuFrame(new AddNewStudent(), new RemoveStudent(),
                 new ModifyAverage(), new ListAllStudents(), new ListSpecificStudents(), new GenerateIndexFile());
-        newStudentView = new NewStudentFrame(new RegisterNewStudent());
-        changeAverageView = new ChangeAverageFrame(new ChangeAverage());
+        newStudentView = new NewStudentFrame(new RegisterNewStudent(), new GoBackFromNewStudent());
+        changeAverageView = new ChangeAverageFrame(new ChangeAverage(), new GoBackFromChangeAverage());
         try {
             file = new StudentFile("students");
         } catch (Exception e) {
@@ -39,6 +39,22 @@ public class MenuController {
         }
     }
 
+    public class GoBackFromNewStudent implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            menu.setVisible(true);
+            newStudentView.dispose();
+        }
+    }
+
+    public class GoBackFromChangeAverage implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            menu.setVisible(true);
+            changeAverageView.dispose();
+        }
+    }
+
     public class ChangeAverage implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -51,6 +67,7 @@ public class MenuController {
                 e1.printStackTrace();
             }
             changeAverageView.dispose();
+            changeAverageView.emptyFields();
             menu.setVisible(true);
         }
     }
@@ -139,7 +156,7 @@ public class MenuController {
         public void actionPerformed(ActionEvent e) {
             try {
 
-                double minAverage= Integer.parseInt(JOptionPane.showInputDialog(null,
+                double minAverage= Double.parseDouble(JOptionPane.showInputDialog(null,
                         "Enter the minimum Average to create the list:",
                     "Specific Average",
                     JOptionPane.INFORMATION_MESSAGE));
@@ -161,14 +178,14 @@ public class MenuController {
 
         }
     }
-        public class GoBack implements ActionListener{
+
+    public class GoBack implements ActionListener{
 
             @Override
             public void actionPerformed(ActionEvent e) {
                 menu.setVisible(true);
                 studentsFrame.dispose();
-
-        }
+            }
     }
     public class Delete implements ActionListener{
 

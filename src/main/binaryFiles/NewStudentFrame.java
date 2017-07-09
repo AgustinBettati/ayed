@@ -17,11 +17,11 @@ public class NewStudentFrame extends JFrame{
     private JTextField name;
     private JTextField average;
 
-    public NewStudentFrame(ActionListener newStudentButton) {
+    public NewStudentFrame(ActionListener newStudentButton, ActionListener backButtonListener) {
 
         super("");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(340,300);
+        setSize(340,320);
         setLocationRelativeTo(null);
         setResizable(false);
 
@@ -82,6 +82,10 @@ public class NewStudentFrame extends JFrame{
         submitValues.setAlignmentX(Component.CENTER_ALIGNMENT);
         submitValues.addActionListener(newStudentButton);
 
+        JButton backButton = new JButton("Back");
+        backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        backButton.addActionListener(backButtonListener);
+
 
         mainPanel.add(Box.createRigidArea(new Dimension(0,10)));
         mainPanel.add(title);
@@ -95,6 +99,8 @@ public class NewStudentFrame extends JFrame{
         mainPanel.add(averagePanel);
         mainPanel.add(Box.createRigidArea(new Dimension(0,15)));
         mainPanel.add(submitValues);
+        mainPanel.add(Box.createRigidArea(new Dimension(0,15)));
+        mainPanel.add(backButton);
         mainPanel.add(Box.createRigidArea(new Dimension(0,15)));
 
         add(mainPanel);
