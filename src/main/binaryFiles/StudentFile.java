@@ -82,7 +82,7 @@ public class StudentFile {
 
     }
 
-    public boolean changeAverageOfStudent(int dni, int newAverage) throws IOException {
+    public boolean changeAverageOfStudent(int dni, double newAverage) throws IOException {
         try {
             Student student = find(dni);
             randomAccessFile.seek(randomAccessFile.getFilePointer() - registerSize);
