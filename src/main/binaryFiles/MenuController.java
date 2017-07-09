@@ -1,9 +1,5 @@
 package main.binaryFiles;
 
-import main.chessMovement.AllPathsShownDialog;
-
-import main.swingGUI.GameFrame;
-import main.swingGUI.SettingsController;
 import struct.impl.lists.DynamicList;
 
 import javax.swing.*;
@@ -16,13 +12,15 @@ import java.io.IOException;
  * @version 1.0
  */
 public class MenuController {
-    private MenuFrame view;
+    private MenuFrame menu;
     private ListStudentsFrame studentsFrame;
     private StudentFile file;
+    private NewStudentFrame newStudentView;
 
     public MenuController(){
-        view = new MenuFrame(new AddNewStudent(), new RemoveStudent(),
-                new ModifyAverage(), new ListAllStudents(), new ListSpecificStudents(), null);
+        menu = new MenuFrame(new AddNewStudent(), new RemoveStudent(),
+                new ModifyAverage(), new ListAllStudents(), new ListSpecificStudents(), new GenerateIndexFile());
+        newStudentView = new NewStudentFrame(new RegisterNewStudent());
         try {
             file = new StudentFile("students");
         } catch (Exception e) {
@@ -31,13 +29,35 @@ public class MenuController {
     }
 
 
-
     public class AddNewStudent implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            newStudentView.setVisible(true);
+            menu.dispose();
         }
     }
+
+    public class RegisterNewStudent implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Student student = newStudentView.getStudent();
+            newStudentView.dispose();
+            menu.setVisible(true);
+            try {
+                file.writeNewStudent(student);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+
+    public class GenerateIndexFile implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            file.generateIndexFile();
+        }
+    }
+
 
     public class RemoveStudent implements ActionListener{
         @Override
@@ -76,7 +96,7 @@ public class MenuController {
                     list[i]=listAllStudents.getActual().toString();
                 }
                 studentsFrame= new ListStudentsFrame(new GoBack(), list);
-                view.dispose();
+                menu.dispose();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -102,7 +122,7 @@ public class MenuController {
                     list[i]=listSomeStudents.getActual().toString();
                 }
                 studentsFrame= new ListStudentsFrame(new GoBack(), list);
-                view.dispose();
+                menu.dispose();
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -114,7 +134,7 @@ public class MenuController {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                view.setVisible(true);
+                menu.setVisible(true);
                 studentsFrame.dispose();
 
         }
