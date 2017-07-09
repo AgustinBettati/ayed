@@ -102,7 +102,16 @@ public class NewStudentFrame extends JFrame{
 
 
     public Student getStudent(){
-        return new Student(Integer.parseInt(dni.getText()), surname.getText(),
+        Student student = new Student(Integer.parseInt(dni.getText()), surname.getText(),
                 name.getText(),Double.parseDouble(average.getText()),true);
+        freeFields();
+        return student;
+    }
+
+    private void freeFields(){
+        dni.setText("");
+        name.setText("");
+        surname.setText("");
+        average.setText("");
     }
 }
