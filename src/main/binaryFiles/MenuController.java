@@ -16,11 +16,13 @@ public class MenuController {
     private ListStudentsFrame studentsFrame;
     private StudentFile file;
     private NewStudentFrame newStudentView;
+    private ChangeAverageFrame changeAverageView;
 
     public MenuController(){
         menu = new MenuFrame(new AddNewStudent(), new RemoveStudent(),
                 new ModifyAverage(), new ListAllStudents(), new ListSpecificStudents(), new GenerateIndexFile());
         newStudentView = new NewStudentFrame(new RegisterNewStudent());
+        changeAverageView = new ChangeAverageFrame(new ChangeAverage());
         try {
             file = new StudentFile("students");
         } catch (Exception e) {
@@ -36,6 +38,32 @@ public class MenuController {
             menu.dispose();
         }
     }
+
+    public class ChangeAverage implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int dni = changeAverageView.getDni();
+            double newAverage = changeAverageView.getAverage();
+
+            try {
+                file.changeAverageOfStudent(dni, newAverage);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            changeAverageView.dispose();
+            menu.setVisible(true);
+        }
+    }
+
+
+    public class ModifyAverage implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            changeAverageView.setVisible(true);
+            menu.dispose();
+        }
+    }
+
 
     public class RegisterNewStudent implements ActionListener{
         @Override
@@ -78,13 +106,6 @@ public class MenuController {
 
 
 
-
-        }
-    }
-
-    public class ModifyAverage implements ActionListener {
-        @Override
-        public void actionPerformed(ActionEvent e) {
 
         }
     }
