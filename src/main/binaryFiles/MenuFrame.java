@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 public class MenuFrame extends JFrame {
 
     public MenuFrame(ActionListener addNewStudent, ActionListener removeStudent,
-                     ActionListener listStudents, ActionListener changeAverage,
+                     ActionListener changeAverage, ActionListener listStudents,
                      ActionListener listSpecificStudents, ActionListener generateIndexFile){
 
         super("IO of binary file of students");
