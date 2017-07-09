@@ -10,7 +10,8 @@ import java.awt.event.ActionListener;
  */
 public class ListStudentsFrame extends JFrame {
 
-    public ListStudentsFrame(ActionListener back, String [] studentsList, boolean isToDelete) {
+    private JList list;
+    public ListStudentsFrame(ActionListener back, String [] studentsList, boolean isToDelete, ActionListener delete) {
         super("IO of binary file of students");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(350,250);
@@ -34,7 +35,7 @@ public class ListStudentsFrame extends JFrame {
         title.setFont(new Font(title.getFont().getName(), Font.BOLD, 20));
 
 
-        JList list = new JList(studentsList);
+        list = new JList(studentsList);
         list.setSelectedIndex(1);
 
 
@@ -48,17 +49,13 @@ public class ListStudentsFrame extends JFrame {
         mainPanel.add(list);
         mainPanel.add(Box.createRigidArea(new Dimension(0,20)));
         if (isToDelete){
-            JLabel subtitle = new JLabel("Press enter on the student to delete: ");
-            title.setAlignmentX(Component.CENTER_ALIGNMENT);
-            title.setFont(new Font(title.getFont().getName(), Font.BOLD, 20));
-
-            mainPanel.add(subtitle);
-
-            String s=list.getSelectedValue().toString();
 
             JButton deleteButton = new JButton("Delete");
             deleteButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-            deleteButton.addActionListener(back);
+            deleteButton.addActionListener(delete);
+
+            mainPanel.add(deleteButton);
+
 
 
         }
@@ -72,6 +69,11 @@ public class ListStudentsFrame extends JFrame {
 
 
 
+    }
+
+    public int getDniOfSelected(){
+        String s=list.getSelectedValue().toString();
+        return Integer.parseInt(s.substring(4,12));
     }
 
 

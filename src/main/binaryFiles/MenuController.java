@@ -42,13 +42,19 @@ public class MenuController {
     public class RemoveStudent implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {int dniToAdd;
-//            amountOfMovements = Integer.parseInt(JOptionPane.showInputDialog(null,"Enter the amount of movements:",
-//                    "Horse Movements",
-//                    JOptionPane.INFORMATION_MESSAGE));
-//            chessWindow = new ChessFrame(amountOfMovements,new ChessController.NextPathButtonListener());
-//            horseMovement = new HorseMovement(amountOfMovements);
-//            allPathsShownWindow = new AllPathsShownDialog(new ChessController.ResetButtonListener())
+            try {
 
+                DynamicList<Student> listAllStudents = file.studentsList();
+                String[] list= new String[listAllStudents.size()];
+                for (int i = 0; i <listAllStudents.size(); i++) {
+                    listAllStudents.goTo(i);
+                    list[i]=listAllStudents.getActual().toString();
+                }
+                studentsFrame= new ListStudentsFrame(new GoBack(), list,true, new Delete());
+                view.dispose();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
 
 
 
@@ -75,7 +81,7 @@ public class MenuController {
                     listAllStudents.goTo(i);
                     list[i]=listAllStudents.getActual().toString();
                 }
-                studentsFrame= new ListStudentsFrame(new GoBack(), list);
+                studentsFrame= new ListStudentsFrame(new GoBack(), list,false,null);
                 view.dispose();
             } catch (IOException e1) {
                 e1.printStackTrace();
@@ -101,7 +107,7 @@ public class MenuController {
                     listSomeStudents.goTo(i);
                     list[i]=listSomeStudents.getActual().toString();
                 }
-                studentsFrame= new ListStudentsFrame(new GoBack(), list);
+                studentsFrame= new ListStudentsFrame(new GoBack(), list,false,null);
                 view.dispose();
             } catch (IOException e1) {
                 e1.printStackTrace();
@@ -117,6 +123,18 @@ public class MenuController {
                 view.setVisible(true);
                 studentsFrame.dispose();
 
+        }
+    }
+    public class Delete implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            try {
+                file.deleteStudent(studentsFrame.getDniOfSelected());
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
         }
     }
 
