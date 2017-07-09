@@ -19,7 +19,7 @@ public class MainFrame extends JFrame {
 
         super("Trabajo Practico HashTable");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(300,180);
+        setSize(340,180);
         setLocationRelativeTo(null);
         setResizable(false);
 
@@ -74,7 +74,7 @@ public class MainFrame extends JFrame {
         String listOfWords= "";
         for (int i = 0; i <words.size() ; i++) {
             words.goTo(i);
-            listOfWords+= words.getActual() + " \n";
+            listOfWords+= words.getActual() + " ";
         }
 
         correctWords.setText(listOfWords);
