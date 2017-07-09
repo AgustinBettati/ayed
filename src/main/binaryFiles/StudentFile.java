@@ -3,6 +3,7 @@ package main.binaryFiles;
 import struct.impl.lists.DynamicList;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
@@ -118,5 +119,29 @@ public class StudentFile {
             }
         }
         return studentsAboveAverage;
+    }
+
+    public void generateIndexFile(){
+        try {
+            FileWriter fw = new FileWriter("indexFile.txt");
+            randomAccessFile.seek(0);
+            Student student;
+            for (int i = 0; i < amountOfStudents(); i++) {
+                int positionInFile = (int)randomAccessFile.getFilePointer();
+                student = read();
+                if (student.isActive()) {
+                    fw.write("DNI: " + student.getDni()+ " --> position: " + positionInFile + "\n");
+                }
+            }
+            fw.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void close() throws IOException {
+        randomAccessFile.close();
     }
 }

@@ -10,11 +10,13 @@ import java.awt.event.ActionListener;
  */
 public class MenuFrame extends JFrame {
 
-    public MenuFrame(ActionListener addNewStudent, ActionListener removeStudent, ActionListener listStudents, ActionListener changeAverage, ActionListener listSpecificStudents){
+    public MenuFrame(ActionListener addNewStudent, ActionListener removeStudent,
+                     ActionListener listStudents, ActionListener changeAverage,
+                     ActionListener listSpecificStudents, ActionListener generateIndexFile){
 
         super("IO of binary file of students");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(350,250);
+        setSize(350,280);
         setLocationRelativeTo(null);
         setResizable(false);
 
@@ -56,6 +58,10 @@ public class MenuFrame extends JFrame {
         listSpecificStudentButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         listSpecificStudentButton.addActionListener(listSpecificStudents);
 
+        JButton generateIndexButton = new JButton("Generate index file");
+        generateIndexButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        generateIndexButton.addActionListener(generateIndexFile);
+
         mainPanel.add(Box.createRigidArea(new Dimension(0,20)));
         mainPanel.add(title);
         mainPanel.add(Box.createRigidArea(new Dimension(0,20)));
@@ -64,6 +70,7 @@ public class MenuFrame extends JFrame {
         mainPanel.add(changeAverageButton);
         mainPanel.add(listStudentButton);
         mainPanel.add(listSpecificStudentButton);
+        mainPanel.add(generateIndexButton);
 
         add(mainPanel);
 

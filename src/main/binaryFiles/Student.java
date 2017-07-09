@@ -18,8 +18,6 @@ public class Student {
         this.surname = adapt(surname,15);
         this.average = average;
         this.isActive = isActive;
-
-
     }
 
 
