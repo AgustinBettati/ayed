@@ -47,8 +47,9 @@ public class ListStudentsFrame extends JFrame {
 
         mainPanel.add(Box.createRigidArea(new Dimension(0,20)));
         mainPanel.add(list);
-        mainPanel.add(Box.createRigidArea(new Dimension(0,20)));
         if (isToDelete){
+
+            mainPanel.add(Box.createRigidArea(new Dimension(0,15)));
 
             JButton deleteButton = new JButton("Delete");
             deleteButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -59,7 +60,7 @@ public class ListStudentsFrame extends JFrame {
 
 
         }
-        mainPanel.add(Box.createRigidArea(new Dimension(0,20)));
+        mainPanel.add(Box.createRigidArea(new Dimension(0,15)));
         mainPanel.add(backButton);
 
         add(mainPanel);
