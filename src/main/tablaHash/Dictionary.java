@@ -18,7 +18,7 @@ public class Dictionary {
         table = new DynamicList[26000];
         FileReader fileReader = null;
         try {
-            fileReader = new FileReader("commonWords.txt");
+            fileReader = new FileReader("src/main/tablaHash/resource/commonWords.txt");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             String line= bufferedReader.readLine();

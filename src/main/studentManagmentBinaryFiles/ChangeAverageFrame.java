@@ -1,9 +1,6 @@
-package main.binaryFiles;
-
-import struct.impl.lists.DynamicList;
+package main.studentManagmentBinaryFiles;
 
 import javax.swing.*;
-import javax.swing.event.DocumentListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
@@ -11,24 +8,22 @@ import java.awt.event.ActionListener;
  * @author Agustin Bettati
  * @version 1.0
  */
-public class NewStudentFrame extends JFrame{
+public class ChangeAverageFrame extends JFrame{
     private JTextField dni;
-    private JTextField surname;
-    private JTextField name;
     private JTextField average;
 
-    public NewStudentFrame(ActionListener newStudentButton, ActionListener backButtonListener) {
+    public ChangeAverageFrame(ActionListener changeAverageButton, ActionListener goBackButton) {
 
         super("");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(340,320);
+        setSize(340,270);
         setLocationRelativeTo(null);
         setResizable(false);
 
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
 
-        JLabel title = new JLabel("Register new student");
+        JLabel title = new JLabel("Modify average");
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setFont(new Font(title.getFont().getName(), Font.BOLD, 20));
 
@@ -43,28 +38,6 @@ public class NewStudentFrame extends JFrame{
         dniPanel.add(dniLabel);
         dniPanel.add(dni);
 
-        JPanel surnamePanel = new JPanel();
-        surnamePanel.setLayout(new BoxLayout(surnamePanel, BoxLayout.LINE_AXIS));
-        surnamePanel.setMaximumSize(new Dimension(290,35));
-
-        JLabel surnameLabel = new JLabel("Enter surname: ");
-
-        surname = new JTextField();
-
-        surnamePanel.add(surnameLabel);
-        surnamePanel.add(surname);
-
-
-        JPanel namePanel = new JPanel();
-        namePanel.setLayout(new BoxLayout(namePanel, BoxLayout.LINE_AXIS));
-        namePanel.setMaximumSize(new Dimension(290,35));
-
-        JLabel nameLabel = new JLabel("Enter name: ");
-
-        name = new JTextField();
-
-        namePanel.add(nameLabel);
-        namePanel.add(name);
 
         JPanel averagePanel = new JPanel();
         averagePanel.setLayout(new BoxLayout(averagePanel, BoxLayout.LINE_AXIS));
@@ -78,13 +51,13 @@ public class NewStudentFrame extends JFrame{
         averagePanel.add(average);
 
 
-        JButton submitValues = new JButton("Submit");
+        JButton submitValues = new JButton("Make change");
         submitValues.setAlignmentX(Component.CENTER_ALIGNMENT);
-        submitValues.addActionListener(newStudentButton);
+        submitValues.addActionListener(changeAverageButton);
 
-        JButton backButton = new JButton("Back");
-        backButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        backButton.addActionListener(backButtonListener);
+        JButton goBack = new JButton("Back");
+        goBack.setAlignmentX(Component.CENTER_ALIGNMENT);
+        goBack.addActionListener(goBackButton);
 
 
         mainPanel.add(Box.createRigidArea(new Dimension(0,10)));
@@ -92,32 +65,26 @@ public class NewStudentFrame extends JFrame{
         mainPanel.add(Box.createRigidArea(new Dimension(0,20)));
         mainPanel.add(dniPanel);
         mainPanel.add(Box.createRigidArea(new Dimension(0,15)));
-        mainPanel.add(surnamePanel);
-        mainPanel.add(Box.createRigidArea(new Dimension(0,15)));
-        mainPanel.add(namePanel);
-        mainPanel.add(Box.createRigidArea(new Dimension(0,15)));
         mainPanel.add(averagePanel);
         mainPanel.add(Box.createRigidArea(new Dimension(0,15)));
         mainPanel.add(submitValues);
         mainPanel.add(Box.createRigidArea(new Dimension(0,15)));
-        mainPanel.add(backButton);
+        mainPanel.add(goBack);
         mainPanel.add(Box.createRigidArea(new Dimension(0,15)));
 
         add(mainPanel);
     }
 
-
-    public Student getStudent(){
-        Student student = new Student(Integer.parseInt(dni.getText()), surname.getText(),
-                name.getText(),Double.parseDouble(average.getText()),true);
-        freeFields();
-        return student;
+    public int getDni(){
+        return Integer.parseInt(dni.getText());
     }
 
-    private void freeFields(){
+    public double getAverage(){
+        return Double.parseDouble(average.getText());
+    }
+
+    public void emptyFields(){
         dni.setText("");
-        name.setText("");
-        surname.setText("");
         average.setText("");
     }
 }

@@ -1,4 +1,4 @@
-package main.binaryFiles;
+package main.studentManagmentBinaryFiles;
 
 import struct.impl.lists.DynamicList;
 
@@ -24,7 +24,7 @@ public class MenuController {
         newStudentView = new NewStudentFrame(new RegisterNewStudent(), new GoBackFromNewStudent());
         changeAverageView = new ChangeAverageFrame(new ChangeAverage(), new GoBackFromChangeAverage());
         try {
-            file = new StudentFile("students");
+            file = new StudentFile("src/main/studentManagmentBinaryFiles/resources/students");
         } catch (Exception e) {
             e.printStackTrace();
         }

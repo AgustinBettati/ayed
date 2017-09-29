@@ -1,4 +1,4 @@
-package main.binaryFiles;
+package main.studentManagmentBinaryFiles;
 
 import javax.swing.*;
 import java.awt.*;

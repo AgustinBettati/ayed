@@ -1,6 +1,4 @@
-package main.binaryFiles;
-
-import struct.impl.lists.DynamicList;
+package main.studentManagmentBinaryFiles;
 
 /**
  * @author Agustin Bettati

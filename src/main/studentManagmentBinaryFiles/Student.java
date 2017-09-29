@@ -1,4 +1,4 @@
-package main.binaryFiles;
+package main.studentManagmentBinaryFiles;
 
 /**
  * @author Agustin Bettati
